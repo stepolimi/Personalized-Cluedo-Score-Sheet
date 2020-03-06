@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">Cluedo kiler</string>
+
+    <string-array name="suspects">
+        <item>Gio bliss</item>
+        <item>Jorko</item>
+        <item>Chiara DiFra</item>
+        <item>Fungo</item>
+        <item>Giulio</item>
+        <item>Darko</item>
+    </string-array>
+
+    <string-array name="weapons">
+        <item>coltello</item>
+        <item>peroni da 75cl</item>
+        <item>cocktail di farmaci</item>
+        <item>punto</item>
+        <item>drum</item>
+        <item>bilanciere</item>
+    </string-array>
+
+    <string-array name="places">
+        <item>solaio  del bean</item>
+        <item>porto 05</item>
+        <item>giardino del baga</item>
+        <item>taverna del teo</item>
+        <item>bliss</item>
+        <item>piscina di angelo</item>
+        <item>cucina delle vi</item>
+        <item>spa del luca</item>
+        <item>black</item>
+    </string-array>
+
+    <string-array name="players">
+        <item> </item>
+        <item>Baga</item>
+        <item>Luca</item>
+        <item>Virgi</item>
+        <item>Greg</item>
+        <item>Ale</item>
+        <item>Teo</item>
+        <item>Bean</item>
+        <item>Simo</item>
+        <item>Noe</item>
+        <item>Chiari</item>
+        <item>Frii</item>
+        <item>Vitto</item>
+        <item>Friggi</item>
+    </string-array>
+</resources>
