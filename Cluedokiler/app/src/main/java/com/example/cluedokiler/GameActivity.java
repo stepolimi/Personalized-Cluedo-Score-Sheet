@@ -23,9 +23,6 @@ public class GameActivity extends AppCompatActivity {
     String[] weapons;
     String[] places;
 
-    ArrayList<ArrayList<String>> gameTable;
-    //HashMap<Integer,String> gameTableHash = new HashMap<>();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,13 +34,6 @@ public class GameActivity extends AppCompatActivity {
         weapons = res.getStringArray(R.array.weapons);
         places = res.getStringArray(R.array.places);
 
-        ArrayList<String> playersNames = new ArrayList();
-
-
-        if(getIntent().hasExtra("com.example.cluedokiller.players")){
-            playersNames = getIntent().getExtras().getStringArrayList("com.example.cluedokiller.players");
-        }
-
         ArrayList <TextView> playerTextViews = new ArrayList<>();
         playerTextViews.add(0,(TextView) findViewById(R.id.player1TextView));
         playerTextViews.add(1,(TextView) findViewById(R.id.player2TextView));
@@ -54,15 +44,35 @@ public class GameActivity extends AppCompatActivity {
 
         nameViews();
 
+        GameStatus gameStatus = GameStatus.getInstance();
         for (int i = 0; i<6;i++) {
-            if(i<playersNames.size())
-                playerTextViews.get(i).setText(playersNames.get(i));
+            if(i<gameStatus.playersNames.size())
+                playerTextViews.get(i).setText(gameStatus.playersNames.get(i));
             else {
                 TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
                 gameTableLayout.setColumnCollapsed(i+1,true);
             }
         }
 
+
+        setHideSwitcher();
+/*
+
+        ArrayList <TextView> playerTextViews = new ArrayList<>();
+        playerTextViews.add(0,(TextView) findViewById(R.id.player1TextView));
+
+        playerTextViews.get(0).setOnHoverListener(new View.OnHoverListener() {
+            @Override
+            public boolean onHover(View v, MotionEvent event) {
+                Intent imageActivity = new Intent(getApplicationContext(), ImageActivity.class);
+                startActivity(imageActivity);
+                return false;
+            }
+        });*/
+    }
+
+
+    private void setHideSwitcher(){
         final Switch hideAnswersSwitch = (Switch) findViewById(R.id.switch1);
 
         hideAnswersSwitch.setOnClickListener(new View.OnClickListener() {
@@ -96,7 +106,7 @@ public class GameActivity extends AppCompatActivity {
                             if (itemTableLayout instanceof ImageView) {
                                 ImageView tableImageView = (ImageView) itemTableLayout;
 
-                                if(gameStatus.alreadySet) {
+                                if(gameStatus.tableSet) {
                                     if (gameStatus.gameTableHash.get(tableImageView.getId()).equals("cross")) {
                                         scaleImages((ImageView) itemTableLayout, R.drawable.cross);
                                         tableImageView.setTag("cross");
@@ -119,22 +129,7 @@ public class GameActivity extends AppCompatActivity {
 
             }
         });
-
-/*
-
-        ArrayList <TextView> playerTextViews = new ArrayList<>();
-        playerTextViews.add(0,(TextView) findViewById(R.id.player1TextView));
-
-        playerTextViews.get(0).setOnHoverListener(new View.OnHoverListener() {
-            @Override
-            public boolean onHover(View v, MotionEvent event) {
-                Intent imageActivity = new Intent(getApplicationContext(), ImageActivity.class);
-                startActivity(imageActivity);
-                return false;
-            }
-        });*/
     }
-
 
 
     private void nameViews() {
@@ -189,7 +184,7 @@ public class GameActivity extends AppCompatActivity {
                 if (itemTableLayout instanceof ImageView) {
                     ImageView tableImageView = (ImageView) itemTableLayout;
 
-                    if(gameStatus.alreadySet) {
+                    if(gameStatus.tableSet) {
                         if (gameStatus.gameTableHash.get(tableImageView.getId()).equals("cross")) {
                             scaleImages((ImageView) itemTableLayout, R.drawable.cross);
                             tableImageView.setTag("cross");
@@ -212,7 +207,7 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         }
-        gameStatus.alreadySet = true;
+        gameStatus.tableSet = true;
 
 
 

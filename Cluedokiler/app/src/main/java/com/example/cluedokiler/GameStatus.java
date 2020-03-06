@@ -1,5 +1,6 @@
 package com.example.cluedokiler;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GameStatus {
@@ -7,10 +8,15 @@ public class GameStatus {
     private static GameStatus single_instance = null;
 
     public HashMap<Integer,String> gameTableHash;
-    public boolean alreadySet = false;
+    public boolean tableSet;
+    public ArrayList<String> playersNames;
+    public boolean playersSet;
 
     private GameStatus() {
         gameTableHash = new HashMap<>();
+        tableSet = false;
+        playersSet = false;
+        playersNames = new ArrayList<>();
     }
 
     public static GameStatus getInstance()

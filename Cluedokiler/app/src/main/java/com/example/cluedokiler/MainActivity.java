@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity  {
 
     ArrayList<PlayerSpinnerListener> spinnerListeners = new ArrayList<>();
-    ArrayList<ArrayList<String>> gameTable = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,24 +30,31 @@ public class MainActivity extends AppCompatActivity  {
             @Override
             public void onClick(View v) {
                 GameStatus gameStatus = GameStatus.getInstance();
-                gameStatus.alreadySet = false;
+                gameStatus.tableSet = false;
+                gameStatus.playersSet = false;
             }
         });
 
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ArrayList<String> playersChoices = new ArrayList<>();
+                GameStatus gameStatus = GameStatus.getInstance();
 
-                for(int i=0; i<6; i++){
-                    if(!spinnerListeners.get(i).getPlayerChoice().equals(" ") && !spinnerListeners.get(i).getPlayerChoice().equals(""))
-                        playersChoices.add(spinnerListeners.get(i).getPlayerChoice());
+
+                if(!gameStatus.playersSet) {
+                    gameStatus.playersNames.clear();
+                    for (int i = 0; i < 6; i++) {
+                        if (!spinnerListeners.get(i).getPlayerChoice().equals(" ") && !spinnerListeners.get(i).getPlayerChoice().equals(""))
+                            if (!gameStatus.playersSet) {
+                                gameStatus.playersNames.add(spinnerListeners.get(i).getPlayerChoice());
+                            }
+                    }
+                    gameStatus.playersSet = true;
                 }
 
 
-                if(playersChoices.size() >= 2){
+                if(gameStatus.playersNames.size() > 2){
                     Intent startGameIntent = new Intent(getApplicationContext(), GameActivity.class);
-                    startGameIntent.putExtra("com.example.cluedokiller.players", playersChoices);
                     startActivity(startGameIntent);
                 }
 

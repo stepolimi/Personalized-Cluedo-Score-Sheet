@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Cluedo kiler</string>
+    <string name="app_name">Cluedo killer</string>
 
     <string-array name="suspects">
         <item>Gio bliss</item>
