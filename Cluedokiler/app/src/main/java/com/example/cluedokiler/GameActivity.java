@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -61,6 +62,63 @@ public class GameActivity extends AppCompatActivity {
                 gameTableLayout.setColumnCollapsed(i+1,true);
             }
         }
+
+        final Switch hideAnswersSwitch = (Switch) findViewById(R.id.switch1);
+
+        hideAnswersSwitch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(hideAnswersSwitch.isChecked()) {
+                    hideAnswersSwitch.setChecked(true);
+
+                    TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
+                    for (int i = 0; i < gameTableLayout.getChildCount(); i++) {
+                        TableRow gameTableRow = (TableRow) gameTableLayout.getChildAt(i);
+                        for (int x = 0; x < gameTableRow.getChildCount(); x++) {
+                            final View itemTableLayout = gameTableRow.getChildAt(x);
+                            if (itemTableLayout instanceof ImageView) {
+                                ImageView tableImageView = (ImageView) itemTableLayout;
+
+                                scaleImages((ImageView) itemTableLayout, R.drawable.checkbox);
+                                tableImageView.setTag("hide");
+                            }
+                        }
+                    }
+                }
+                else{
+                    hideAnswersSwitch.setChecked(false);
+                    GameStatus gameStatus = GameStatus.getInstance();
+                    TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
+                    for (int i = 0; i < gameTableLayout.getChildCount(); i++) {
+                        TableRow gameTableRow = (TableRow) gameTableLayout.getChildAt(i);
+                        for (int x = 0; x < gameTableRow.getChildCount(); x++) {
+                            final View itemTableLayout = gameTableRow.getChildAt(x);
+                            if (itemTableLayout instanceof ImageView) {
+                                ImageView tableImageView = (ImageView) itemTableLayout;
+
+                                if(gameStatus.alreadySet) {
+                                    if (gameStatus.gameTableHash.get(tableImageView.getId()).equals("cross")) {
+                                        scaleImages((ImageView) itemTableLayout, R.drawable.cross);
+                                        tableImageView.setTag("cross");
+                                    } else if (gameStatus.gameTableHash.get(tableImageView.getId()).equals("empty")) {
+                                        scaleImages((ImageView) itemTableLayout, R.drawable.checkbox);
+                                        tableImageView.setTag("empty");
+                                    } else if (gameStatus.gameTableHash.get(tableImageView.getId()).equals("question")) {
+                                        scaleImages((ImageView) itemTableLayout, R.drawable.question);
+                                        tableImageView.setTag("question");
+                                    } else if(gameStatus.gameTableHash.get(tableImageView.getId()).equals("tick")){
+                                        scaleImages((ImageView) itemTableLayout, R.drawable.tick);
+                                        tableImageView.setTag("tick");
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                }
+
+            }
+        });
 
 /*
 
@@ -141,7 +199,7 @@ public class GameActivity extends AppCompatActivity {
                         } else if (gameStatus.gameTableHash.get(tableImageView.getId()).equals("question")) {
                             scaleImages((ImageView) itemTableLayout, R.drawable.question);
                             tableImageView.setTag("question");
-                        } else {
+                        } else if(gameStatus.gameTableHash.get(tableImageView.getId()).equals("tick")){
                             scaleImages((ImageView) itemTableLayout, R.drawable.tick);
                             tableImageView.setTag("tick");
                         }
@@ -193,7 +251,7 @@ public class GameActivity extends AppCompatActivity {
                                 gameStatus.gameTableHash.remove(tableImageView.getId());
                                 gameStatus.gameTableHash.put(tableImageView.getId(),"question");
 
-                            }else {
+                            }else if(  tableImageView.getTag().equals("empty")){
                                 scaleImages((ImageView) itemTableLayout, R.drawable.tick);
                                 tableImageView.setTag("tick");
                                 gameStatus.gameTableHash.remove(tableImageView.getId());
