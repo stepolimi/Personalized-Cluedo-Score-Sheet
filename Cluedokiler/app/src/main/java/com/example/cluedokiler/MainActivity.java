@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity  {
         compileSpinners();
 
 
-        // todo: space that names on top of the table
         // todo: upgrade a bit the quality of imgs
 
         final Button playButton = (Button) findViewById(R.id.playButton);
@@ -53,7 +52,7 @@ public class MainActivity extends AppCompatActivity  {
                 if(!gameStatus.playersSet) {
                     gameStatus.playersNames.clear();
                     for (int i = 0; i < 6; i++) {
-                        if (!spinnerListeners.get(i).getPlayerChoice().equals(" ") && !spinnerListeners.get(i).getPlayerChoice().equals(""))
+                        if (!spinnerListeners.get(i).getPlayerChoice().equals("--Vuoto--") && !spinnerListeners.get(i).getPlayerChoice().equals(""))
                             if (!gameStatus.playersSet) {
                                 gameStatus.playersNames.add(spinnerListeners.get(i).getPlayerChoice());
                             }

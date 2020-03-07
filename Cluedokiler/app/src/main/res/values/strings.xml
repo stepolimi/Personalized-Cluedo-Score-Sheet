@@ -32,7 +32,7 @@
     </string-array>
 
     <string-array name="players">
-        <item> </item>
+        <item>--Vuoto--</item>
         <item>Baga</item>
         <item>Luca</item>
         <item>Virgi</item>
@@ -46,6 +46,12 @@
         <item>Frii</item>
         <item>Vitto</item>
         <item>Friggi</item>
+        <item>Chi?1</item>
+        <item>Chi?2</item>
+        <item>Chi?3</item>
+        <item>Chi?4</item>
+        <item>Chi?5</item>
+        <item>Chi?6</item>
     </string-array>
 
 

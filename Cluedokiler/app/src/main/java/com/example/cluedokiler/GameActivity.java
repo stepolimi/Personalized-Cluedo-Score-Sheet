@@ -54,15 +54,19 @@ public class GameActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         ImageAlert imageAlert = new ImageAlert();
-                        imageAlert.show(getSupportFragmentManager(), "imageDialog");
+                        Bundle args = new Bundle();
+                        args.putString("player", textView.getText().toString());
+                        imageAlert.setArguments(args);
 
-                        //todo: differentiate images
+                        imageAlert.show(getSupportFragmentManager(), "imageDialog");
 
                     }
                 });
             }else {
-                TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
-                gameTableLayout.setColumnCollapsed(i+1,true);
+                if(i<6 || gameStatus.playersNames.size()==6) {
+                    TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
+                    gameTableLayout.setColumnCollapsed(i + 1, true);
+                }
             }
         }
 
