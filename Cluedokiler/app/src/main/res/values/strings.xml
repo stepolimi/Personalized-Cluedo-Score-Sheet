@@ -47,4 +47,14 @@
         <item>Vitto</item>
         <item>Friggi</item>
     </string-array>
+
+
+    <!-- main screen-->
+    <string name="riprendiPlayButton"> Riprendi </string>
+    <string name="giocaPlayButton"> Gioca </string>
+
+    <!-- dialog images -->
+    <string name="cancelDialog"> Chiudi </string>
+
+
 </resources>

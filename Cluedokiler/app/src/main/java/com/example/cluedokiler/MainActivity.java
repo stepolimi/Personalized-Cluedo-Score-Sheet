@@ -19,11 +19,14 @@ public class MainActivity extends AppCompatActivity  {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        GameStatus gameStatus = GameStatus.getInstance();
         compileSpinners();
 
 
-        Button playButton = (Button) findViewById(R.id.playButton);
+        // todo: space that names on top of the table
+        // todo: upgrade a bit the quality of imgs
+
+        final Button playButton = (Button) findViewById(R.id.playButton);
         Button resetButton = (Button) findViewById(R.id.resetButton);
 
         resetButton.setOnClickListener(new View.OnClickListener() {
@@ -32,8 +35,14 @@ public class MainActivity extends AppCompatActivity  {
                 GameStatus gameStatus = GameStatus.getInstance();
                 gameStatus.tableSet = false;
                 gameStatus.playersSet = false;
+                playButton.setText(getResources().getString(R.string.giocaPlayButton));
             }
         });
+
+        if(gameStatus.playersSet)
+            playButton.setText(getResources().getString(R.string.riprendiPlayButton));
+        else
+            playButton.setText(getResources().getString(R.string.giocaPlayButton));
 
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +58,12 @@ public class MainActivity extends AppCompatActivity  {
                                 gameStatus.playersNames.add(spinnerListeners.get(i).getPlayerChoice());
                             }
                     }
-                    gameStatus.playersSet = true;
+
+                    if( ! (gameStatus.playersNames.size() > 2)){
+                        gameStatus.playersNames.clear();
+                    }else{
+                        gameStatus.playersSet = true;
+                    }
                 }
 
 
@@ -57,6 +71,11 @@ public class MainActivity extends AppCompatActivity  {
                     Intent startGameIntent = new Intent(getApplicationContext(), GameActivity.class);
                     startActivity(startGameIntent);
                 }
+
+                if(gameStatus.playersSet)
+                    playButton.setText(getResources().getString(R.string.riprendiPlayButton));
+                else
+                    playButton.setText(getResources().getString(R.string.giocaPlayButton));
 
 
             }

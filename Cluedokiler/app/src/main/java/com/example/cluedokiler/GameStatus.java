@@ -11,11 +11,13 @@ public class GameStatus {
     public boolean tableSet;
     public ArrayList<String> playersNames;
     public boolean playersSet;
+    public boolean hideTable;
 
     private GameStatus() {
         gameTableHash = new HashMap<>();
         tableSet = false;
         playersSet = false;
+        hideTable = false;
         playersNames = new ArrayList<>();
     }
 

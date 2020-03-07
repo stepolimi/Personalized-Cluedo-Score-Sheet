@@ -39,62 +39,67 @@
 
                 <TextView
                     android:id="@+id/player1TextView"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="player1"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/player2TextView"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="player2"
                     android:textSize="14sp"
-                    android:textStyle="bold" />
+                    />
 
                 <TextView
                     android:id="@+id/player3TextView"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="player3"
-                    android:textSize="14sp"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/player4TextView"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="player4"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/player5TextView"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="player5"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/player6TextView"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:text="player6"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tableTextView"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="iniziali"
-                    android:textStyle="bold" />
+                    android:text="Iniziali"
+                    android:textSize="14sp" />
             </TableRow>
 
 
@@ -102,9 +107,11 @@
 
                 <TextView
                     android:id="@+id/textView7"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="15sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="sospettati"
+                    android:text="Sospettati"
                     android:textStyle="bold" />
 
             </TableRow>
@@ -113,10 +120,11 @@
 
                 <TextView
                     android:id="@+id/textView8"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="suspect1"
-                    android:textStyle="bold" />
+                    android:text="suspect1" />
 
                 <ImageView
                     android:id="@+id/imageView1"
@@ -174,10 +182,11 @@
 
                 <TextView
                     android:id="@+id/textView9"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="suspect2"
-                    android:textStyle="bold" />
+                    android:text="suspect2" />
 
                 <ImageView
                     android:id="@+id/imageView9"
@@ -233,10 +242,11 @@
 
                 <TextView
                     android:id="@+id/textView10"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="suspect3"
-                    android:textStyle="bold" />
+                    android:text="suspect3" />
 
                 <ImageView
                     android:id="@+id/imageView16"
@@ -292,10 +302,11 @@
 
                 <TextView
                     android:id="@+id/textView11"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="suspect4"
-                    android:textStyle="bold" />
+                    android:text="suspect4" />
 
                 <ImageView
                     android:id="@+id/imageView23"
@@ -351,10 +362,11 @@
 
                 <TextView
                     android:id="@+id/textView12"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="suspect5"
-                    android:textStyle="bold" />
+                    android:text="suspect5" />
 
                 <ImageView
                     android:id="@+id/imageView30"
@@ -410,10 +422,11 @@
 
                 <TextView
                     android:id="@+id/textView13"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="suspect6"
-                    android:textStyle="bold" />
+                    android:text="suspect6" />
 
                 <ImageView
                     android:id="@+id/imageView37"
@@ -469,9 +482,11 @@
 
                 <TextView
                     android:id="@+id/textView14"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="15sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="armi"
+                    android:text="Armi"
                     android:textStyle="bold" />
 
             </TableRow>
@@ -481,10 +496,11 @@
 
                 <TextView
                     android:id="@+id/textView16"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="weapon1"
-                    android:textStyle="bold" />
+                    android:text="weapon1" />
 
                 <ImageView
                     android:id="@+id/imageView44"
@@ -540,10 +556,11 @@
 
                 <TextView
                     android:id="@+id/textView17"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="weapon2"
-                    android:textStyle="bold" />
+                    android:text="weapon2" />
 
                 <ImageView
                     android:id="@+id/imageView51"
@@ -599,10 +616,11 @@
 
                 <TextView
                     android:id="@+id/textView18"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="weapon3"
-                    android:textStyle="bold" />
+                    android:text="weapon3" />
 
                 <ImageView
                     android:id="@+id/imageView58"
@@ -658,10 +676,11 @@
 
                 <TextView
                     android:id="@+id/textView19"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="weapon4"
-                    android:textStyle="bold" />
+                    android:text="weapon4" />
 
                 <ImageView
                     android:id="@+id/imageView65"
@@ -717,10 +736,11 @@
 
                 <TextView
                     android:id="@+id/textView20"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="weapon5"
-                    android:textStyle="bold" />
+                    android:text="weapon5" />
 
                 <ImageView
                     android:id="@+id/imageView72"
@@ -776,10 +796,11 @@
 
                 <TextView
                     android:id="@+id/textView21"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="weapon6"
-                    android:textStyle="bold" />
+                    android:text="weapon6" />
 
                 <ImageView
                     android:id="@+id/imageView79"
@@ -835,9 +856,11 @@
 
                 <TextView
                     android:id="@+id/textView22"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="15sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="luoghi"
+                    android:text="Luoghi"
                     android:textStyle="bold" />
             </TableRow>
 
@@ -845,10 +868,12 @@
 
                 <TextView
                     android:id="@+id/textView23"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="place1"
-                    android:textStyle="bold" />
+                    />
 
                 <ImageView
                     android:id="@+id/imageView86"
@@ -904,10 +929,11 @@
 
                 <TextView
                     android:id="@+id/textView24"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="place2"
-                    android:textStyle="bold" />
+                    android:text="place2" />
 
                 <ImageView
                     android:id="@+id/imageView93"
@@ -963,10 +989,11 @@
 
                 <TextView
                     android:id="@+id/textView25"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="place3"
-                    android:textStyle="bold" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:id="@+id/imageView100"
@@ -1022,10 +1049,11 @@
 
                 <TextView
                     android:id="@+id/textView26"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="place4"
-                    android:textStyle="bold" />
+                    android:text="place4" />
 
                 <ImageView
                     android:id="@+id/imageView107"
@@ -1081,10 +1109,11 @@
 
                 <TextView
                     android:id="@+id/textView27"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="place5"
-                    android:textStyle="bold" />
+                    android:text="place5" />
 
                 <ImageView
                     android:id="@+id/imageView114"
@@ -1140,10 +1169,11 @@
 
                 <TextView
                     android:id="@+id/textView28"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="place6"
-                    android:textStyle="bold" />
+                    android:text="place6" />
 
                 <ImageView
                     android:id="@+id/imageView121"
@@ -1199,10 +1229,11 @@
 
                 <TextView
                     android:id="@+id/textView29"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="place7"
-                    android:textStyle="bold" />
+                    android:text="place7" />
 
                 <ImageView
                     android:id="@+id/imageView128"
@@ -1258,10 +1289,11 @@
 
                 <TextView
                     android:id="@+id/textView30"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="place8"
-                    android:textStyle="bold" />
+                    android:text="place8" />
 
                 <ImageView
                     android:id="@+id/imageView135"
@@ -1317,10 +1349,12 @@
 
                 <TextView
                     android:id="@+id/textView31"
+                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                    android:textSize="14sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="place9"
-                    android:textStyle="bold" />
+                     />
 
                 <ImageView
                     android:id="@+id/imageView142"

@@ -34,7 +34,7 @@ public class GameActivity extends AppCompatActivity {
         weapons = res.getStringArray(R.array.weapons);
         places = res.getStringArray(R.array.places);
 
-        ArrayList <TextView> playerTextViews = new ArrayList<>();
+        final ArrayList <TextView> playerTextViews = new ArrayList<>();
         playerTextViews.add(0,(TextView) findViewById(R.id.player1TextView));
         playerTextViews.add(1,(TextView) findViewById(R.id.player2TextView));
         playerTextViews.add(2,(TextView) findViewById(R.id.player3TextView));
@@ -44,11 +44,23 @@ public class GameActivity extends AppCompatActivity {
 
         nameViews();
 
-        GameStatus gameStatus = GameStatus.getInstance();
-        for (int i = 0; i<6;i++) {
-            if(i<gameStatus.playersNames.size())
+        final GameStatus gameStatus = GameStatus.getInstance();
+        for (int i = 0; i<7;i++) {
+            if(i<gameStatus.playersNames.size()) {
                 playerTextViews.get(i).setText(gameStatus.playersNames.get(i));
-            else {
+                final TextView textView = playerTextViews.get(i);
+
+                playerTextViews.get(i).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ImageAlert imageAlert = new ImageAlert();
+                        imageAlert.show(getSupportFragmentManager(), "imageDialog");
+
+                        //todo: differentiate images
+
+                    }
+                });
+            }else {
                 TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
                 gameTableLayout.setColumnCollapsed(i+1,true);
             }
@@ -56,30 +68,42 @@ public class GameActivity extends AppCompatActivity {
 
 
         setHideSwitcher();
-/*
 
-        ArrayList <TextView> playerTextViews = new ArrayList<>();
-        playerTextViews.add(0,(TextView) findViewById(R.id.player1TextView));
 
-        playerTextViews.get(0).setOnHoverListener(new View.OnHoverListener() {
-            @Override
-            public boolean onHover(View v, MotionEvent event) {
-                Intent imageActivity = new Intent(getApplicationContext(), ImageActivity.class);
-                startActivity(imageActivity);
-                return false;
-            }
-        });*/
+
+
+
     }
 
 
     private void setHideSwitcher(){
         final Switch hideAnswersSwitch = (Switch) findViewById(R.id.switch1);
+        final GameStatus gameStatus = GameStatus.getInstance();
 
+        if(gameStatus.hideTable) {
+            hideAnswersSwitch.setChecked(true);
+            gameStatus.hideTable = true;
+
+            TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
+            for (int i = 0; i < gameTableLayout.getChildCount(); i++) {
+                TableRow gameTableRow = (TableRow) gameTableLayout.getChildAt(i);
+                for (int x = 0; x < gameTableRow.getChildCount(); x++) {
+                    final View itemTableLayout = gameTableRow.getChildAt(x);
+                    if (itemTableLayout instanceof ImageView) {
+                        ImageView tableImageView = (ImageView) itemTableLayout;
+
+                        scaleImages((ImageView) itemTableLayout, R.drawable.checkbox);
+                        tableImageView.setTag("hide");
+                    }
+                }
+            }
+        }
         hideAnswersSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(hideAnswersSwitch.isChecked()) {
+                if(hideAnswersSwitch.isChecked() && !gameStatus.hideTable) {
                     hideAnswersSwitch.setChecked(true);
+                    gameStatus.hideTable = true;
 
                     TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
                     for (int i = 0; i < gameTableLayout.getChildCount(); i++) {
@@ -97,6 +121,7 @@ public class GameActivity extends AppCompatActivity {
                 }
                 else{
                     hideAnswersSwitch.setChecked(false);
+                    gameStatus.hideTable = false;
                     GameStatus gameStatus = GameStatus.getInstance();
                     TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
                     for (int i = 0; i < gameTableLayout.getChildCount(); i++) {
@@ -272,7 +297,7 @@ public class GameActivity extends AppCompatActivity {
         int screenWidth = screen.getWidth();
 
         if(imgWidth > screenWidth){
-            int ratio = Math.round( ((float) screenWidth / (float) imgWidth) * ((float) 0.1111 ));
+            int ratio = Math.round( ((float) screenWidth / (float) imgWidth) * 9);
             scalingOptions.inSampleSize = ratio;
         }
         scalingOptions.inJustDecodeBounds = false;

@@ -8,36 +8,42 @@
     tools:context=".MainActivity">
 
 
-
     <TextView
         android:id="@+id/player3TextView"
         android:layout_width="121dp"
-        android:layout_height="46dp"
-        android:text="Giocatore 3"
+        android:layout_height="54dp"
+        android:layout_marginTop="2dp"
+        android:background="#f1f1f1"
+        android:text="\nGiocatore 3"
         android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/playerCoicheSpinner4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player2TextView"
         android:textStyle="bold"
-        android:background="#f1f1f1"/>
+        app:layout_constraintEnd_toStartOf="@+id/playerCoicheSpinner4"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player2TextView" />
 
     <TextView
         android:id="@+id/player1TextView"
+        style="@style/Widget.AppCompat.TextView"
         android:layout_width="121dp"
-        android:layout_height="46dp"
-        android:text="Il tuo nome"
+        android:layout_height="54dp"
+        android:layout_marginTop="2dp"
+        android:background="#f1f1f1"
+        android:text="\nIl tuo nome"
         android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterNamesTextView"
         android:textStyle="bold"
-        android:background="#f1f1f1"/>
+        app:layout_constraintEnd_toStartOf="@+id/playerCoicheSpinner6"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enterNamesTextView" />
 
     <TextView
         android:id="@+id/player6TextView"
         android:layout_width="121dp"
-        android:layout_height="46dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="2dp"
         android:background="#f1f1f1"
-        android:text="Giocatore 6"
+        android:text="\nGiocatore 6"
         android:textAlignment="center"
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/playerCoicheSpinner1"
@@ -48,27 +54,30 @@
     <TextView
         android:id="@+id/player5TextView"
         android:layout_width="121dp"
-        android:layout_height="46dp"
-        android:text="Giocatore 5"
+        android:layout_height="54dp"
+        android:layout_marginTop="2dp"
+        android:background="#f1f1f1"
+        android:text="\nGiocatore 5"
         android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/playerCoicheSpinner2"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player4TextView"
         android:textStyle="bold"
-        android:background="#f1f1f1"/>
+        app:layout_constraintEnd_toStartOf="@+id/playerCoicheSpinner2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player4TextView" />
 
     <TextView
         android:id="@+id/player4TextView"
         android:layout_width="121dp"
-        android:layout_height="46dp"
-        android:text="Giocatore 4"
+        android:layout_height="54dp"
+        android:layout_marginTop="2dp"
+        android:background="#f1f1f1"
+        android:text="\nGiocatore 4"
         android:textAlignment="center"
-        app:layout_constraintEnd_toStartOf="@+id/playerCoicheSpinner3"
-        app:layout_constraintHorizontal_bias="0.493"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player3TextView"
         android:textStyle="bold"
-        android:background="#f1f1f1"/>
+        app:layout_constraintEnd_toStartOf="@+id/playerCoicheSpinner3"
+        app:layout_constraintHorizontal_bias="0.004"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player3TextView" />
 
     <TextView
         android:id="@+id/enterNamesTextView"
@@ -78,88 +87,94 @@
         android:text="\nSeleziona i nomi dei giocatori"
         android:textAlignment="center"
         android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:textAllCaps="false" />
 
     <TextView
         android:id="@+id/player2TextView"
         android:layout_width="121dp"
-        android:layout_height="46dp"
-        android:text="Giocatore 2"
-        android:textAlignment="center"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/player1TextView"
-        android:textStyle="bold"
+        android:layout_height="54dp"
+        android:layout_marginTop="2dp"
         android:background="#f1f1f1"
-        />
+        android:text="\nGiocatore 2"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/playerCoicheSpinner5"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/player1TextView" />
 
     <Spinner
         android:id="@+id/playerCoicheSpinner1"
-        android:layout_width="289dp"
+        style="@android:style/Widget.Spinner.DropDown"
+        android:layout_width="200dp"
         android:layout_height="46dp"
+        android:layout_marginTop="11dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/player4TextView"
         app:layout_constraintTop_toBottomOf="@+id/playerCoicheSpinner2" />
 
     <Spinner
         android:id="@+id/playerCoicheSpinner2"
-        android:layout_width="291dp"
+        style="@android:style/Widget.Spinner.DropDown"
+        android:layout_width="200dp"
         android:layout_height="46dp"
-        android:layout_marginRight="10dp"
+        android:layout_marginTop="11dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/player3TextView"
         app:layout_constraintTop_toBottomOf="@+id/playerCoicheSpinner3" />
 
     <Spinner
         android:id="@+id/playerCoicheSpinner3"
-        android:layout_width="291dp"
+        style="@android:style/Widget.Spinner.DropDown"
+        android:layout_width="200dp"
         android:layout_height="46dp"
+        android:layout_marginTop="11dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/player3TextView"
-        app:layout_constraintTop_toBottomOf="@+id/playerCoicheSpinner4"
-        android:textStyle="bold"/>
+        app:layout_constraintTop_toBottomOf="@+id/playerCoicheSpinner4" />
 
     <Spinner
         android:id="@+id/playerCoicheSpinner4"
-        android:layout_width="291dp"
+        style="@android:style/Widget.Spinner.DropDown"
+        android:layout_width="200dp"
         android:layout_height="46dp"
+        android:layout_marginTop="9dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/player2TextView"
-        app:layout_constraintTop_toBottomOf="@+id/playerCoicheSpinner5"
-        android:textStyle="bold"/>
+        app:layout_constraintTop_toBottomOf="@+id/playerCoicheSpinner5" />
 
     <Spinner
         android:id="@+id/playerCoicheSpinner5"
-        android:layout_width="291dp"
+        style="@android:style/Widget.Spinner.DropDown"
+        android:layout_width="200dp"
         android:layout_height="46dp"
+        android:layout_marginTop="9dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/player2TextView"
-        app:layout_constraintTop_toBottomOf="@+id/playerCoicheSpinner6"
-        android:textStyle="bold"/>
+        app:layout_constraintTop_toBottomOf="@+id/playerCoicheSpinner6" />
 
     <Spinner
         android:id="@+id/playerCoicheSpinner6"
-        android:layout_width="291dp"
+        style="@android:style/Widget.Spinner.DropDown"
+        android:layout_width="200dp"
         android:layout_height="46dp"
+        android:layout_marginTop="9dp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/player1TextView"
-        app:layout_constraintTop_toBottomOf="@+id/enterNamesTextView"
-        android:textStyle="bold"/>
+        app:layout_constraintTop_toBottomOf="@+id/enterNamesTextView" />
 
     <Button
         android:id="@+id/playButton"
+        style="@android:style/Widget.Holo.Button.Small"
         android:layout_width="202dp"
         android:layout_height="45dp"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="12dp"
         android:text="Gioca"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/resetButton"
@@ -169,14 +184,13 @@
 
     <Button
         android:id="@+id/resetButton"
+        style="@android:style/Widget.Holo.Button.Small"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:backgroundTint="#AF0000"
-        android:text="reset"
+        android:text="Reset"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent" />
 
 
