@@ -15,6 +15,9 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
@@ -23,6 +26,7 @@ public class GameActivity extends AppCompatActivity {
     String[] suspects;
     String[] weapons;
     String[] places;
+    DatabaseReference db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,7 +80,7 @@ public class GameActivity extends AppCompatActivity {
 
         setAutocompleteButton();
 
-
+        setEndGameButton();
 
 
     }
@@ -358,6 +362,23 @@ public class GameActivity extends AppCompatActivity {
                     }
 
                 }
+            }
+        });
+    }
+
+    public void setEndGameButton(){
+        Button endGameButton = (Button) findViewById(R.id.endGameButton);
+        final GameStatus gameStatus = GameStatus.getInstance();
+
+
+        db = FirebaseDatabase.getInstance().getReference().child("Game").child("GameTable");
+
+        endGameButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ArrayList<String> gameTable = new ArrayList();
+                gameTable.addAll(gameStatus.gameTableHash.values());
+                db.child(String.valueOf(gameStatus.gameNumber)).setValue(gameTable);
             }
         });
     }
