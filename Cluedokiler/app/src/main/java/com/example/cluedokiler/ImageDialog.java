@@ -14,7 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-public class ImageAlert extends DialogFragment {
+public class ImageDialog extends DialogFragment {
 
     int resource;
     AlertDialog.Builder builder;
@@ -89,15 +89,6 @@ public class ImageAlert extends DialogFragment {
 
         builder.setView(v)
             .setMessage("ciao");
-/*
-        // Watch for button clicks.
-        Button button = (Button)v.findViewById(R.id.show);
-        button.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // When button is clicked, call up to owning activity.
-                ((FragmentDialog) getActivity()).showDialog();
-            }
-        });*/
 
         return v;
     }

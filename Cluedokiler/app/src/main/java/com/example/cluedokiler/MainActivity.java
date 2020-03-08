@@ -21,9 +21,7 @@ public class MainActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_main);
         GameStatus gameStatus = GameStatus.getInstance();
         compileSpinners();
-
-
-        // todo: upgrade a bit the quality of imgs
+        
 
         final Button playButton = (Button) findViewById(R.id.playButton);
         Button resetButton = (Button) findViewById(R.id.resetButton);
@@ -51,18 +49,15 @@ public class MainActivity extends AppCompatActivity  {
 
                 if(!gameStatus.playersSet) {
                     gameStatus.playersNames.clear();
-                    for (int i = 0; i < 6; i++) {
+                    for (int i = 0; i < 6; i++)
                         if (!spinnerListeners.get(i).getPlayerChoice().equals("--Vuoto--") && !spinnerListeners.get(i).getPlayerChoice().equals(""))
-                            if (!gameStatus.playersSet) {
+                            if (!gameStatus.playersSet)
                                 gameStatus.playersNames.add(spinnerListeners.get(i).getPlayerChoice());
-                            }
-                    }
 
-                    if( ! (gameStatus.playersNames.size() > 2)){
+                    if( ! (gameStatus.playersNames.size() > 2))
                         gameStatus.playersNames.clear();
-                    }else{
+                    else
                         gameStatus.playersSet = true;
-                    }
                 }
 
 

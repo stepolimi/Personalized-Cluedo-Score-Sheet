@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Display;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TableLayout;
@@ -53,12 +54,12 @@ public class GameActivity extends AppCompatActivity {
                 playerTextViews.get(i).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        ImageAlert imageAlert = new ImageAlert();
+                        ImageDialog imageDialog = new ImageDialog();
                         Bundle args = new Bundle();
                         args.putString("player", textView.getText().toString());
-                        imageAlert.setArguments(args);
+                        imageDialog.setArguments(args);
 
-                        imageAlert.show(getSupportFragmentManager(), "imageDialog");
+                        imageDialog.show(getSupportFragmentManager(), "imageDialog");
 
                     }
                 });
@@ -73,6 +74,7 @@ public class GameActivity extends AppCompatActivity {
 
         setHideSwitcher();
 
+        setAutocompleteButton();
 
 
 
@@ -148,6 +150,9 @@ public class GameActivity extends AppCompatActivity {
                                     } else if(gameStatus.gameTableHash.get(tableImageView.getId()).equals("tick")){
                                         scaleImages((ImageView) itemTableLayout, R.drawable.tick);
                                         tableImageView.setTag("tick");
+                                    } else if(gameStatus.gameTableHash.get(tableImageView.getId()).equals("question2")) {
+                                        scaleImages((ImageView) itemTableLayout, R.drawable.question2);
+                                        tableImageView.setTag("question2");
                                     }
                                 }
                             }
@@ -226,6 +231,9 @@ public class GameActivity extends AppCompatActivity {
                         } else if(gameStatus.gameTableHash.get(tableImageView.getId()).equals("tick")){
                             scaleImages((ImageView) itemTableLayout, R.drawable.tick);
                             tableImageView.setTag("tick");
+                        } else if(gameStatus.gameTableHash.get(tableImageView.getId()).equals("question2")) {
+                            scaleImages((ImageView) itemTableLayout, R.drawable.question2);
+                            tableImageView.setTag("question2");
                         }
                     }
                     else {
@@ -264,10 +272,10 @@ public class GameActivity extends AppCompatActivity {
                                 gameStatus.gameTableHash.put(tableImageView.getId(),"cross");
 
                             }else if(  tableImageView.getTag().equals("question")) {
-                                scaleImages((ImageView) itemTableLayout, R.drawable.checkbox);
-                                tableImageView.setTag("empty");
+                                scaleImages((ImageView) itemTableLayout, R.drawable.question2);
+                                tableImageView.setTag("question2");
                                 gameStatus.gameTableHash.remove(tableImageView.getId());
-                                gameStatus.gameTableHash.put(tableImageView.getId(),"empty");
+                                gameStatus.gameTableHash.put(tableImageView.getId(),"question2");
 
                             }else if(  tableImageView.getTag().equals("cross")) {
                                 scaleImages((ImageView) itemTableLayout, R.drawable.question);
@@ -280,6 +288,11 @@ public class GameActivity extends AppCompatActivity {
                                 tableImageView.setTag("tick");
                                 gameStatus.gameTableHash.remove(tableImageView.getId());
                                 gameStatus.gameTableHash.put(tableImageView.getId(),"tick");
+                            }else if(  tableImageView.getTag().equals("question2")){
+                                scaleImages((ImageView) itemTableLayout, R.drawable.checkbox);
+                                tableImageView.setTag("empty");
+                                gameStatus.gameTableHash.remove(tableImageView.getId());
+                                gameStatus.gameTableHash.put(tableImageView.getId(),"empty");
                             }
                         }
                     });
@@ -311,4 +324,41 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+
+    private void setAutocompleteButton(){
+        Button autocomplete = (Button) findViewById(R.id.autocompleteButton);
+
+        autocomplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final GameStatus gameStatus = GameStatus.getInstance();
+                TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
+                for (int i = 0; i < gameTableLayout.getChildCount(); i++) {
+                    TableRow gameTableRow = (TableRow) gameTableLayout.getChildAt(i);
+                    for (int x = 0; x < gameTableRow.getChildCount(); x++) {
+                        final View itemTableLayout = gameTableRow.getChildAt(x);
+                        if(itemTableLayout instanceof ImageView) {
+                            final ImageView tableImageView = (ImageView) itemTableLayout;
+
+                            if (tableImageView.getTag().equals("tick")) {
+                                for (int k = 0; k < gameTableRow.getChildCount(); k++) {
+                                    final View crossItemTableLayout = gameTableRow.getChildAt(k);
+                                    if (crossItemTableLayout instanceof ImageView && k != x) {
+                                        final ImageView crossTableImageView = (ImageView) crossItemTableLayout;
+                                        scaleImages(crossTableImageView, R.drawable.cross);
+                                        crossTableImageView.setTag("cross");
+                                        gameStatus.gameTableHash.remove(crossTableImageView.getId());
+                                        gameStatus.gameTableHash.put(crossTableImageView.getId(), "cross");
+                                    }
+                                }
+                            }
+
+                        }
+
+                    }
+
+                }
+            }
+        });
+    }
 }

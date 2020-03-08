@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "175816763537",
+    "firebase_url": "https://cluedo-kiler.firebaseio.com",
+    "project_id": "cluedo-kiler",
+    "storage_bucket": "cluedo-kiler.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:175816763537:android:8628e1935d23b863d87730",
+        "android_client_info": {
+          "package_name": "com.example.cluedokiler"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "175816763537-2t623cp59874iqllbhp8p8r0s9lecajk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4vMzUygC4CFSMxKrZb5agKqMVBucqx2A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "175816763537-2t623cp59874iqllbhp8p8r0s9lecajk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
