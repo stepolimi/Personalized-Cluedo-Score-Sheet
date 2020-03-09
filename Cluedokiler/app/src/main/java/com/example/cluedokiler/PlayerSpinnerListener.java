@@ -22,19 +22,22 @@ public class PlayerSpinnerListener implements AdapterView.OnItemSelectedListener
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if(!playerChoice.equals("--Vuoto--"))
+       /* if(!playerChoice.equals("--Vuoto--"))
             for(int i=0; i<6; i++)
                 if(i!=num)
-                    adapters.get(i).add(playerChoice);
+                    adapters.get(i).add(playerChoice);*/
 
         playerChoice = parent.getItemAtPosition(position).toString();
 
-        if(!playerChoice.equals("--Vuoto--"))
+        if(num==0)
+            GameStatus.getInstance().playerName=playerChoice;
+
+       /* if(!playerChoice.equals("--Vuoto--"))
             for(int i=0; i<6; i++)
                 if(i!=num) {
                     index = position;
                     adapters.get(i).remove(playerChoice);
-                }
+                }*/
     }
 
     @Override

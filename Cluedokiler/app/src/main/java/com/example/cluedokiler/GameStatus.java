@@ -13,6 +13,7 @@ public class GameStatus {
     public boolean playersSet;
     public boolean hideTable;
     public Long gameNumber;
+    public String playerName;
 
     private GameStatus() {
         gameTableHash = new HashMap<>();

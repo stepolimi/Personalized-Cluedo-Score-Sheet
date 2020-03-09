@@ -29,7 +29,7 @@ public class ImageDialog extends DialogFragment {
 
         Context context = super.getContext();
         CharSequence text;
-        int duration = Toast.LENGTH_LONG;
+
 
 
 
@@ -76,6 +76,7 @@ public class ImageDialog extends DialogFragment {
             resource = R.drawable.question;
             text = "Poraccio senza profilo";
         }
+        int duration = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(context, text, duration);
         toast.show();
 

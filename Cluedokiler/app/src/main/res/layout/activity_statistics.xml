@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".StatisticsActivity"
+    android:orientation="vertical"
+    android:weightSum="10">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_weight="8"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:weightSum="10"
+        android:background="@drawable/trofy">
+
+        <TextView
+            android:id="@+id/statTextView1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="statTextView1"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
+        </TextView>
+        <TextView
+            android:id="@+id/statTextView2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="statTextView2"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
+        </TextView>
+        <TextView
+            android:id="@+id/statTextView3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="statTextView3"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
+        </TextView>
+        <TextView
+            android:id="@+id/statTextView4"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="statTextView4"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
+        </TextView>
+        <TextView
+            android:id="@+id/statTextView5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="statTextView5"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
+        </TextView>
+        <TextView
+            android:id="@+id/statTextView6"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="statTextView6"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
+        </TextView>
+        <TextView
+            android:id="@+id/statTextView7"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="statTextView7"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
+        </TextView>
+        <TextView
+            android:id="@+id/statTextView8"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="statTextView8"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
+        </TextView>
+        <TextView
+            android:id="@+id/statTextView9"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="statTextView9"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
+        </TextView>
+        <TextView
+            android:id="@+id/statTextView10"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="statTextView10"
+            android:textSize="35sp"
+            android:textStyle="bold"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
+        </TextView>
+
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+        <Button
+            android:id="@+id/backButton"
+            android:layout_width="136dp"
+            android:layout_height="71dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:elevation="40dp"
+            android:text="Indietro"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+        </Button>
+
+        <Button
+            android:id="@+id/refreshButton"
+            android:layout_width="136dp"
+            android:layout_height="71dp"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:elevation="40dp"
+            android:text="Aggiorna"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0">
+
+        </Button>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

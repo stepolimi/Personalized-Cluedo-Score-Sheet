@@ -371,7 +371,7 @@ public class GameActivity extends AppCompatActivity {
         final GameStatus gameStatus = GameStatus.getInstance();
 
 
-        db = FirebaseDatabase.getInstance().getReference().child("Game").child("GameTable");
+        db = FirebaseDatabase.getInstance().getReference().child("GameRecord");
 
         endGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -379,6 +379,7 @@ public class GameActivity extends AppCompatActivity {
                 ArrayList<String> gameTable = new ArrayList();
                 gameTable.addAll(gameStatus.gameTableHash.values());
                 db.child(String.valueOf(gameStatus.gameNumber)).setValue(gameTable);
+                finish();
             }
         });
     }

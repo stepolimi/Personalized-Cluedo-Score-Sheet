@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity  {
 
     ArrayList<PlayerSpinnerListener> spinnerListeners = new ArrayList<>();
     DatabaseReference db;
+    GameStatus gameStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +53,7 @@ public class MainActivity extends AppCompatActivity  {
 
 
 
-        db = FirebaseDatabase.getInstance().getReference().child("Game").child("Players");
+        db = FirebaseDatabase.getInstance().getReference().child("PlayersRecord");
 
         db.addValueEventListener(new ValueEventListener() {
             @Override
@@ -98,7 +99,10 @@ public class MainActivity extends AppCompatActivity  {
 
                     /*          */
 
-                    db.child(String.valueOf(gameStatus.gameNumber+1)).setValue(gameStatus.playersNames);
+                    if(!gameStatus.tableSet) {
+                        Users users = new Users(gameStatus.playersNames);
+                        db.child(String.valueOf(gameStatus.gameNumber + 1)).setValue(users);
+                    }
 
                 }
 
@@ -112,6 +116,7 @@ public class MainActivity extends AppCompatActivity  {
         });
 
 
+        setStatisticsButton();
 
     }
 
@@ -133,24 +138,40 @@ public class MainActivity extends AppCompatActivity  {
             adapters.get(i).setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         }
 
-        playerChoiceSpinner1.setAdapter(adapters.get(5));
-        playerChoiceSpinner2.setAdapter(adapters.get(4));
-        playerChoiceSpinner3.setAdapter(adapters.get(3));
-        playerChoiceSpinner4.setAdapter(adapters.get(2));
-        playerChoiceSpinner5.setAdapter(adapters.get(1));
-        playerChoiceSpinner6.setAdapter(adapters.get(0));
+        playerChoiceSpinner1.setAdapter(adapters.get(0));
+        playerChoiceSpinner2.setAdapter(adapters.get(1));
+        playerChoiceSpinner3.setAdapter(adapters.get(2));
+        playerChoiceSpinner4.setAdapter(adapters.get(3));
+        playerChoiceSpinner5.setAdapter(adapters.get(4));
+        playerChoiceSpinner6.setAdapter(adapters.get(5));
 
         for(int i=0; i<6; i++){
             spinnerListeners.add(new PlayerSpinnerListener(adapters,i));
         }
 
-        playerChoiceSpinner1.setOnItemSelectedListener(spinnerListeners.get(5));
-        playerChoiceSpinner2.setOnItemSelectedListener(spinnerListeners.get(4));
-        playerChoiceSpinner3.setOnItemSelectedListener(spinnerListeners.get(3));
-        playerChoiceSpinner4.setOnItemSelectedListener(spinnerListeners.get(2));
-        playerChoiceSpinner5.setOnItemSelectedListener(spinnerListeners.get(1));
-        playerChoiceSpinner6.setOnItemSelectedListener(spinnerListeners.get(0));
+        playerChoiceSpinner1.setOnItemSelectedListener(spinnerListeners.get(0));
+        playerChoiceSpinner2.setOnItemSelectedListener(spinnerListeners.get(1));
+        playerChoiceSpinner3.setOnItemSelectedListener(spinnerListeners.get(2));
+        playerChoiceSpinner4.setOnItemSelectedListener(spinnerListeners.get(3));
+        playerChoiceSpinner5.setOnItemSelectedListener(spinnerListeners.get(4));
+        playerChoiceSpinner6.setOnItemSelectedListener(spinnerListeners.get(5));
 
     }
 
+
+    public void setStatisticsButton(){
+        Button statisticsButton = (Button) findViewById(R.id.statisticsButton);
+
+        statisticsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GameStatus gameStatus = GameStatus.getInstance();
+                if(!gameStatus.playerName.equals("--Vuoto--")) {
+                    Intent startGameIntent = new Intent(getApplicationContext(), StatisticsActivity.class);
+                    startActivity(startGameIntent);
+                }
+            }
+        });
+
+    }
 }
