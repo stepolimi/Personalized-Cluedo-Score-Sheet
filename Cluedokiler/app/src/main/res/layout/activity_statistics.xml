@@ -23,7 +23,7 @@
             android:layout_height="0dp"
             android:layout_weight="2"
             android:text="statTextView1"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
         </TextView>
@@ -33,7 +33,7 @@
             android:layout_height="0dp"
             android:layout_weight="2"
             android:text="statTextView2"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
         </TextView>
@@ -43,7 +43,7 @@
             android:layout_height="0dp"
             android:layout_weight="2"
             android:text="statTextView3"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
         </TextView>
@@ -53,7 +53,7 @@
             android:layout_height="0dp"
             android:layout_weight="2"
             android:text="statTextView4"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
         </TextView>
@@ -63,7 +63,7 @@
             android:layout_height="0dp"
             android:layout_weight="2"
             android:text="statTextView5"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
         </TextView>
@@ -73,7 +73,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="statTextView6"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
         </TextView>
@@ -83,7 +83,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="statTextView7"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
         </TextView>
@@ -93,7 +93,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="statTextView8"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
         </TextView>
@@ -103,7 +103,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="statTextView9"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
         </TextView>
@@ -113,7 +113,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:text="statTextView10"
-            android:textSize="35sp"
+            android:textSize="25sp"
             android:textStyle="bold"
             style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView">
         </TextView>

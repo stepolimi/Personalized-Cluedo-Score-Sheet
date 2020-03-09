@@ -1412,15 +1412,14 @@
 
     <Switch
         android:id="@+id/switch1"
-        android:layout_width="110dp"
-        android:layout_height="24dp"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="2dp"
         android:layout_marginEnd="3dp"
         android:text="Nascondi"
-        android:textSize="12sp"
-        />
+        android:textSize="12sp" />
 
     <Button
         android:id="@+id/autocompleteButton"
@@ -1429,9 +1428,9 @@
         android:layout_width="30dp"
         android:layout_height="32dp"
         android:layout_alignParentTop="true"
+        android:layout_marginStart="1dp"
         android:layout_marginTop="0dp"
-        android:layout_marginEnd="146dp"
-        android:layout_toStartOf="@+id/switch1" />
+        android:layout_toEndOf="@+id/autocompleteTextView" />
 
     <Button
         android:id="@+id/endGameButton"
@@ -1440,35 +1439,31 @@
         android:layout_width="30dp"
         android:layout_height="32dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="-1dp"
-        android:layout_marginEnd="14dp"
-        android:layout_toStartOf="@+id/switch1" />
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="0dp"
+        android:layout_toEndOf="@+id/endGameTextView" />
 
     <TextView
         android:id="@+id/autocompleteTextView"
         style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-        android:layout_width="115dp"
-        android:layout_height="18dp"
+        android:layout_width="85dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="4dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="3dp"
-        android:layout_toStartOf="@+id/autocompleteButton"
-        android:text="Autocompleta righe"
+        android:text="Autocompleta"
         android:textSize="12sp" />
 
     <TextView
         android:id="@+id/endGameTextView"
         style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-        android:layout_width="94dp"
+        android:layout_width="wrap_content"
         android:layout_height="15dp"
-        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="164dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="-4dp"
-        android:layout_toStartOf="@+id/endGameButton"
+        android:layout_marginStart="17dp"
+        android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/autocompleteButton"
         android:text="Termina partita"
         android:textSize="12sp" />
 

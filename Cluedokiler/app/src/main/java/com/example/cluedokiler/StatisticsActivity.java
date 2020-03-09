@@ -101,7 +101,7 @@ public class StatisticsActivity extends AppCompatActivity {
                     if(data.getValue(GameTable.class).getPlayer().equals(gameStatus.playerName))
                         numCrosses += data.getValue(GameTable.class).getNumCross();
                 }
-                playerTextView[5].setText("Totoale croci inserite: " + numCrosses);
+                playerTextView[5].setText("Totale croci inserite: " + numCrosses);
             }
 
             @Override

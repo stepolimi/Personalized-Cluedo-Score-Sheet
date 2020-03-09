@@ -2,6 +2,7 @@ package com.example.cluedokiler;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -70,7 +71,7 @@ public class MainActivity extends AppCompatActivity  {
 
             }
         });
-
+                                                                                                    //todo: scrollview
 
 
         playButton.setOnClickListener(new View.OnClickListener() {
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity  {
                 }
 
 
-                if(gameStatus.playersNames.size() > 2){
+                if(gameStatus.playersNames.size() > 2 && !gameStatus.playerName.equals("--Vuoto--")){
                     Intent startGameIntent = new Intent(getApplicationContext(), GameActivity.class);
                     startActivity(startGameIntent);
 
@@ -104,8 +105,15 @@ public class MainActivity extends AppCompatActivity  {
                     }
 
                 }else {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Devono esserci almeno 3 giocatori!", Toast.LENGTH_LONG);
-                    toast.show();
+                    if(gameStatus.playersNames.size() <=2) {
+                        Toast toast = Toast.makeText(getApplicationContext(), "Devono esserci almeno 3 giocatori!", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.BOTTOM|Gravity.FILL_HORIZONTAL, 0, 20);
+                        toast.show();
+                    }else{
+                        Toast toast = Toast.makeText(getApplicationContext(), "Inserisci il tuo nome prima", Toast.LENGTH_LONG);
+                        toast.setGravity(Gravity.BOTTOM|Gravity.FILL_HORIZONTAL, 0, 20);
+                        toast.show();
+                    }
                 }
 
                 if(gameStatus.playersSet)
