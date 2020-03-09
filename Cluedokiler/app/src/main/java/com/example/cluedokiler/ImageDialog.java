@@ -33,8 +33,8 @@ public class ImageDialog extends DialogFragment {
 
 
 
-        if(name.equals("Luca")) {
-            resource = R.drawable.luca;
+        if(name.equals("Luchino")) {
+            resource = R.drawable.luchino;
             text = "A me basta che sia Heineken";
         }else if(name.equals("Virgi")) {
             resource = R.drawable.virgi;
@@ -52,32 +52,100 @@ public class ImageDialog extends DialogFragment {
             resource = R.drawable.ale;
             text = "Ehi, mi piace questa canzone!";
         }else if(name.equals("Greg")) {
-            resource = R.drawable.ale;
+            resource = R.drawable.greg;
             text = "Guro ce sno capae di scrvere";
         }else if(name.equals("Simo")) {
-            resource = R.drawable.ale;
+            resource = R.drawable.simo;
             text = "(ehi, sono lo sviluppatore: se fai tornare giovane il bean ti faccio vincere)";
         }else if(name.equals("Noe")) {
-            resource = R.drawable.ale;
+            resource = R.drawable.noe;
             text = "Da grandi poteri derivano grandi weiss medie";
         }else if(name.equals("Chiari")) {
-            resource = R.drawable.ale;
+            resource = R.drawable.chiari;
             text = "*suoni dei cartoni disney*";
         }else if(name.equals("Frii")) {
-            resource = R.drawable.ale;
-            text = "Amo sei seria? Io morta";
+            resource = R.drawable.frii;
+            text = "Amo ma sei seria? Io morta";
         }else if(name.equals("Vitto")) {
-            resource = R.drawable.ale;
+            resource = R.drawable.vitto;
             text = "A me piace veramente la Heineken";
         }else if(name.equals("Friggi")) {
             resource = R.drawable.ale;
-            text = "...leggero retrogusto di pesca e un sentore di ciliegio, mentre il colore è....";
+            text = "LMAO";
+        }else if(name.equals("Luca")) {
+            resource = R.drawable.ale;
+            text = "t.b.d.";
+        }else if(name.equals("Gio bliss")) {
+            resource = R.drawable.ilgio;
+            text = "Ragazzi, cosa vi porto?";
+        }else if(name.equals("Jorko")) {
+            resource = R.drawable.jorko;
+            text = "tbd";
+        }else if(name.equals("Chiara DiFra")) {
+            resource = R.drawable.difra;
+            text = "tbd";
+        }else if(name.equals("Fungo")) {
+            resource = R.drawable.fungo;
+            text = "tbd";
+        }else if(name.equals("Giulio")) {
+            resource = R.drawable.giulio;
+            text = "tbd";
+        }else if(name.equals("Darko")) {
+            resource = R.drawable.darko;
+            text = "tbd";
+        }else if(name.equals("coltello")) {
+            resource = R.drawable.coltello;
+            text = "tbd";
+        }else if(name.equals("peroni da 75cl")) {
+            resource = R.drawable.peroni;
+            text = "tbd";
+        }else if(name.equals("cocktail di farmaci")) {
+            resource = R.drawable.cocktail;
+            text = "tbd";
+        }else if(name.equals("punto")) {
+            resource = R.drawable.punto;
+            text = "tbd";
+        }else if(name.equals("drum")) {
+            resource = R.drawable.drum;
+            text = "tbd";
+        }else if(name.equals("bilanciere")) {
+            resource = R.drawable.bilanciere;
+            text = "tbd";
+        }else if(name.equals("solaio del bean")) {
+                resource = R.drawable.solaio;
+                text = "tbd";
+            }else if(name.equals("porto 05")) {
+                resource = R.drawable.porto;
+                text = "tbd";
+            }else if(name.equals("giardino del baga")) {
+                resource = R.drawable.giardino;
+                text = "tbd";
+            }else if(name.equals("taverna del teo")) {
+                resource = R.drawable.taverna;
+                text = "tbd";
+            }else if(name.equals("bliss")) {
+                resource = R.drawable.bliss;
+                text = "tbd";
+            }else if(name.equals("piscina di angelo")) {
+                resource = R.drawable.piscina;
+                text = "tbd";
+            }else if(name.equals("cucina delle vi")) {
+            resource = R.drawable.cucina;
+            text = "tbd";
+        }else if(name.equals("spa del luca")) {
+            resource = R.drawable.spa;
+            text = "tbd";
+        }else if(name.equals("black")) {
+            resource = R.drawable.black;
+            text = "tbd";
         }else {
             resource = R.drawable.question;
             text = "Poraccio senza profilo";
         }
-        int duration = Toast.LENGTH_LONG;
-        Toast toast = Toast.makeText(context, text, duration);
+
+
+
+        Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
         toast.show();
 
     }

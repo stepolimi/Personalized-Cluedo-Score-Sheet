@@ -1,22 +1,22 @@
 package com.example.cluedokiler;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class GameStatus {
 
     private static GameStatus single_instance = null;
 
-    public HashMap<Integer,String> gameTableHash;
+    public GameTable gameTableHash;
     public boolean tableSet;
     public ArrayList<String> playersNames;
     public boolean playersSet;
     public boolean hideTable;
     public Long gameNumber;
     public String playerName;
+    public int numCol;
 
     private GameStatus() {
-        gameTableHash = new HashMap<>();
+        gameTableHash = new GameTable();
         tableSet = false;
         playersSet = false;
         hideTable = false;

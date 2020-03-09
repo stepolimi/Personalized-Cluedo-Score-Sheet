@@ -20,7 +20,7 @@
     </string-array>
 
     <string-array name="places">
-        <item>solaio  del bean</item>
+        <item>solaio del bean</item>
         <item>porto 05</item>
         <item>giardino del baga</item>
         <item>taverna del teo</item>
@@ -34,7 +34,7 @@
     <string-array name="players">
         <item>--Vuoto--</item>
         <item>Baga</item>
-        <item>Luca</item>
+        <item>Luchino</item>
         <item>Virgi</item>
         <item>Greg</item>
         <item>Ale</item>
@@ -46,6 +46,7 @@
         <item>Frii</item>
         <item>Vitto</item>
         <item>Friggi</item>
+        <item>Luca</item>
         <item>Chi?1</item>
         <item>Chi?2</item>
         <item>Chi?3</item>

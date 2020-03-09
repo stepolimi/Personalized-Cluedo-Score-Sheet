@@ -17,9 +17,8 @@ import com.google.firebase.database.ValueEventListener;
 public class StatisticsActivity extends AppCompatActivity {
 
     TextView[] playerTextView = new TextView[10];
-    DatabaseReference db;
+    DatabaseReference db,db2,db3,db4;
     GameStatus gameStatus;
-    int numGames;
 
 
     @Override
@@ -36,17 +35,16 @@ public class StatisticsActivity extends AppCompatActivity {
 
         playerTextView[2]= (TextView) findViewById(R.id.statTextView2);
         db = FirebaseDatabase.getInstance().getReference().child("PlayersRecord");
-        numGames=0;
 
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                numGames=0;
+                int numGames=0;
                 for(DataSnapshot data: dataSnapshot.getChildren()){
-                    if(data.getValue(Users.class).contains(gameStatus.playerName))
+                    if(data.getValue(Users.class).getPlayers().get(0).equals(gameStatus.playerName))
                         numGames = numGames+1;
                 }
-                playerTextView[2].setText("Numero di partite: " + numGames);
+                playerTextView[2].setText("Numero di partite gocate con Cluedo Killer: " + numGames);
             }
 
             @Override
@@ -54,6 +52,66 @@ public class StatisticsActivity extends AppCompatActivity {
 
             }
         });
+
+        playerTextView[3]= (TextView) findViewById(R.id.statTextView3);
+        db2 = FirebaseDatabase.getInstance().getReference().child("GameRecord");
+        db2.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int numTicks=0;
+                for (DataSnapshot data: dataSnapshot.getChildren()){
+                    if(data.getValue(GameTable.class).getPlayer().equals(gameStatus.playerName))
+                        numTicks += data.getValue(GameTable.class).getNumTick();
+                }
+                playerTextView[3].setText("Totoale spunte inserite: " + numTicks);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        playerTextView[4]= (TextView) findViewById(R.id.statTextView4);
+        db3 = FirebaseDatabase.getInstance().getReference().child("GameRecord");
+        db3.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int numTicks=0;
+                for (DataSnapshot data: dataSnapshot.getChildren()){
+                    if(data.getValue(GameTable.class).getPlayer().equals(gameStatus.playerName))
+                        numTicks += data.getValue(GameTable.class).getNumIncerts();
+                }
+                playerTextView[4].setText("Totale spazi rimasti incerti: " + numTicks);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        playerTextView[5]= (TextView) findViewById(R.id.statTextView5);
+        db4 = FirebaseDatabase.getInstance().getReference().child("GameRecord");
+        db4.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int numCrosses=0;
+                for (DataSnapshot data: dataSnapshot.getChildren()){
+                    if(data.getValue(GameTable.class).getPlayer().equals(gameStatus.playerName))
+                        numCrosses += data.getValue(GameTable.class).getNumCross();
+                }
+                playerTextView[5].setText("Totoale croci inserite: " + numCrosses);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
 
 
         setBackButton();

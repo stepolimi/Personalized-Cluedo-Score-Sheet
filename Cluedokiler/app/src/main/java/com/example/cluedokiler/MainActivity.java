@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -96,14 +97,15 @@ public class MainActivity extends AppCompatActivity  {
                     Intent startGameIntent = new Intent(getApplicationContext(), GameActivity.class);
                     startActivity(startGameIntent);
 
-
-                    /*          */
-
                     if(!gameStatus.tableSet) {
+                        gameStatus.gameTableHash.setPlayer(gameStatus.playerName);
                         Users users = new Users(gameStatus.playersNames);
                         db.child(String.valueOf(gameStatus.gameNumber + 1)).setValue(users);
                     }
 
+                }else {
+                    Toast toast = Toast.makeText(getApplicationContext(), "Devono esserci almeno 3 giocatori!", Toast.LENGTH_LONG);
+                    toast.show();
                 }
 
                 if(gameStatus.playersSet)
@@ -169,6 +171,9 @@ public class MainActivity extends AppCompatActivity  {
                 if(!gameStatus.playerName.equals("--Vuoto--")) {
                     Intent startGameIntent = new Intent(getApplicationContext(), StatisticsActivity.class);
                     startActivity(startGameIntent);
+                }else{
+                    Toast toast = Toast.makeText(getApplicationContext(), "Inserisci il tuo nome prima", Toast.LENGTH_LONG);
+                    toast.show();
                 }
             }
         });
