@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".StatisticsActivity"
     android:orientation="vertical"
-    android:weightSum="18">
+    android:weightSum="28">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -35,27 +35,38 @@
         <Button
             android:id="@+id/refreshButton"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="95dp"
-            android:layout_height="51dp"
+            android:layout_width="85dp"
+            android:layout_height="39dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:elevation="40dp"
             android:text="Aggiorna"
             android:textSize="12sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
         </Button>
+
+        <ImageView
+            android:id="@+id/backArrowImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back_arrow" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_weight="16"
+        android:layout_weight="26"
         android:layout_height="0dp"
         android:orientation="vertical"
         android:weightSum="20">
@@ -165,27 +176,6 @@
     </LinearLayout>
 
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
 
-        <Button
-            android:id="@+id/backButton"
-            style="@android:style/Widget.Holo.Button.Small"
-            android:layout_width="95dp"
-            android:layout_height="51dp"
-            android:layout_marginStart="16dp"
-            android:elevation="40dp"
-            android:text="Indietro"
-            android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0">
-
-        </Button>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

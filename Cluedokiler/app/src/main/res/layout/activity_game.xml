@@ -10,7 +10,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_weight="12"
+        android:layout_weight="6"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
@@ -21,14 +21,14 @@
             android:id="@+id/autocompleteButton"
 
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="95dp"
-            android:layout_height="51dp"
+            android:layout_width="78dp"
+            android:layout_height="37dp"
             android:layout_marginStart="16dp"
+            android:text="Autofill"
+            android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:text="Autofill"
-            android:textSize="10sp"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <TextView
@@ -70,7 +70,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_weight="88">
+        android:layout_weight="94">
 
 
         <LinearLayout

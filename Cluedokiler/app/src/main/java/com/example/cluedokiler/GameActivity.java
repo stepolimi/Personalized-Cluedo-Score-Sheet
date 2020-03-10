@@ -13,10 +13,14 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -64,7 +68,6 @@ public class GameActivity extends AppCompatActivity {
                         imageDialog.setArguments(args);
 
                         imageDialog.show(getSupportFragmentManager(), "imageDialog");
-
                     }
                 });
 
@@ -77,12 +80,8 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         }
-        if(!gameStatus.tableSet) {
-            //if (gameStatus.playersNames.size() < 6)
+        if(!gameStatus.tableSet)
                 gameStatus.numCol = gameStatus.playersNames.size() + 1;
-           // else
-           //     gameStatus.numCol = 6 + 1;
-        }
 
         setImages();
 
@@ -424,8 +423,39 @@ public class GameActivity extends AppCompatActivity {
             public void onClick(View v) {
                 gameStatus.gameTableHash.values();
                 db.child(String.valueOf(gameStatus.gameNumber)).setValue(gameStatus.gameTableHash);
-                finish();
+
+                ExitAlert exitAlert = new ExitAlert();
+
+                exitAlert.show(getSupportFragmentManager(), "exitAlert");
             }
         });
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        final GameStatus gameStatus = GameStatus.getInstance();
+
+        if(gameStatus.tableSet) {
+            db = FirebaseDatabase.getInstance().getReference().child("PlayersRecord");
+
+            db.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists())
+                        gameStatus.gameNumber = (dataSnapshot.getChildrenCount());
+                    else
+                        gameStatus.gameNumber = Long.valueOf(0);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                }
+            });
+
+            db = FirebaseDatabase.getInstance().getReference().child("GameRecord");
+            db.child(String.valueOf(gameStatus.gameNumber)).setValue(gameStatus.gameTableHash);
+        }
     }
 }

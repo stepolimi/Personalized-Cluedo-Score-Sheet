@@ -2,7 +2,7 @@ package com.example.cluedokiler;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -118,7 +118,7 @@ public class StatisticsActivity extends AppCompatActivity {
     }
 
     private void setBackButton() {
-        Button backButton = (Button) findViewById(R.id.backButton);
+        ImageView backButton = (ImageView) findViewById(R.id.backArrowImageView);
 
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

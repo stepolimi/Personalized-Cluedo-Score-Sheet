@@ -23,31 +23,59 @@
             android:layout_height="wrap_content"
             android:weightSum="10" >
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/constraintLayout"
-            android:layout_width="match_parent"
-            android:layout_height="420dp"
-            android:layout_weight="5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            <LinearLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="match_parent"
+                android:layout_height="420dp"
+                android:layout_weight="5"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/enterNamesTextView"
+
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="80dp"
-                    android:background="#512da8"
-                    android:text="\nSeleziona i nomi dei giocatori"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:textAllCaps="false"
-                    android:textColor="#ffffff"/>
+                    android:layout_height="40dp"
+                    android:background="#512da8">
+
+                    <TextView
+                        android:id="@+id/enterNamesTextView"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Seleziona i giocatori"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#ffffff"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:textAllCaps="false" />
+
+                    <ImageView
+                        android:id="@+id/exitAppImageVIew"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.48000002"
+                        app:srcCompat="@drawable/exit_ap_icon" />
+
+                    <ImageView
+                        android:id="@+id/settingsImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:srcCompat="@drawable/round_settings" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -234,7 +262,7 @@
 
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"

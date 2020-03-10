@@ -21,6 +21,23 @@ public class GameStatus {
         playersSet = false;
         hideTable = false;
         playersNames = new ArrayList<>();
+        playerName = "--Vuoto--";
+    }
+
+    public void resetGame(){
+        gameTableHash = new GameTable();
+        tableSet = false;
+        playersSet = false;
+        hideTable = false;
+        playersNames = new ArrayList<>();
+        playerName = "--Vuoto--";
+    }
+
+    public void newGame(){
+        gameTableHash = new GameTable();
+        tableSet = false;
+        hideTable = false;
+        playersSet = false;
     }
 
     public static GameStatus getInstance()
