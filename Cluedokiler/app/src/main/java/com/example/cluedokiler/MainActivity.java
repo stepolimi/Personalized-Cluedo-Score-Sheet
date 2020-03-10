@@ -44,10 +44,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 GameStatus.getInstance().newGame();
-                //gameStatus.tableSet = false;
-                //gameStatus.playersSet = false;
                 onResume();
-                //playButton.setText(getResources().getString(R.string.giocaPlayButton));
             }
         });
 
