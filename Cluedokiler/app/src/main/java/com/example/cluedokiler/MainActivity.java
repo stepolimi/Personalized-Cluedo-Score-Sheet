@@ -135,12 +135,12 @@ public class MainActivity extends AppCompatActivity  {
         ArrayList<String> players = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.players)));
         ArrayList<ArrayAdapter<String>> adapters = new ArrayList<>();
 
-        Spinner playerChoiceSpinner1 = (Spinner) findViewById(R.id.playerCoicheSpinner6);
-        Spinner playerChoiceSpinner2 = (Spinner) findViewById(R.id.playerCoicheSpinner5);
-        Spinner playerChoiceSpinner3 = (Spinner) findViewById(R.id.playerCoicheSpinner4);
-        Spinner playerChoiceSpinner4 = (Spinner) findViewById(R.id.playerCoicheSpinner3);
-        Spinner playerChoiceSpinner5 = (Spinner) findViewById(R.id.playerCoicheSpinner2);
-        Spinner playerChoiceSpinner6 = (Spinner) findViewById(R.id.playerCoicheSpinner1);
+        Spinner playerChoiceSpinner1 = (Spinner) findViewById(R.id.playerCoicheSpinner1);
+        Spinner playerChoiceSpinner2 = (Spinner) findViewById(R.id.playerCoicheSpinner2);
+        Spinner playerChoiceSpinner3 = (Spinner) findViewById(R.id.playerCoicheSpinner3);
+        Spinner playerChoiceSpinner4 = (Spinner) findViewById(R.id.playerCoicheSpinner4);
+        Spinner playerChoiceSpinner5 = (Spinner) findViewById(R.id.playerCoicheSpinner5);
+        Spinner playerChoiceSpinner6 = (Spinner) findViewById(R.id.playerCoicheSpinner6);
 
         for(int i=0; i<6; i++){
 

@@ -1,1471 +1,1510 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".GameActivity">
+    tools:context=".GameActivity"
+    android:orientation="vertical"
+    android:weightSum="100">
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_weight="12"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="horizontal"
+        android:background="#512da8">
+
+
+        <Button
+            android:id="@+id/autocompleteButton"
+
+            style="@style/Widget.AppCompat.Button"
+            android:layout_width="95dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Autofill"
+            android:textSize="10sp"/>
+
+
+        <TextView
+            android:id="@+id/statTextViewTitle"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Partita"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@+id/switch1"
+            app:layout_constraintStart_toEndOf="@+id/autocompleteButton"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
+        <Switch
+            android:id="@+id/switch1"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginEnd="16dp"
+            android:text="Nascondi"
+            android:textColor="#ffffff"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="35dp"
+        android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_weight="88">
 
 
-        <TableLayout
-            android:id="@+id/gameTableLayout"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:layout_marginVertical="5dp"
-            android:stretchColumns="1,2,3,4,5,6,7">
+            android:orientation="vertical">
+
+            <TableLayout
+                android:id="@+id/gameTableLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="5dp"
+                android:stretchColumns="1,2,3,4,5,6,7">
 
 
-            <TableRow android:layout_marginBottom="3dp">
+                <TableRow android:layout_marginBottom="3dp">
 
 
-                <TextView
-                    android:id="@+id/textView"
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:textStyle="bold" />
+
+
+                    <TextView
+                        android:id="@+id/player1TextView"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="player1"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/player2TextView"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="player2"
+                        android:textSize="14sp"
+                        android:textStyle="bold"
+                        />
+
+                    <TextView
+                        android:id="@+id/player3TextView"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="player3"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/player4TextView"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="player4"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/player5TextView"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="player5"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/player6TextView"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="player6"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:id="@+id/tableTextView"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Iniziali"
+                        android:textSize="14sp"
+                        android:textStyle="bold"/>
+                </TableRow>
+
+
+                <TableRow android:layout_marginBottom="3dp"
+                    android:background="#e6ceff">
+
+                    <TextView
+                        android:id="@+id/textView7"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sospettati"
+                        android:textStyle="bold" />
+
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="suspect1" />
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView7"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView9"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="suspect2" />
+
+                    <ImageView
+                        android:id="@+id/imageView9"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView10"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView11"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView12"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView13"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView14"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView15"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp"
+                    >
+
+                    <TextView
+                        android:id="@+id/textView10"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="suspect3"
+                        />
+
+                    <ImageView
+                        android:id="@+id/imageView16"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView17"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView18"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView19"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView20"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView21"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView22"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView11"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="suspect4" />
+
+                    <ImageView
+                        android:id="@+id/imageView23"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView24"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView25"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView26"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView27"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView28"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView29"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView12"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="suspect5" />
+
+                    <ImageView
+                        android:id="@+id/imageView30"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView31"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView32"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView33"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView34"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView35"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView36"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView13"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="suspect6" />
+
+                    <ImageView
+                        android:id="@+id/imageView37"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView38"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView39"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView40"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView41"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView42"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView43"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow
+                    android:layout_marginBottom="3dp"
+                    android:background="#e6ceff">
+
+                    <TextView
+                        android:id="@+id/textView14"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Armi"
+                        android:textStyle="bold"
+                        android:elevation="60dp" />
+
+                </TableRow>
+
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView16"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="weapon1" />
+
+                    <ImageView
+                        android:id="@+id/imageView44"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView45"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView46"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView47"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView48"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView49"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView50"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView17"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="weapon2" />
+
+                    <ImageView
+                        android:id="@+id/imageView51"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView52"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView53"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView54"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView55"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView56"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView57"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView18"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="weapon3" />
+
+                    <ImageView
+                        android:id="@+id/imageView58"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView59"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView60"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView61"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView62"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView63"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView64"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView19"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="weapon4" />
+
+                    <ImageView
+                        android:id="@+id/imageView65"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView66"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView67"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView68"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView69"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView70"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView71"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView20"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="weapon5" />
+
+                    <ImageView
+                        android:id="@+id/imageView72"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView73"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView74"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView75"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView76"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView77"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView78"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView21"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="weapon6" />
+
+                    <ImageView
+                        android:id="@+id/imageView79"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView80"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView81"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView82"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView83"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView84"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView85"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp"
+                    android:background="#e6ceff">
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="15sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Luoghi"
+                        android:textStyle="bold" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView23"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="place1"
+                        />
+
+                    <ImageView
+                        android:id="@+id/imageView86"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView87"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView88"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView89"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView90"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView91"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView92"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView24"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="place2" />
+
+                    <ImageView
+                        android:id="@+id/imageView93"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView94"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView95"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView96"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView97"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView98"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView99"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView25"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="place3"
+                        android:textSize="14sp" />
+
+                    <ImageView
+                        android:id="@+id/imageView100"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView101"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView102"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView103"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView104"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView105"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView106"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView26"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="place4" />
+
+                    <ImageView
+                        android:id="@+id/imageView107"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView108"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView109"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView110"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView111"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView112"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView113"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView27"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="place5" />
+
+                    <ImageView
+                        android:id="@+id/imageView114"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView115"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView116"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView117"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView118"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView119"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView120"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView28"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="place6" />
+
+                    <ImageView
+                        android:id="@+id/imageView121"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView122"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView123"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView124"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView125"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView126"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView127"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView29"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="place7" />
+
+                    <ImageView
+                        android:id="@+id/imageView128"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView129"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView130"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView131"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView132"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView133"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView134"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView30"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="place8" />
+
+                    <ImageView
+                        android:id="@+id/imageView135"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView136"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView137"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView138"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView139"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView140"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView141"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+
+                <TableRow android:layout_marginBottom="3dp">
+
+                    <TextView
+                        android:id="@+id/textView31"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:textSize="14sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="place9"
+                        />
+
+                    <ImageView
+                        android:id="@+id/imageView142"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView143"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView144"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView145"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView146"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView147"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+
+                    <ImageView
+                        android:id="@+id/imageView148"
+                        android:layout_width="30sp"
+                        android:layout_height="25sp"
+                        android:tag="empty"
+                        tools:srcCompat="@drawable/checkbox" />
+                </TableRow>
+            </TableLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <Button
+                    android:id="@+id/endGameButton"
+                    style="@android:style/Widget.Holo.Button.Small"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:textStyle="bold" />
-
-
-                <TextView
-                    android:id="@+id/player1TextView"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="player1"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/player2TextView"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="player2"
+                    android:layout_height="51dp"
+                    android:text="Concludi la partita"
                     android:textSize="14sp"
-                    />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/player3TextView"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="player3"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/player4TextView"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="player4"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/player5TextView"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="player5"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/player6TextView"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="player6"
-                    android:textSize="14sp" />
-
-                <TextView
-                    android:id="@+id/tableTextView"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Iniziali"
-                    android:textSize="14sp" />
-            </TableRow>
-
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView7"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="15sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sospettati"
-                    android:textStyle="bold" />
-
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView8"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="suspect1" />
-
-                <ImageView
-                    android:id="@+id/imageView1"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView2"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView3"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView4"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView5"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView6"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView7"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView9"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="suspect2" />
-
-                <ImageView
-                    android:id="@+id/imageView9"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView10"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView11"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView12"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView13"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView14"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView15"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView10"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="suspect3" />
-
-                <ImageView
-                    android:id="@+id/imageView16"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView17"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView18"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView19"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView20"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView21"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView22"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView11"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="suspect4" />
-
-                <ImageView
-                    android:id="@+id/imageView23"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView24"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView25"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView26"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView27"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView28"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView29"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView12"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="suspect5" />
-
-                <ImageView
-                    android:id="@+id/imageView30"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView31"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView32"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView33"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView34"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView35"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView36"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView13"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="suspect6" />
-
-                <ImageView
-                    android:id="@+id/imageView37"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView38"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView39"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView40"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView41"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView42"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView43"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow
-                android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView14"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="15sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Armi"
-                    android:textStyle="bold"
-                    android:elevation="60dp"/>
-
-            </TableRow>
-
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView16"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="weapon1" />
-
-                <ImageView
-                    android:id="@+id/imageView44"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView45"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView46"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView47"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView48"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView49"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView50"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView17"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="weapon2" />
-
-                <ImageView
-                    android:id="@+id/imageView51"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView52"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView53"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView54"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView55"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView56"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView57"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView18"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="weapon3" />
-
-                <ImageView
-                    android:id="@+id/imageView58"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView59"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView60"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView61"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView62"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView63"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView64"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView19"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="weapon4" />
-
-                <ImageView
-                    android:id="@+id/imageView65"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView66"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView67"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView68"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView69"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView70"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView71"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView20"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="weapon5" />
-
-                <ImageView
-                    android:id="@+id/imageView72"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView73"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView74"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView75"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView76"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView77"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView78"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView21"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="weapon6" />
-
-                <ImageView
-                    android:id="@+id/imageView79"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView80"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView81"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView82"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView83"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView84"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView85"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView22"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="15sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Luoghi"
-                    android:textStyle="bold" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView23"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="place1"
-                    />
-
-                <ImageView
-                    android:id="@+id/imageView86"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView87"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView88"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView89"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView90"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView91"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView92"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView24"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="place2" />
-
-                <ImageView
-                    android:id="@+id/imageView93"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView94"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView95"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView96"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView97"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView98"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView99"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView25"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="place3"
-                    android:textSize="14sp" />
-
-                <ImageView
-                    android:id="@+id/imageView100"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView101"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView102"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView103"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView104"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView105"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView106"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView26"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="place4" />
-
-                <ImageView
-                    android:id="@+id/imageView107"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView108"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView109"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView110"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView111"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView112"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView113"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView27"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="place5" />
-
-                <ImageView
-                    android:id="@+id/imageView114"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView115"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView116"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView117"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView118"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView119"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView120"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView28"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="place6" />
-
-                <ImageView
-                    android:id="@+id/imageView121"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView122"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView123"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView124"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView125"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView126"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView127"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView29"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="place7" />
-
-                <ImageView
-                    android:id="@+id/imageView128"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView129"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView130"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView131"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView132"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView133"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView134"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView30"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="place8" />
-
-                <ImageView
-                    android:id="@+id/imageView135"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView136"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView137"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView138"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView139"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView140"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView141"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-
-            <TableRow android:layout_marginBottom="3dp">
-
-                <TextView
-                    android:id="@+id/textView31"
-                    style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-                    android:textSize="14sp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="place9"
-                     />
-
-                <ImageView
-                    android:id="@+id/imageView142"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView143"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView144"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView145"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView146"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView147"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-
-                <ImageView
-                    android:id="@+id/imageView148"
-                    android:layout_width="30sp"
-                    android:layout_height="25sp"
-                    android:tag="empty"
-                    tools:srcCompat="@drawable/checkbox" />
-            </TableRow>
-        </TableLayout>
     </ScrollView>
 
-    <Switch
-        android:id="@+id/switch1"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="3dp"
-        android:text="Nascondi"
-        android:textSize="12sp" />
-
-    <Button
-        android:id="@+id/autocompleteButton"
-
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="30dp"
-        android:layout_height="32dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/autocompleteTextView" />
-
-    <Button
-        android:id="@+id/endGameButton"
-
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="30dp"
-        android:layout_height="32dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="0dp"
-        android:layout_toEndOf="@+id/endGameTextView" />
-
-    <TextView
-        android:id="@+id/autocompleteTextView"
-        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-        android:layout_width="85dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="8dp"
-        android:text="Autocompleta"
-        android:textSize="12sp" />
-
-    <TextView
-        android:id="@+id/endGameTextView"
-        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="15dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="17dp"
-        android:layout_marginTop="10dp"
-        android:layout_toEndOf="@+id/autocompleteButton"
-        android:text="Termina partita"
-        android:textSize="12sp" />
 
 
-</RelativeLayout>
+
+
+</LinearLayout>
