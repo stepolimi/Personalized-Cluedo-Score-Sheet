@@ -3,6 +3,9 @@ package com.example.cluedokiler;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -10,8 +13,10 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +38,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final GameStatus gameStatus = GameStatus.getInstance();
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
 
         compileSpinners();
 
@@ -133,6 +142,16 @@ public class MainActivity extends AppCompatActivity {
         setStatisticsButton();
 
         setTopBarButtons();
+
+        OnBackPressedCallback callback = new OnBackPressedCallback(true ) {
+            @Override
+            public void handleOnBackPressed() {
+                ExitGameAlert exitAlert = new ExitGameAlert();
+                exitAlert.show(getSupportFragmentManager(), "exitGameAlert");
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
+
     }
 
 
@@ -153,8 +172,7 @@ public class MainActivity extends AppCompatActivity {
             adapters.add(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,players));
             if(i!=0 || GameStatus.getInstance().playerName.equals("--Vuoto--") || GameStatus.getInstance().playerName.equals(""))
                 adapters.get(i).setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-            else
-                ;//;adapters.get(i).
+
         }
 
         if(GameStatus.getInstance().playerName.equals("--Vuoto--"))
@@ -201,7 +219,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void setTopBarButtons(){
         ImageView exitApp = (ImageView) findViewById(R.id.exitAppImageVIew);
-        ImageView settings = (ImageView) findViewById(R.id.settingsImageView);
 
         exitApp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -272,6 +289,34 @@ public class MainActivity extends AppCompatActivity {
 
             db = FirebaseDatabase.getInstance().getReference().child("GameRecord");
             db.child(String.valueOf(gameStatus.gameNumber)).setValue(gameStatus.gameTableHash);
+            gameStatus.newGame();
         }
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu,menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.mainMenu1:
+                CodeAlert codeAlert = new CodeAlert();
+                codeAlert.show(getSupportFragmentManager(), "codeAlert");
+                return true;
+            case R.id.mainMenu2:
+                Toast.makeText(this,"item3", Toast.LENGTH_SHORT).show();
+                return true;
+            default:super.onOptionsItemSelected(item);
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

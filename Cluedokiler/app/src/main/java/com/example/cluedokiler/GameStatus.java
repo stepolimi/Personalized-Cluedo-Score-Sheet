@@ -14,6 +14,9 @@ public class GameStatus {
     public Long gameNumber;
     public String playerName;
     public int numCol;
+    public ArrayList<Integer> highlightedRows;
+    public String confirmationCode;
+    public String winner;
 
     private GameStatus() {
         gameTableHash = new GameTable();
@@ -22,6 +25,9 @@ public class GameStatus {
         hideTable = false;
         playersNames = new ArrayList<>();
         playerName = "--Vuoto--";
+        highlightedRows = new ArrayList<>();
+        winner ="";
+        confirmationCode="";
     }
 
     public void resetGame(){
@@ -31,6 +37,8 @@ public class GameStatus {
         hideTable = false;
         playersNames = new ArrayList<>();
         playerName = "--Vuoto--";
+        highlightedRows = new ArrayList<>();
+        winner ="";
     }
 
     public void newGame(){
@@ -38,6 +46,8 @@ public class GameStatus {
         tableSet = false;
         hideTable = false;
         playersSet = false;
+        highlightedRows = new ArrayList<>();
+        winner ="";
     }
 
     public static GameStatus getInstance()

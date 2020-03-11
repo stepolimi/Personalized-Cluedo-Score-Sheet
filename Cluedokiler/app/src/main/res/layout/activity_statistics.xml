@@ -8,6 +8,8 @@
     android:orientation="vertical"
     android:weightSum="28">
 
+    <include
+        layout="@layout/toolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

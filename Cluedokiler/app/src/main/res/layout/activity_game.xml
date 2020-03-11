@@ -8,6 +8,10 @@
     android:orientation="vertical"
     android:weightSum="100">
 
+    <include
+        layout="@layout/toolbar" />
+
+
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_weight="6"
@@ -16,7 +20,7 @@
         android:orientation="horizontal"
         android:background="#512da8">
 
-
+<!--
         <Button
             android:id="@+id/autocompleteButton"
 
@@ -29,7 +33,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
+-->
 
         <TextView
             android:id="@+id/statTextViewTitle"
@@ -40,8 +44,8 @@
             android:textColor="#ffffff"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/switch1"
-            app:layout_constraintStart_toEndOf="@+id/autocompleteButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
         </TextView>
@@ -1496,6 +1500,16 @@
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/declareWinnerButton"
+                    style="@android:style/Widget.Holo.Button.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="51dp"
+                    android:textSize="14sp"
+                    android:text="Dichiara il vincitore"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>

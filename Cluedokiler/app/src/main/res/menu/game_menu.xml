@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/gameMenu1"
+        android:title="Completa righe"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/gameMenu2"
+        android:title="Evidenzia sospetto"
+        app:showAsAction="never" >
+
+        <menu>
+            <item android:id="@+id/menuItem21"
+                android:title="Gio bliss" />
+            <item android:id="@+id/menuItem22"
+                android:title="Jorko" />
+            <item android:id="@+id/menuItem23"
+                android:title="Chiara DiFra" />
+            <item android:id="@+id/menuItem24"
+                android:title="Fungo" />
+            <item android:id="@+id/menuItem25"
+                android:title="Giulio" />
+            <item android:id="@+id/menuItem26"
+                android:title="Darko" />
+        </menu>
+
+    </item>
+
+    <item android:id="@+id/gameMenu3"
+        android:title="Evidenzia arma"
+        app:showAsAction="never" >
+
+        <menu>
+            <item android:id="@+id/menuItem31"
+                android:title="coltello" />
+            <item android:id="@+id/menuItem32"
+                android:title="peroni da 75cl" />
+            <item android:id="@+id/menuItem33"
+                android:title="cocktail di farmaci" />
+            <item android:id="@+id/menuItem34"
+                android:title="punto" />
+            <item android:id="@+id/menuItem35"
+                android:title="drum" />
+            <item android:id="@+id/menuItem36"
+                android:title="bilanciere" />
+
+        </menu>
+
+    </item>
+
+
+    <item android:id="@+id/gameMenu4"
+        android:title="Evidenzia luogo"
+        app:showAsAction="never" >
+
+        <menu>
+            <item android:id="@+id/menuItem41"
+                android:title="solaio del bean" />
+            <item android:id="@+id/menuItem42"
+                android:title="porto 05" />
+            <item android:id="@+id/menuItem43"
+                android:title="giardino del baga" />
+            <item android:id="@+id/menuItem44"
+                android:title="taverna del teo" />
+            <item android:id="@+id/menuItem45"
+                android:title="bliss" />
+            <item android:id="@+id/menuItem46"
+                android:title="piscina di angelo" />
+            <item android:id="@+id/menuItem47"
+                android:title="cucina delle vi" />
+            <item android:id="@+id/menuItem48"
+                android:title="spa del luca" />
+            <item android:id="@+id/menuItem49"
+                android:title="black" />
+        </menu>
+
+    </item>
+</menu>

@@ -1,12 +1,17 @@
 package com.example.cluedokiler;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -25,8 +30,10 @@ public class StatisticsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistics);
-
         gameStatus = GameStatus.getInstance();
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
 
         playerTextView[1] = (TextView) findViewById(R.id.statTextView1);
         playerTextView[1].setText("Giocatore: " + gameStatus.playerName);
@@ -126,5 +133,31 @@ public class StatisticsActivity extends AppCompatActivity {
                 finish();
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.settings_menu,menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.settingsMenu1:
+                Toast.makeText(this,"item2", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.settingsMenu2:
+                Toast.makeText(this,"item3", Toast.LENGTH_SHORT).show();
+                return true;
+            default:super.onOptionsItemSelected(item);
+        }
+
+
+
+        return super.onOptionsItemSelected(item);
     }
 }

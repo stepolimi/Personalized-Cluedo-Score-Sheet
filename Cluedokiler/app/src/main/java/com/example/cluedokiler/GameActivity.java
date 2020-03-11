@@ -3,8 +3,12 @@ package com.example.cluedokiler;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Display;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,6 +19,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -36,6 +41,8 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
 
         Resources res = getResources();
         players = res.getStringArray(R.array.players);
@@ -89,10 +96,13 @@ public class GameActivity extends AppCompatActivity {
 
         setHideSwitcher();
 
-        setAutocompleteButton();
+ //       setAutocompleteButton();
+
+        restoreHighlights();
 
         setEndGameButton();
 
+        setDeclareWinnerButton();
 
     }
 
@@ -267,13 +277,14 @@ public class GameActivity extends AppCompatActivity {
     private void setImages(){
         final GameStatus gameStatus = GameStatus.getInstance();
         TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
+
+
         for (int i = 0; i < gameTableLayout.getChildCount(); i++) {
             TableRow gameTableRow = (TableRow) gameTableLayout.getChildAt(i);
             for (int x = 0; x < gameTableRow.getChildCount(); x++) {
                 final View itemTableLayout = gameTableRow.getChildAt(x);
                 if (itemTableLayout instanceof ImageView && (x<gameStatus.numCol || x==gameTableRow.getChildCount()-1)) {
                     ImageView tableImageView = (ImageView) itemTableLayout;
-
                     if(gameStatus.tableSet) {
                         if (gameStatus.gameTableHash.get(tableImageView.getId()).equals("cross")) {
                             scaleImages((ImageView) itemTableLayout, R.drawable.cross);
@@ -373,57 +384,95 @@ public class GameActivity extends AppCompatActivity {
 
     }
 
+    private void completeRows(){
+        final GameStatus gameStatus = GameStatus.getInstance();
+        TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
+        for (int i = 0; i < gameTableLayout.getChildCount(); i++) {
+            TableRow gameTableRow = (TableRow) gameTableLayout.getChildAt(i);
+            for (int x = 0; x < gameTableRow.getChildCount(); x++) {
+                final View itemTableLayout = gameTableRow.getChildAt(x);
+                if(itemTableLayout instanceof ImageView && (x<gameStatus.numCol || x==gameTableRow.getChildCount()-1)) {
+                    final ImageView tableImageView = (ImageView) itemTableLayout;
 
-    private void setAutocompleteButton(){
-        Button autocomplete = (Button) findViewById(R.id.autocompleteButton);
-
-        autocomplete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                final GameStatus gameStatus = GameStatus.getInstance();
-                TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
-                for (int i = 0; i < gameTableLayout.getChildCount(); i++) {
-                    TableRow gameTableRow = (TableRow) gameTableLayout.getChildAt(i);
-                    for (int x = 0; x < gameTableRow.getChildCount(); x++) {
-                        final View itemTableLayout = gameTableRow.getChildAt(x);
-                        if(itemTableLayout instanceof ImageView && (x<gameStatus.numCol || x==gameTableRow.getChildCount()-1)) {
-                            final ImageView tableImageView = (ImageView) itemTableLayout;
-
-                            if (tableImageView.getTag().equals("tick")) {
-                                for (int k = 0; k < gameTableRow.getChildCount(); k++) {
-                                    final View crossItemTableLayout = gameTableRow.getChildAt(k);
-                                    if (crossItemTableLayout instanceof ImageView && k != x && (k<gameStatus.numCol || k==gameTableRow.getChildCount()-1)) {
-                                        final ImageView crossTableImageView = (ImageView) crossItemTableLayout;
-                                        scaleImages(crossTableImageView, R.drawable.cross);
-                                        crossTableImageView.setTag("cross");
-                                        gameStatus.gameTableHash.remove(crossTableImageView.getId());
-                                        gameStatus.gameTableHash.put(String.valueOf(crossTableImageView.getId()), "cross");
-                                    }
-                                }
+                    if (tableImageView.getTag().equals("tick")) {
+                        for (int k = 0; k < gameTableRow.getChildCount(); k++) {
+                            final View crossItemTableLayout = gameTableRow.getChildAt(k);
+                            if (crossItemTableLayout instanceof ImageView && k != x && (k<gameStatus.numCol || k==gameTableRow.getChildCount()-1)) {
+                                final ImageView crossTableImageView = (ImageView) crossItemTableLayout;
+                                scaleImages(crossTableImageView, R.drawable.cross);
+                                crossTableImageView.setTag("cross");
+                                gameStatus.gameTableHash.remove(crossTableImageView.getId());
+                                gameStatus.gameTableHash.put(String.valueOf(crossTableImageView.getId()), "cross");
                             }
-
                         }
-
                     }
 
                 }
+
+            }
+
+        }
+    }
+
+    private void restoreHighlights(){
+        TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
+        for(Integer i: GameStatus.getInstance().highlightedRows){
+            TableRow tableRow = (TableRow) gameTableLayout.getChildAt(i);
+            tableRow.getChildAt(0).setBackgroundColor(Color.parseColor("#512da8"));
+            ((TextView) tableRow.getChildAt(0)).setTextColor(Color.WHITE);
+        }
+    }
+
+    private void highlightObject(String name){
+        TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
+        for (int i = 0; i < gameTableLayout.getChildCount(); i++) {
+            TableRow tableRow = (TableRow) gameTableLayout.getChildAt(i);
+            if (tableRow.getChildAt(0) instanceof TextView) {
+                if(((TextView) tableRow.getChildAt(0)).getText().equals(name)) {
+                    if(!GameStatus.getInstance().highlightedRows.contains(i)) {
+                        tableRow.getChildAt(0).setBackgroundColor(Color.parseColor("#512da8"));
+                        ((TextView) tableRow.getChildAt(0)).setTextColor(Color.WHITE);
+                        GameStatus.getInstance().highlightedRows.add(i);
+                    }else{
+                        tableRow.getChildAt(0).setBackgroundColor(Color.WHITE);
+                        ((TextView) tableRow.getChildAt(0)).setTextColor(Color.BLACK);
+                        GameStatus.getInstance().highlightedRows.remove((Integer)i);
+                    }
+                    return;
+                }
+            }
+        }
+    }
+
+/*
+    private void setAutocompleteButton(){
+        Button autocomplete = (Button) findViewById(R.id.autocompleteButton);
+        autocomplete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                completeRows();
+            }
+        });
+    }*/
+
+    private void setDeclareWinnerButton(){
+        final Button declareWinnerButton = (Button) findViewById(R.id.declareWinnerButton);
+
+        declareWinnerButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DeclareWinnerDialog declareWinnerDialog = new DeclareWinnerDialog();
+                declareWinnerDialog.show(getSupportFragmentManager(),"declareWinner");
             }
         });
     }
 
     public void setEndGameButton(){
         Button endGameButton = (Button) findViewById(R.id.endGameButton);
-        final GameStatus gameStatus = GameStatus.getInstance();
-
-
-        db = FirebaseDatabase.getInstance().getReference().child("GameRecord");
 
         endGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameStatus.gameTableHash.values();
-                db.child(String.valueOf(gameStatus.gameNumber)).setValue(gameStatus.gameTableHash);
-
                 ExitAlert exitAlert = new ExitAlert();
 
                 exitAlert.show(getSupportFragmentManager(), "exitAlert");
@@ -455,7 +504,26 @@ public class GameActivity extends AppCompatActivity {
             });
 
             db = FirebaseDatabase.getInstance().getReference().child("GameRecord");
+
             db.child(String.valueOf(gameStatus.gameNumber)).setValue(gameStatus.gameTableHash);
         }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.game_menu,menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if(item.getItemId() == R.id.gameMenu1)
+            completeRows();
+        else
+            highlightObject(item.getTitle().toString());
+
+        return super.onOptionsItemSelected(item);
     }
 }

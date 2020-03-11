@@ -63,5 +63,7 @@
     <!-- dialog images -->
     <string name="cancelDialog"> Chiudi </string>
 
+    <!-- authentication code -->
+    <string name="code"> passwordsicurissima </string>
 
 </resources>
