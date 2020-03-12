@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity"
-    android:weightSum="10">
+    android:weightSum="10"
+    android:background="@drawable/screen_background">
 
     <include
         layout="@layout/toolbar" />
@@ -23,7 +24,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:weightSum="10" >
+            android:weightSum="20" >
 
             <LinearLayout
                 android:id="@+id/constraintLayout"
@@ -39,7 +40,8 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:background="#512da8">
+                    android:background="#512da8"
+                    android:elevation="10dp">
 
                     <TextView
                         android:id="@+id/enterNamesTextView"
@@ -276,49 +278,79 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
                 app:layout_constraintVertical_bias="0.87"
-                android:layout_weight="5">
+                android:layout_weight="5"
+                android:paddingLeft="40dp"
+                android:paddingRight="40dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="20dp"
+                android:clipToPadding="false">
 
-                <Button
-                    android:id="@+id/playButton"
-                    style="@android:style/Widget.Holo.Button.Small"
+                <LinearLayout
                     android:layout_width="202dp"
-                    android:layout_height="45dp"
-                    android:text="Gioca"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/statisticsButton"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:elevation="10dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:elevation="10dp">
+                        <Button
+                            android:id="@+id/playButton"
+                            android:layout_width="192dp"
+                            android:layout_height="45dp"
+                            android:text="Gioca"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginStart="5dp"
+
+                            android:textColor="#ffffff"
+                            android:elevation="10dp"
+                            android:background="@drawable/button_background"
+                            />
+                    </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="3"
                     android:orientation="horizontal"
+                    android:paddingBottom="10dp"
+                    android:clipToPadding="false"
+
                     >
 
                     <Button
                         android:id="@+id/statisticsButton"
-                        style="@android:style/Widget.Holo.Button.Small"
-                        android:layout_width="101dp"
+                        android:layout_width="91dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
                         android:layout_height="45dp"
                         android:text="Statistiche"
-                        app:layout_constraintBottom_toTopOf="@+id/resetButton"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
+                        android:textSize="12sp"
+                        android:background="@drawable/button_background"
+                        android:textColor="#ffffff"
+                        android:layout_marginBottom="10dp"
+                        android:elevation="10dp"
+
                         />
 
                     <Button
                         android:id="@+id/resetButton"
-                        style="@android:style/Widget.Holo.Button.Small"
-                        android:layout_width="101dp"
+                        android:layout_width="91dp"
                         android:layout_height="45dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
                         android:text="Reset"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintHorizontal_bias="0.501"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        android:background="@drawable/button_background"
+                        android:textColor="#ffffff"
+                        android:textSize="12sp"
+                        android:elevation="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
 
 
+                </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

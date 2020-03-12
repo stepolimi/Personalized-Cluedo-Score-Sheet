@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".GameActivity"
     android:orientation="vertical"
-    android:weightSum="100">
+    android:weightSum="100"
+    android:background="@drawable/screen_background">
 
     <include
         layout="@layout/toolbar" />
@@ -18,7 +19,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="horizontal"
-        android:background="#512da8">
+        android:background="#512da8"
+        android:elevation="10dp">
 
 <!--
         <Button
@@ -1494,12 +1496,15 @@
                 <Button
                     android:id="@+id/endGameButton"
                     style="@android:style/Widget.Holo.Button.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="51dp"
-                    android:text="Concludi la partita"
-                    android:textSize="14sp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_width="116dp"
+                    android:layout_height="54dp"
                     android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_background"
+                    android:elevation="10dp"
+                    android:text="Concludi la partita"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -1507,12 +1512,16 @@
                 <Button
                     android:id="@+id/declareWinnerButton"
                     style="@android:style/Widget.Holo.Button.Small"
-                    android:layout_width="wrap_content"
-                    android:layout_height="51dp"
-                    android:textSize="14sp"
-                    android:text="Dichiara il vincitore"
-                    android:layout_marginBottom="10dp"
+                    android:layout_width="116dp"
+                    android:layout_height="54dp"
+
                     android:layout_marginStart="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:background="@drawable/button_background"
+                    android:elevation="10dp"
+                    android:text="Dichiara il vincitore"
+                    android:textColor="#ffffff"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />

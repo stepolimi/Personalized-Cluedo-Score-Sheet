@@ -17,8 +17,12 @@ public class GameStatus {
     public String confirmationCode;
     public String winner;
     public String gameTime;
+    public ArrayList<String> tentativePlayers;
 
     private GameStatus() {
+        tentativePlayers=new ArrayList<>();
+        for(int i=0; i<6; i++)
+            tentativePlayers.add("");
         gameTableHash = new GameTable();
         tableSet = false;
         playersSet = false;
@@ -37,6 +41,9 @@ public class GameStatus {
     }
 
     public void resetGame(){
+        tentativePlayers=new ArrayList<>();
+        for(int i=0; i<6; i++)
+            tentativePlayers.add("");
         gameTableHash = new GameTable();
         tableSet = false;
         playersSet = false;
@@ -49,6 +56,9 @@ public class GameStatus {
     }
 
     public void newGame(){
+        tentativePlayers=new ArrayList<>();
+        for(int i=0; i<6; i++)
+            tentativePlayers.add("");
         gameTableHash = new GameTable();
         tableSet = false;
         hideTable = false;

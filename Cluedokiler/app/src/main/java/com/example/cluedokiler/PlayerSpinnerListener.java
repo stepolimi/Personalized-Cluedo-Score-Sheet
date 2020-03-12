@@ -27,10 +27,16 @@ public class PlayerSpinnerListener implements AdapterView.OnItemSelectedListener
                 if(i!=num)
                     adapters.get(i).add(playerChoice);*/
 
-        playerChoice = parent.getItemAtPosition(position).toString();
 
-        if(num==0)
-            GameStatus.getInstance().playerName=playerChoice;
+       if(!GameStatus.getInstance().tentativePlayers.contains(parent.getItemAtPosition(position).toString())) {
+           playerChoice = parent.getItemAtPosition(position).toString();
+           if (num == 0)
+               GameStatus.getInstance().playerName = playerChoice;
+           GameStatus.getInstance().tentativePlayers.set(num,playerChoice);
+       }
+
+
+
 
        /* if(!playerChoice.equals("--Vuoto--"))
             for(int i=0; i<6; i++)
@@ -44,8 +50,8 @@ public class PlayerSpinnerListener implements AdapterView.OnItemSelectedListener
     public void onNothingSelected(AdapterView<?> parent) {
 
     }
-
+/*
     public String getPlayerChoice(){
         return playerChoice;
-    }
+    }*/
 }
