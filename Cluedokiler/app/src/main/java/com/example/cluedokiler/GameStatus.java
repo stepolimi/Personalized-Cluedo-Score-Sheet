@@ -18,6 +18,7 @@ public class GameStatus {
     public String winner;
     public String gameTime;
     public ArrayList<String> tentativePlayers;
+    public String theme;
 
     private GameStatus() {
         tentativePlayers=new ArrayList<>();
@@ -32,6 +33,7 @@ public class GameStatus {
         highlightedRows = new ArrayList<>();
         winner ="";
         confirmationCode="";
+        theme = Parameters.PURPLE;
     }
 
     public static GameStatus getInstance() {

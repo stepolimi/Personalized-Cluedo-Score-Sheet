@@ -6,6 +6,20 @@
     <item android:id="@+id/mainMenu1"
         android:title="Inserisci codice"
         app:showAsAction="never"/>
+    <item android:id="@+id/mainMenu2"
+        android:title="Cambia tema"
+        app:showAsAction="never">
+        <menu>
+            <item android:id="@+id/mainMenu21"
+                android:title="Verde"/>
+            <item android:id="@+id/mainMenu22"
+                android:title="Viola"/>
+            <item android:id="@+id/mainMenu23"
+                android:title="Arancione"/>
+
+        </menu>
+
+    </item>
 
 
 </menu>

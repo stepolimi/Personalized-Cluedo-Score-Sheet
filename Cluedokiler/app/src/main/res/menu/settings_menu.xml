@@ -5,6 +5,19 @@
     <item android:id="@+id/settingsMenu1"
         android:title="Inserisci codice"
         app:showAsAction="never"/>
+    <item android:id="@+id/settingsMenu2"
+        android:title="Cambia tema"
+        app:showAsAction="never">
+        <menu>
+            <item android:id="@+id/settingsMenu21"
+                android:title="Verde"/>
+            <item android:id="@+id/settingsMenu22"
+                android:title="Viola"/>
+            <item android:id="@+id/settingsMenu23"
+                android:title="Arancione"/>
+        </menu>
+
+    </item>
 
 
 </menu>

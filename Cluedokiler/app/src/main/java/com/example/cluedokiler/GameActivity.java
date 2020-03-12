@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -20,6 +21,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 
@@ -36,6 +38,8 @@ public class GameActivity extends AppCompatActivity {
         setContentView(R.layout.activity_game);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        setColors();
 
         Resources res = getResources();
         players = res.getStringArray(R.array.players);
@@ -96,6 +100,54 @@ public class GameActivity extends AppCompatActivity {
         setEndGameButton();
 
         setDeclareWinnerButton();
+
+    }
+
+    private void setColors(){
+        Button endGameButton = (Button) findViewById(R.id.endGameButton);
+        Button declareWinnerButton = (Button) findViewById(R.id.declareWinnerButton);
+        TableRow suspectsRow = findViewById(R.id.suspectsRow);
+        TableRow weaponsRow = findViewById(R.id.weaponsRow);
+        TableRow placesRow = findViewById(R.id.placesRow);
+        ConstraintLayout title = findViewById(R.id.titleGameActivity);
+        LinearLayout background = findViewById(R.id.layoutGameActivity);
+        if(GameStatus.getInstance().theme.equals(Parameters.PURPLE)){
+            endGameButton.setBackgroundResource(R.drawable.button_background);
+            declareWinnerButton.setBackgroundResource(R.drawable.button_background);
+            title.setBackgroundColor(Parameters.PURPLE_MAIN_COLOR);
+            background.setBackgroundResource(R.drawable.screen_background);
+            suspectsRow.setBackgroundColor(Parameters.PURPLE_MAIN_COLOR);
+            ((TextView)suspectsRow.getChildAt(0)).setTextColor(Color.WHITE);
+            weaponsRow.setBackgroundColor(Parameters.PURPLE_MAIN_COLOR);
+            ((TextView)weaponsRow.getChildAt(0)).setTextColor(Color.WHITE);
+            placesRow.setBackgroundColor(Parameters.PURPLE_MAIN_COLOR);
+            ((TextView)placesRow.getChildAt(0)).setTextColor(Color.WHITE);
+            restoreHighlights();
+        } else if(GameStatus.getInstance().theme.equals(Parameters.GREEN)){
+            endGameButton.setBackgroundResource(R.drawable.button_background_green);
+            declareWinnerButton.setBackgroundResource(R.drawable.button_background_green);
+            title.setBackgroundColor(Parameters.GREEN_MAIN_COLOR);
+            background.setBackgroundResource(R.drawable.screen_background_green);
+            suspectsRow.setBackgroundColor(Parameters.GREEN_MAIN_COLOR);
+            ((TextView)suspectsRow.getChildAt(0)).setTextColor(Color.WHITE);
+            weaponsRow.setBackgroundColor(Parameters.GREEN_MAIN_COLOR);
+            ((TextView)weaponsRow.getChildAt(0)).setTextColor(Color.WHITE);
+            placesRow.setBackgroundColor(Parameters.GREEN_MAIN_COLOR);
+            ((TextView)placesRow.getChildAt(0)).setTextColor(Color.WHITE);
+            restoreHighlights();
+        } else if(GameStatus.getInstance().theme.equals(Parameters.ORANGE)){
+            endGameButton.setBackgroundResource(R.drawable.button_background_orange);
+            declareWinnerButton.setBackgroundResource(R.drawable.button_background_orange);
+            title.setBackgroundColor(Parameters.ORANGE_MAIN_COLOR);
+            background.setBackgroundResource(R.drawable.screen_background_orange);
+            suspectsRow.setBackgroundColor(Parameters.ORANGE_MAIN_COLOR);
+            ((TextView)suspectsRow.getChildAt(0)).setTextColor(Color.WHITE);
+            weaponsRow.setBackgroundColor(Parameters.ORANGE_MAIN_COLOR);
+            ((TextView)weaponsRow.getChildAt(0)).setTextColor(Color.WHITE);
+            placesRow.setBackgroundColor(Parameters.ORANGE_MAIN_COLOR);
+            ((TextView)placesRow.getChildAt(0)).setTextColor(Color.WHITE);
+            restoreHighlights();
+        }
 
     }
 
@@ -408,7 +460,12 @@ public class GameActivity extends AppCompatActivity {
         TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
         for(Integer i: GameStatus.getInstance().highlightedRows){
             TableRow tableRow = (TableRow) gameTableLayout.getChildAt(i);
-            tableRow.getChildAt(0).setBackgroundColor(Color.parseColor("#512da8"));
+            if(GameStatus.getInstance().theme.equals(Parameters.PURPLE))
+                tableRow.getChildAt(0).setBackgroundColor(Parameters.PURPLE_MAIN_COLOR);
+            else if(GameStatus.getInstance().theme.equals(Parameters.GREEN))
+                tableRow.getChildAt(0).setBackgroundColor(Parameters.GREEN_MAIN_COLOR);
+            else if(GameStatus.getInstance().theme.equals(Parameters.ORANGE))
+                tableRow.getChildAt(0).setBackgroundColor(Parameters.ORANGE_MAIN_COLOR);
             ((TextView) tableRow.getChildAt(0)).setTextColor(Color.WHITE);
         }
     }
@@ -420,11 +477,16 @@ public class GameActivity extends AppCompatActivity {
             if (tableRow.getChildAt(0) instanceof TextView) {
                 if(((TextView) tableRow.getChildAt(0)).getText().equals(name)) {
                     if(!GameStatus.getInstance().highlightedRows.contains(i)) {
-                        tableRow.getChildAt(0).setBackgroundColor(Color.parseColor("#512da8"));
+                        if(GameStatus.getInstance().theme.equals(Parameters.PURPLE))
+                            tableRow.getChildAt(0).setBackgroundColor(Parameters.PURPLE_MAIN_COLOR);
+                        else if(GameStatus.getInstance().theme.equals(Parameters.GREEN))
+                            tableRow.getChildAt(0).setBackgroundColor(Parameters.GREEN_MAIN_COLOR);
+                        else if(GameStatus.getInstance().theme.equals(Parameters.ORANGE))
+                            tableRow.getChildAt(0).setBackgroundColor(Parameters.ORANGE_MAIN_COLOR);
                         ((TextView) tableRow.getChildAt(0)).setTextColor(Color.WHITE);
                         GameStatus.getInstance().highlightedRows.add(i);
                     }else{
-                        tableRow.getChildAt(0).setBackgroundColor(Color.WHITE);
+                        tableRow.getChildAt(0).setBackgroundColor(Color.TRANSPARENT);
                         ((TextView) tableRow.getChildAt(0)).setTextColor(Color.BLACK);
                         GameStatus.getInstance().highlightedRows.remove((Integer)i);
                     }
@@ -492,6 +554,18 @@ public class GameActivity extends AppCompatActivity {
             case R.id.gameMenu5:
                 CodeAlert codeAlert = new CodeAlert();
                 codeAlert.show(getSupportFragmentManager(), "codeAlert");
+                return true;
+            case R.id.gameMenu61:
+                GameStatus.getInstance().theme = Parameters.GREEN;
+                setColors();
+                return true;
+            case R.id.gameMenu62:
+                GameStatus.getInstance().theme = Parameters.PURPLE;
+                setColors();
+                return true;
+            case R.id.gameMenu63:
+                GameStatus.getInstance().theme = Parameters.ORANGE;
+                setColors();
                 return true;
             default:
                 highlightObject(item.getTitle().toString());

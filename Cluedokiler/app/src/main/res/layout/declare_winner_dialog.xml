@@ -13,6 +13,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:weightSum="7"
+        android:background="@drawable/dialog_background2"
         >
 
         <LinearLayout

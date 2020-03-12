@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutMainActivity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -38,6 +39,7 @@
 
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/titleMainActivity"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:background="#512da8"
@@ -196,10 +198,10 @@
                         <Spinner
                             android:id="@+id/playerCoicheSpinner1"
                             style="@android:style/Widget.Spinner.DropDown"
-                            android:layout_height="46dp"
-                            android:layout_marginTop="11dp"
                             android:layout_width="match_parent"
+                            android:layout_height="46dp"
                             android:layout_marginStart="5dp"
+                            android:layout_marginTop="11dp"
                             android:layout_marginEnd="5dp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -209,9 +211,10 @@
                             android:id="@+id/playerCoicheSpinner2"
                             style="@android:style/Widget.Spinner.DropDown"
                             android:layout_width="match_parent"
+                            android:layout_height="46dp"
                             android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"                            android:layout_height="46dp"
                             android:layout_marginTop="11dp"
+                            android:layout_marginEnd="5dp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/playerCoicheSpinner3" />
@@ -220,9 +223,10 @@
                             android:id="@+id/playerCoicheSpinner3"
                             style="@android:style/Widget.Spinner.DropDown"
                             android:layout_width="match_parent"
+                            android:layout_height="46dp"
                             android:layout_marginStart="5dp"
-                            android:layout_marginEnd="5dp"                            android:layout_height="46dp"
                             android:layout_marginTop="11dp"
+                            android:layout_marginEnd="5dp"
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/playerCoicheSpinner4" />
@@ -271,86 +275,85 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="5"
+                android:clipToPadding="false"
                 android:orientation="vertical"
-                android:layout_marginTop="20dp"
+                android:paddingLeft="40dp"
+                android:paddingTop="20dp"
+                android:paddingRight="40dp"
+                android:paddingBottom="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.496"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
-                app:layout_constraintVertical_bias="0.87"
-                android:layout_weight="5"
-                android:paddingLeft="40dp"
-                android:paddingRight="40dp"
-                android:paddingTop="20dp"
-                android:paddingBottom="20dp"
-                android:clipToPadding="false">
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
 
                 <LinearLayout
                     android:layout_width="202dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:elevation="10dp">
+                    android:elevation="10dp"
+                    android:orientation="vertical">
+
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:elevation="10dp">
+                        android:elevation="10dp"
+                        android:orientation="vertical">
+
                         <Button
                             android:id="@+id/playButton"
                             android:layout_width="192dp"
                             android:layout_height="45dp"
-                            android:text="Gioca"
-                            android:layout_marginBottom="10dp"
                             android:layout_marginStart="5dp"
-
-                            android:textColor="#ffffff"
-                            android:elevation="10dp"
+                            android:layout_marginBottom="10dp"
                             android:background="@drawable/button_background"
-                            />
+
+                            android:elevation="10dp"
+                            android:text="Gioca"
+                            android:textColor="#ffffff" />
                     </LinearLayout>
 
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="0dp"
-                    android:layout_weight="3"
-                    android:orientation="horizontal"
-                    android:paddingBottom="10dp"
-                    android:clipToPadding="false"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="3"
+                        android:clipToPadding="false"
+                        android:orientation="horizontal"
+                        android:paddingBottom="10dp"
 
-                    >
+                        >
 
-                    <Button
-                        android:id="@+id/statisticsButton"
-                        android:layout_width="91dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:layout_height="45dp"
-                        android:text="Statistiche"
-                        android:textSize="12sp"
-                        android:background="@drawable/button_background"
-                        android:textColor="#ffffff"
-                        android:layout_marginBottom="10dp"
-                        android:elevation="10dp"
+                        <Button
+                            android:id="@+id/statisticsButton"
+                            android:layout_width="91dp"
+                            android:layout_height="45dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/button_background"
+                            android:elevation="10dp"
+                            android:text="Statistiche"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp"
 
-                        />
+                            />
 
-                    <Button
-                        android:id="@+id/resetButton"
-                        android:layout_width="91dp"
-                        android:layout_height="45dp"
-                        android:layout_marginStart="5dp"
-                        android:layout_marginEnd="5dp"
-                        android:text="Reset"
-                        android:background="@drawable/button_background"
-                        android:textColor="#ffffff"
-                        android:textSize="12sp"
-                        android:elevation="10dp"
-                        android:layout_marginBottom="10dp"
-                        />
+                        <Button
+                            android:id="@+id/resetButton"
+                            android:layout_width="91dp"
+                            android:layout_height="45dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/button_background"
+                            android:elevation="10dp"
+                            android:text="Reset"
+                            android:textColor="#ffffff"
+                            android:textSize="12sp" />
 
 
-                </LinearLayout>
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

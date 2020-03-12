@@ -5,12 +5,15 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -33,6 +36,8 @@ public class StatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_statistics);
         gameStatus = GameStatus.getInstance();
         Toolbar toolbar = findViewById(R.id.toolbar);
+
+        setColors();
 
         setSupportActionBar(toolbar);
 
@@ -57,6 +62,21 @@ public class StatisticsActivity extends AppCompatActivity {
         setBestPlayer();
 
         setBackButton();
+    }
+
+    private void setColors(){
+        ConstraintLayout title = findViewById(R.id.titleStatisticsActivity);
+        LinearLayout background = findViewById(R.id.layoutStatisticsActivity);
+        if(GameStatus.getInstance().theme.equals(Parameters.PURPLE)){
+            title.setBackgroundColor(Parameters.PURPLE_MAIN_COLOR);
+            background.setBackgroundResource(R.drawable.screen_background);
+        } else if(GameStatus.getInstance().theme.equals(Parameters.GREEN)){
+            title.setBackgroundColor(Parameters.GREEN_MAIN_COLOR);
+            background.setBackgroundResource(R.drawable.screen_background_green);
+        } else if(GameStatus.getInstance().theme.equals(Parameters.ORANGE)){
+            title.setBackgroundColor(Parameters.ORANGE_MAIN_COLOR);
+            background.setBackgroundResource(R.drawable.screen_background_orange);
+        }
     }
 
     private void setBackButton() {
@@ -100,7 +120,20 @@ public class StatisticsActivity extends AppCompatActivity {
                 CodeAlert codeAlert = new CodeAlert();
                 codeAlert.show(getSupportFragmentManager(), "codeAlert");
                 return true;
+            case R.id.settingsMenu21:
+                GameStatus.getInstance().theme = Parameters.GREEN;
+                setColors();
+                return true;
+            case R.id.settingsMenu22:
+                GameStatus.getInstance().theme = Parameters.PURPLE;
+                setColors();
+                return true;
+            case R.id.settingsMenu23:
+                GameStatus.getInstance().theme = Parameters.ORANGE;
+                setColors();
+                return true;
             default:super.onOptionsItemSelected(item);
+
         }
         return super.onOptionsItemSelected(item);
     }

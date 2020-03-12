@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -18,13 +19,15 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
-
-    ArrayList<PlayerSpinnerListener> spinnerListeners = new ArrayList<>();
+    Button playButton;
+    Button resetButton;
+    Button statisticsButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +35,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
+        playButton = (Button) findViewById(R.id.playButton);
+        resetButton = (Button) findViewById(R.id.resetButton);
+
         setSupportActionBar(toolbar);
         toolbar.setElevation(Float.valueOf(100));
 
+        setColors();
+
         compileSpinners();
 
-        final Button playButton = (Button) findViewById(R.id.playButton);
-        Button resetButton = (Button) findViewById(R.id.resetButton);
         playButton.setElevation(Float.valueOf(10));
         playButton.setTranslationZ(Float.valueOf(10));
         resetButton.setElevation(Float.valueOf(100));
@@ -125,6 +131,34 @@ public class MainActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
+    private void setColors(){
+        statisticsButton = (Button) findViewById(R.id.statisticsButton);
+        playButton = (Button) findViewById(R.id.playButton);
+        resetButton = (Button) findViewById(R.id.resetButton);
+        ConstraintLayout title = findViewById(R.id.titleMainActivity);
+        LinearLayout background = findViewById(R.id.layoutMainActivity);
+
+        if(GameStatus.getInstance().theme.equals(Parameters.PURPLE)){
+            playButton.setBackgroundResource(R.drawable.button_background);
+            resetButton.setBackgroundResource(R.drawable.button_background);
+            statisticsButton.setBackgroundResource(R.drawable.button_background);
+            title.setBackgroundColor(Parameters.PURPLE_MAIN_COLOR);
+            background.setBackgroundResource(R.drawable.screen_background);
+        }else if(GameStatus.getInstance().theme.equals(Parameters.GREEN)){
+            playButton.setBackgroundResource(R.drawable.button_background_green);
+            resetButton.setBackgroundResource(R.drawable.button_background_green);
+            statisticsButton.setBackgroundResource(R.drawable.button_background_green);
+            title.setBackgroundColor(Parameters.GREEN_MAIN_COLOR);
+            background.setBackgroundResource(R.drawable.screen_background_green);
+        }else if(GameStatus.getInstance().theme.equals(Parameters.ORANGE)){
+            playButton.setBackgroundResource(R.drawable.button_background_orange);
+            resetButton.setBackgroundResource(R.drawable.button_background_orange);
+            statisticsButton.setBackgroundResource(R.drawable.button_background_orange);
+            title.setBackgroundColor(Parameters.ORANGE_MAIN_COLOR);
+            background.setBackgroundResource(R.drawable.screen_background_orange);
+        }
+    }
+
 
 
     private void compileSpinners() {
@@ -139,32 +173,17 @@ public class MainActivity extends AppCompatActivity {
         final Spinner playerChoiceSpinner6 = (Spinner) findViewById(R.id.playerCoicheSpinner6);
 
         for(int i=0; i<6; i++){
-
             adapters.add(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,players));
-           // if(i!=0 || GameStatus.getInstance().playerName.equals("--Vuoto--") || GameStatus.getInstance().playerName.equals(""))
-                adapters.get(i).setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
+            adapters.get(i).setDropDownViewResource(android.R.layout.simple_spinner_item);
+            //adapters.get(i).setDropDownViewResource(R.layout.spinner_drop_down_view);
         }
 
-        //if(GameStatus.getInstance().playerName.equals("--Vuoto--"))
-            playerChoiceSpinner1.setAdapter(adapters.get(0));
+        playerChoiceSpinner1.setAdapter(adapters.get(0));
         playerChoiceSpinner2.setAdapter(adapters.get(1));
         playerChoiceSpinner3.setAdapter(adapters.get(2));
         playerChoiceSpinner4.setAdapter(adapters.get(3));
         playerChoiceSpinner5.setAdapter(adapters.get(4));
         playerChoiceSpinner6.setAdapter(adapters.get(5));
-
-      /*  for(int i=0; i<6; i++){
-            spinnerListeners.add(new PlayerSpinnerListener(adapters,i));
-        }
-
-        //if(GameStatus.getInstance().playerName.equals("--Vuoto--"))
-            playerChoiceSpinner1.setOnItemSelectedListener(spinnerListeners.get(0));
-        playerChoiceSpinner2.setOnItemSelectedListener(spinnerListeners.get(1));
-        playerChoiceSpinner3.setOnItemSelectedListener(spinnerListeners.get(2));
-        playerChoiceSpinner4.setOnItemSelectedListener(spinnerListeners.get(3));
-        playerChoiceSpinner5.setOnItemSelectedListener(spinnerListeners.get(4));
-        playerChoiceSpinner6.setOnItemSelectedListener(spinnerListeners.get(5));*/
 
         playerChoiceSpinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -180,24 +199,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT).show();
                     playerChoiceSpinner1.setAdapter(adapters.get(0));
                 }
-
-                /*
-                if(!playerChoice.equals("--Vuoto--")) {
-                    if (!GameStatus.getInstance().tentativePlayers.get(0).equals("") && !GameStatus.getInstance().tentativePlayers.get(0).equals("--Vuoto--"))
-                        for (ArrayAdapter arrayAdapter : adapters)
-                            if(!arrayAdapter.equals(adapters.get(0)))
-                                arrayAdapter.add(GameStatus.getInstance().tentativePlayers.get(0));
-
-                    for (ArrayAdapter arrayAdapter : adapters) {
-                        try {
-                            if(!arrayAdapter.equals(adapters.get(0)))
-                                arrayAdapter.remove(playerChoice);
-                        } catch (Exception e) {
-                        }
-                    }
-                }*/
-
-
             }
 
             @Override
@@ -220,23 +221,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT).show();
                     playerChoiceSpinner2.setAdapter(adapters.get(1));
                 }
-                /*
-                if(!playerChoice.equals("--Vuoto--")) {
-                    if (!GameStatus.getInstance().tentativePlayers.get(1).equals("") && !GameStatus.getInstance().tentativePlayers.get(1).equals("--Vuoto--"))
-                        for (ArrayAdapter arrayAdapter : adapters)
-                            if(!arrayAdapter.equals(adapters.get(1)))
-                                arrayAdapter.add(GameStatus.getInstance().tentativePlayers.get(1));
-
-                        for (ArrayAdapter arrayAdapter : adapters) {
-                            try {
-                                if(!arrayAdapter.equals(adapters.get(1)))
-                                    arrayAdapter.remove(playerChoice);
-                            } catch (Exception e) {
-                            }
-                        }
-                }
-
-                GameStatus.getInstance().tentativePlayers.set(1,playerChoice);*/
             }
 
             @Override
@@ -258,22 +242,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT).show();
                     playerChoiceSpinner3.setAdapter(adapters.get(2));
                 }
-                /*if(!playerChoice.equals("--Vuoto--")) {
-                    if (!GameStatus.getInstance().tentativePlayers.get(2).equals("") && !GameStatus.getInstance().tentativePlayers.get(2).equals("--Vuoto--"))
-                        for (ArrayAdapter arrayAdapter : adapters)
-                            if(!arrayAdapter.equals(adapters.get(2)))
-                                arrayAdapter.add(GameStatus.getInstance().tentativePlayers.get(2));
-
-                    for (ArrayAdapter arrayAdapter : adapters) {
-                        try {
-                            if(!arrayAdapter.equals(adapters.get(2)))
-                                arrayAdapter.remove(playerChoice);
-                        } catch (Exception e) {
-                        }
-                    }
-                }
-
-                GameStatus.getInstance().tentativePlayers.set(1,playerChoice);*/
             }
 
             @Override
@@ -296,23 +264,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT).show();
                     playerChoiceSpinner4.setAdapter(adapters.get(3));
                 }
-                /*
-                if(!playerChoice.equals("--Vuoto--")) {
-                    if (!GameStatus.getInstance().tentativePlayers.get(3).equals("") && !GameStatus.getInstance().tentativePlayers.get(3).equals("--Vuoto--"))
-                        for (ArrayAdapter arrayAdapter : adapters)
-                            if(!arrayAdapter.equals(adapters.get(3)))
-                                arrayAdapter.add(GameStatus.getInstance().tentativePlayers.get(3));
-
-                    for (ArrayAdapter arrayAdapter : adapters) {
-                        try {
-                            if(!arrayAdapter.equals(adapters.get(3)))
-                                arrayAdapter.remove(playerChoice);
-                        } catch (Exception e) {
-                        }
-                    }
-                }
-
-                GameStatus.getInstance().tentativePlayers.set(3,playerChoice);*/
             }
 
             @Override
@@ -334,23 +285,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT).show();
                     playerChoiceSpinner5.setAdapter(adapters.get(4));
                 }
-                /*
-                if(!playerChoice.equals("--Vuoto--")) {
-                    if (!GameStatus.getInstance().tentativePlayers.get(4).equals("") && !GameStatus.getInstance().tentativePlayers.get(4).equals("--Vuoto--"))
-                        for (ArrayAdapter arrayAdapter : adapters)
-                            if(!arrayAdapter.equals(adapters.get(4)))
-                                arrayAdapter.add(GameStatus.getInstance().tentativePlayers.get(4));
-
-                    for (ArrayAdapter arrayAdapter : adapters) {
-                        try {
-                            if(!arrayAdapter.equals(adapters.get(4)))
-                                arrayAdapter.remove(playerChoice);
-                        } catch (Exception e) {
-                        }
-                    }
-                }
-
-                GameStatus.getInstance().tentativePlayers.set(4,playerChoice);*/
             }
 
             @Override
@@ -372,23 +306,6 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT).show();
                     playerChoiceSpinner6.setAdapter(adapters.get(5));
                 }
-                /*
-                if(!playerChoice.equals("--Vuoto--")) {
-                    if (!GameStatus.getInstance().tentativePlayers.get(5).equals("") && !GameStatus.getInstance().tentativePlayers.get(5).equals("--Vuoto--"))
-                        for (ArrayAdapter arrayAdapter : adapters)
-                            if(!arrayAdapter.equals(adapters.get(5)))
-                                arrayAdapter.add(GameStatus.getInstance().tentativePlayers.get(5));
-
-                    for (ArrayAdapter arrayAdapter : adapters) {
-                        try {
-                            if(!arrayAdapter.equals(adapters.get(5)))
-                                arrayAdapter.remove(playerChoice);
-                        } catch (Exception e) {
-                        }
-                    }
-                }
-
-                GameStatus.getInstance().tentativePlayers.set(1,playerChoice);*/
             }
 
             @Override
@@ -401,7 +318,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void setStatisticsButton(){
-        Button statisticsButton = (Button) findViewById(R.id.statisticsButton);
+        statisticsButton = (Button) findViewById(R.id.statisticsButton);
 
         statisticsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -439,6 +356,8 @@ public class MainActivity extends AppCompatActivity {
         final GameStatus gameStatus = GameStatus.getInstance();
         final Button playButton = (Button) findViewById(R.id.playButton);
 
+        setColors();
+
         compileSpinners();
 
         if(gameStatus.playersSet)
@@ -474,9 +393,24 @@ public class MainActivity extends AppCompatActivity {
                 CodeAlert codeAlert = new CodeAlert();
                 codeAlert.show(getSupportFragmentManager(), "codeAlert");
                 return true;
+            case R.id.mainMenu21:
+                GameStatus.getInstance().theme = Parameters.GREEN;
+                setColors();
+                return true;
+            case R.id.mainMenu22:
+                GameStatus.getInstance().theme = Parameters.PURPLE;
+                setColors();
+                return true;
+            case R.id.mainMenu23:
+                GameStatus.getInstance().theme = Parameters.ORANGE;
+                setColors();
+                return true;
             default:super.onOptionsItemSelected(item);
         }
 
         return super.onOptionsItemSelected(item);
     }
 }
+
+//todo: persistent player
+//todo: damn spinners

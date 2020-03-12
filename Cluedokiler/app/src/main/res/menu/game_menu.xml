@@ -80,4 +80,19 @@
     <item android:id="@+id/gameMenu5"
         android:title="Inserisci codice"
         app:showAsAction="never"/>
+
+    <item android:id="@+id/gameMenu6"
+        android:title="Cambia tema"
+        app:showAsAction="never">
+        <menu>
+            <item android:id="@+id/gameMenu61"
+                android:title="Verde"/>
+            <item android:id="@+id/gameMenu62"
+                android:title="Viola"/>
+            <item android:id="@+id/gameMenu63"
+                android:title="Arancione"/>
+        </menu>
+
+    </item>
+
 </menu>

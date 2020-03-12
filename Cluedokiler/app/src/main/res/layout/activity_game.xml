@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layoutGameActivity"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -15,6 +16,7 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/titleGameActivity"
         android:layout_weight="6"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -177,7 +179,8 @@
                 </TableRow>
 
 
-                <TableRow android:layout_marginBottom="3dp"
+                <TableRow android:id="@+id/suspectsRow"
+                    android:layout_marginBottom="3dp"
                     android:background="#e6ceff">
 
                     <TextView
@@ -556,6 +559,7 @@
                 </TableRow>
 
                 <TableRow
+                    android:id="@+id/weaponsRow"
                     android:layout_marginBottom="3dp"
                     android:background="#e6ceff">
 
@@ -932,7 +936,9 @@
                         tools:srcCompat="@drawable/checkbox" />
                 </TableRow>
 
-                <TableRow android:layout_marginBottom="3dp"
+                <TableRow
+                    android:id="@+id/placesRow"
+                    android:layout_marginBottom="3dp"
                     android:background="#e6ceff">
 
                     <TextView

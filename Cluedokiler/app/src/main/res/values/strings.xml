@@ -66,4 +66,8 @@
     <!-- authentication code -->
     <string name="code"> passwordsicurissima </string>
 
+    <!-- theme colors -->
+    <string name="purple">purple</string>
+    <string name="green">green</string>
+
 </resources>
