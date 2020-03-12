@@ -21,12 +21,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 
 public class GameActivity extends AppCompatActivity {
@@ -35,7 +29,6 @@ public class GameActivity extends AppCompatActivity {
     String[] suspects;
     String[] weapons;
     String[] places;
-    DatabaseReference db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -406,11 +399,8 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
                     }
-
                 }
-
             }
-
         }
     }
 
@@ -469,12 +459,10 @@ public class GameActivity extends AppCompatActivity {
 
     public void setEndGameButton(){
         Button endGameButton = (Button) findViewById(R.id.endGameButton);
-
         endGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ExitAlert exitAlert = new ExitAlert();
-
                 exitAlert.show(getSupportFragmentManager(), "exitAlert");
             }
         });
@@ -483,29 +471,8 @@ public class GameActivity extends AppCompatActivity {
     @Override
     protected void onDestroy(){
         super.onDestroy();
-        final GameStatus gameStatus = GameStatus.getInstance();
-
-        if(gameStatus.tableSet) {
-            db = FirebaseDatabase.getInstance().getReference().child("PlayersRecord");
-
-            db.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists())
-                        gameStatus.gameNumber = (dataSnapshot.getChildrenCount());
-                    else
-                        gameStatus.gameNumber = Long.valueOf(0);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-
-            db = FirebaseDatabase.getInstance().getReference().child("GameRecord");
-
-            db.child(String.valueOf(gameStatus.gameNumber)).setValue(gameStatus.gameTableHash);
+        if(GameStatus.getInstance().tableSet) {
+            DbManager.getInstance().saveGameRecord();
         }
     }
 
@@ -513,17 +480,22 @@ public class GameActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.game_menu,menu);
-
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if(item.getItemId() == R.id.gameMenu1)
-            completeRows();
-        else
-            highlightObject(item.getTitle().toString());
-
+        switch (item.getItemId()) {
+            case R.id.gameMenu1:
+                completeRows();
+                return true;
+            case R.id.gameMenu5:
+                CodeAlert codeAlert = new CodeAlert();
+                codeAlert.show(getSupportFragmentManager(), "codeAlert");
+                return true;
+            default:
+                highlightObject(item.getTitle().toString());
+        }
         return super.onOptionsItemSelected(item);
     }
 }

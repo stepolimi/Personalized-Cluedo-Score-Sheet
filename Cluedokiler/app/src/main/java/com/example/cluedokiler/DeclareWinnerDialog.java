@@ -20,9 +20,7 @@ public class DeclareWinnerDialog extends DialogFragment implements AdapterView.O
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         builder = new AlertDialog.Builder(getActivity());
-
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,7 +31,6 @@ public class DeclareWinnerDialog extends DialogFragment implements AdapterView.O
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         winnerSpinner.setAdapter(arrayAdapter);
         winnerSpinner.setOnItemSelectedListener(this);
-
 
         Button yesButton = (Button) v.findViewById(R.id.yesButtonWinnerDialog);
         Button noButton = (Button) v.findViewById(R.id.noButtonWinnerDialog);
@@ -56,7 +53,6 @@ public class DeclareWinnerDialog extends DialogFragment implements AdapterView.O
         builder.setView(v);
 
         return v;
-
     }
 
     @Override

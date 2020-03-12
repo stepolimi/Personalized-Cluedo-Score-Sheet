@@ -39,7 +39,7 @@ public class ExitGameAlert extends DialogFragment {
 
         TextView confirmRequestTextView = (TextView) v.findViewById(R.id.confirmRequestTextView);
 
-        confirmRequestTextView.setText("Sei sicuro di voler uscire?");
+        confirmRequestTextView.setText("Sei sicuro di voler uscire dal gioco?\n ");
 
         yesButton.setOnClickListener(new View.OnClickListener() {
             @Override

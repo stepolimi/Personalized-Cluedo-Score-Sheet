@@ -293,7 +293,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_weight="3"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    >
 
                     <Button
                         android:id="@+id/statisticsButton"
@@ -303,7 +304,8 @@
                         android:text="Statistiche"
                         app:layout_constraintBottom_toTopOf="@+id/resetButton"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
+                        app:layout_constraintStart_toStartOf="parent"
+                        />
 
                     <Button
                         android:id="@+id/resetButton"

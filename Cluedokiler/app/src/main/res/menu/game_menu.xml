@@ -76,4 +76,8 @@
         </menu>
 
     </item>
+
+    <item android:id="@+id/gameMenu5"
+        android:title="Inserisci codice"
+        app:showAsAction="never"/>
 </menu>

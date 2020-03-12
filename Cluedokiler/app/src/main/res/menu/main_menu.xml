@@ -7,18 +7,5 @@
         android:title="Inserisci codice"
         app:showAsAction="never"/>
 
-    <item android:id="@+id/mainMenu2"
-        android:title="action2"
-        app:showAsAction="never" >
-<!--
-        <menu>
-            <item android:id="@+id/menuItem4"
-                android:title="Completa righe" />
 
-            <item android:id="@+id/menuItem5"
-                android:title="Completa righe" />
-        </menu>
--->
-
-    </item>
 </menu>

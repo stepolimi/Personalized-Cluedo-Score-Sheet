@@ -18,20 +18,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
     ArrayList<PlayerSpinnerListener> spinnerListeners = new ArrayList<>();
-    DatabaseReference db;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,9 +34,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-
         compileSpinners();
-
 
         final Button playButton = (Button) findViewById(R.id.playButton);
         Button resetButton = (Button) findViewById(R.id.resetButton);
@@ -62,31 +52,10 @@ public class MainActivity extends AppCompatActivity {
         else
             playButton.setText(getResources().getString(R.string.giocaPlayButton));
 
-
-
-        db = FirebaseDatabase.getInstance().getReference().child("PlayersRecord");
-
-        db.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists())
-                    gameStatus.gameNumber=(dataSnapshot.getChildrenCount());
-                else
-                    gameStatus.gameNumber= Long.valueOf(0);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 GameStatus gameStatus = GameStatus.getInstance();
-
 
                 if(!gameStatus.playersSet) {
                     gameStatus.playersNames.clear();
@@ -101,16 +70,14 @@ public class MainActivity extends AppCompatActivity {
                         gameStatus.playersSet = true;
                 }
 
-
                 if(gameStatus.playersNames.size() > 2 && !gameStatus.playerName.equals("--Vuoto--")){
                     Intent startGameIntent = new Intent(getApplicationContext(), GameActivity.class);
                     startActivity(startGameIntent);
 
-
                     if(!gameStatus.tableSet) {
+                        GameStatus.getInstance().gameTime = java.util.Calendar.getInstance().getTime().toString();
                         gameStatus.gameTableHash.setPlayer(gameStatus.playerName);
-                        Users users = new Users(gameStatus.playersNames);
-                        db.child(String.valueOf(gameStatus.gameNumber + 1)).setValue(users);
+                        DbManager.getInstance().savePlayersRecord();
                     }
 
                 }else {
@@ -133,11 +100,8 @@ public class MainActivity extends AppCompatActivity {
                     playButton.setText(getResources().getString(R.string.riprendiPlayButton));
                 else
                     playButton.setText(getResources().getString(R.string.giocaPlayButton));
-
-
             }
         });
-
 
         setStatisticsButton();
 
@@ -151,7 +115,6 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         getOnBackPressedDispatcher().addCallback(this, callback);
-
     }
 
 
@@ -170,12 +133,12 @@ public class MainActivity extends AppCompatActivity {
         for(int i=0; i<6; i++){
 
             adapters.add(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,players));
-            if(i!=0 || GameStatus.getInstance().playerName.equals("--Vuoto--") || GameStatus.getInstance().playerName.equals(""))
+           // if(i!=0 || GameStatus.getInstance().playerName.equals("--Vuoto--") || GameStatus.getInstance().playerName.equals(""))
                 adapters.get(i).setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         }
 
-        if(GameStatus.getInstance().playerName.equals("--Vuoto--"))
+        //if(GameStatus.getInstance().playerName.equals("--Vuoto--"))
             playerChoiceSpinner1.setAdapter(adapters.get(0));
         playerChoiceSpinner2.setAdapter(adapters.get(1));
         playerChoiceSpinner3.setAdapter(adapters.get(2));
@@ -187,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
             spinnerListeners.add(new PlayerSpinnerListener(adapters,i));
         }
 
-        if(GameStatus.getInstance().playerName.equals("--Vuoto--"))
+        //if(GameStatus.getInstance().playerName.equals("--Vuoto--"))
             playerChoiceSpinner1.setOnItemSelectedListener(spinnerListeners.get(0));
         playerChoiceSpinner2.setOnItemSelectedListener(spinnerListeners.get(1));
         playerChoiceSpinner3.setOnItemSelectedListener(spinnerListeners.get(2));
@@ -244,24 +207,6 @@ public class MainActivity extends AppCompatActivity {
         else
             playButton.setText(getResources().getString(R.string.giocaPlayButton));
 
-
-        db = FirebaseDatabase.getInstance().getReference().child("PlayersRecord");
-
-        db.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if(dataSnapshot.exists())
-                    gameStatus.gameNumber=(dataSnapshot.getChildrenCount());
-                else
-                    gameStatus.gameNumber= Long.valueOf(0);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
     }
 
     @Override
@@ -270,36 +215,15 @@ public class MainActivity extends AppCompatActivity {
         final GameStatus gameStatus = GameStatus.getInstance();
 
         if(gameStatus.tableSet) {
-            db = FirebaseDatabase.getInstance().getReference().child("PlayersRecord");
-
-            db.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.exists())
-                        gameStatus.gameNumber = (dataSnapshot.getChildrenCount());
-                    else
-                        gameStatus.gameNumber = Long.valueOf(0);
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-
-            db = FirebaseDatabase.getInstance().getReference().child("GameRecord");
-            db.child(String.valueOf(gameStatus.gameNumber)).setValue(gameStatus.gameTableHash);
+            DbManager.getInstance().saveGameRecord();
             gameStatus.newGame();
         }
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_menu,menu);
-
         return true;
     }
 
@@ -310,9 +234,6 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mainMenu1:
                 CodeAlert codeAlert = new CodeAlert();
                 codeAlert.show(getSupportFragmentManager(), "codeAlert");
-                return true;
-            case R.id.mainMenu2:
-                Toast.makeText(this,"item3", Toast.LENGTH_SHORT).show();
                 return true;
             default:super.onOptionsItemSelected(item);
         }

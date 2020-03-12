@@ -7,7 +7,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,10 +18,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+
 public class StatisticsActivity extends AppCompatActivity {
 
-    TextView[] playerTextView = new TextView[10];
-    DatabaseReference db,db2,db3,db4;
+    TextView[] playerTextView = new TextView[21];
+    DatabaseReference db;
     GameStatus gameStatus;
 
 
@@ -32,101 +33,34 @@ public class StatisticsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_statistics);
         gameStatus = GameStatus.getInstance();
         Toolbar toolbar = findViewById(R.id.toolbar);
+
         setSupportActionBar(toolbar);
 
+        setPlayer();
 
-        playerTextView[1] = (TextView) findViewById(R.id.statTextView1);
-        playerTextView[1].setText("Giocatore: " + gameStatus.playerName);
+        setNumGames();
 
+        setNumTicks();
 
+        setNumCross();
 
-        playerTextView[2]= (TextView) findViewById(R.id.statTextView2);
-        db = FirebaseDatabase.getInstance().getReference().child("PlayersRecord");
+        setNumEmpty();
 
-        db.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int numGames=0;
-                for(DataSnapshot data: dataSnapshot.getChildren()){
-                    if(data.getValue(Users.class).getPlayers().get(0).equals(gameStatus.playerName))
-                        numGames = numGames+1;
-                }
-                playerTextView[2].setText("Numero di partite giocate: " + numGames);
-            }
+        setUnValidatedVictories();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
+        setValidatedVictories();
 
-            }
-        });
+        setMostPlayedPlayerWith();
 
-        playerTextView[3]= (TextView) findViewById(R.id.statTextView3);
-        db2 = FirebaseDatabase.getInstance().getReference().child("GameRecord");
-        db2.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int numTicks=0;
-                for (DataSnapshot data: dataSnapshot.getChildren()){
-                    if(data.getValue(GameTable.class).getPlayer().equals(gameStatus.playerName))
-                        numTicks += data.getValue(GameTable.class).getNumTick();
-                }
-                playerTextView[3].setText("Totale spunte inserite: " + numTicks);
-            }
+        setRefreshButton();
 
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-        playerTextView[4]= (TextView) findViewById(R.id.statTextView5);
-        db3 = FirebaseDatabase.getInstance().getReference().child("GameRecord");
-        db3.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int numCrosses=0;
-                for (DataSnapshot data: dataSnapshot.getChildren()){
-                    if(data.getValue(GameTable.class).getPlayer().equals(gameStatus.playerName))
-                        numCrosses += data.getValue(GameTable.class).getNumCross();
-                }
-                playerTextView[4].setText("Totale croci inserite: " + numCrosses);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
-        playerTextView[5]= (TextView) findViewById(R.id.statTextView4);
-        db4 = FirebaseDatabase.getInstance().getReference().child("GameRecord");
-        db4.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                int numTicks=0;
-                for (DataSnapshot data: dataSnapshot.getChildren()){
-                    if(data.getValue(GameTable.class).getPlayer().equals(gameStatus.playerName))
-                        numTicks += data.getValue(GameTable.class).getNumIncerts();
-                }
-                playerTextView[5].setText("Totale spazi rimasti incerti: " + numTicks);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
+        setBestPlayer();
 
         setBackButton();
-
     }
 
     private void setBackButton() {
         ImageView backButton = (ImageView) findViewById(R.id.backArrowImageView);
-
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -135,29 +69,281 @@ public class StatisticsActivity extends AppCompatActivity {
         });
     }
 
+    private void setRefreshButton(){
+        ImageView refreshImageView = (ImageView) findViewById(R.id.refreshImageView);
+        refreshImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setPlayer();
+                setNumGames();
+                setNumTicks();
+                setNumCross();
+                setNumEmpty();
+                setUnValidatedVictories();
+                setValidatedVictories();
+                setMostPlayedPlayerWith();
+            }
+        });
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.settings_menu,menu);
-
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-
             case R.id.settingsMenu1:
-                Toast.makeText(this,"item2", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.settingsMenu2:
-                Toast.makeText(this,"item3", Toast.LENGTH_SHORT).show();
+                CodeAlert codeAlert = new CodeAlert();
+                codeAlert.show(getSupportFragmentManager(), "codeAlert");
                 return true;
             default:super.onOptionsItemSelected(item);
         }
-
-
-
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setPlayer(){
+        playerTextView[1] = (TextView) findViewById(R.id.statTextView1);
+        playerTextView[2] = (TextView) findViewById(R.id.statValueTextView1);
+        playerTextView[1].setText("Giocatore: " );
+        playerTextView[2].setText(gameStatus.playerName);
+    }
+
+    private void setNumGames(){
+        playerTextView[3]= (TextView) findViewById(R.id.statTextView2);
+        playerTextView[4] = (TextView) findViewById(R.id.statValueTextView2);
+        playerTextView[3].setText("Numero di partite giocate: ");
+        playerTextView[4].setText("");
+        db = FirebaseDatabase.getInstance().getReference().child("PlayersRecord");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int numGames=0;
+                for(DataSnapshot data: dataSnapshot.getChildren()){
+                    if(data.getValue(Users.class).getPlayers().get(0).equals(gameStatus.playerName))
+                        numGames = numGames+1;
+                }
+                playerTextView[3].setText("Numero di partite giocate: ");
+                playerTextView[4].setText(String.valueOf(numGames));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void setNumTicks(){
+        playerTextView[5]= (TextView) findViewById(R.id.statTextView3);
+        playerTextView[6] = (TextView) findViewById(R.id.statValueTextView3);
+        playerTextView[5].setText("Totale spunte inserite: ");
+        playerTextView[6].setText("");
+        db = FirebaseDatabase.getInstance().getReference().child("GameRecord");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int numTicks=0;
+                for (DataSnapshot data: dataSnapshot.getChildren()){
+                    if(data.getValue(GameTable.class).getPlayer().equals(gameStatus.playerName))
+                        numTicks += data.getValue(GameTable.class).getNumTick();
+                }
+                playerTextView[5].setText("Totale spunte inserite: ");
+                playerTextView[6].setText(String.valueOf(numTicks));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void setNumCross(){
+        playerTextView[7]= (TextView) findViewById(R.id.statTextView5);
+        playerTextView[8] = (TextView) findViewById(R.id.statValueTextView5);
+        playerTextView[7].setText("Totale croci inserite: ");
+        playerTextView[8].setText("");
+        db = FirebaseDatabase.getInstance().getReference().child("GameRecord");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int numCrosses=0;
+                for (DataSnapshot data: dataSnapshot.getChildren()){
+                    if(data.getValue(GameTable.class).getPlayer().equals(gameStatus.playerName))
+                        numCrosses += data.getValue(GameTable.class).getNumCross();
+                }
+                playerTextView[7].setText("Totale croci inserite: ");
+                playerTextView[8].setText(String.valueOf(numCrosses));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void setNumEmpty(){
+        playerTextView[9]= (TextView) findViewById(R.id.statTextView4);
+        playerTextView[10] = (TextView) findViewById(R.id.statValueTextView4);
+        playerTextView[9].setText("Totale spazi rimasti incerti: ");
+        playerTextView[10].setText("");
+        db = FirebaseDatabase.getInstance().getReference().child("GameRecord");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int numEmpty=0;
+                for (DataSnapshot data: dataSnapshot.getChildren()){
+                    if(data.getValue(GameTable.class).getPlayer().equals(gameStatus.playerName))
+                        numEmpty += data.getValue(GameTable.class).getNumIncerts();
+                }
+                playerTextView[9].setText("Totale spazi rimasti incerti: ");
+                playerTextView[10].setText(String.valueOf(numEmpty));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void setUnValidatedVictories(){
+        playerTextView[11]= (TextView) findViewById(R.id.statTextView6);
+        playerTextView[12] = (TextView) findViewById(R.id.statValueTextView6);
+        playerTextView[11].setText("Totale vittorie non ufficiali: ");
+        playerTextView[12].setText("");
+        db = FirebaseDatabase.getInstance().getReference().child("UnValidatedGame");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int numVictories=0;
+                for (DataSnapshot data: dataSnapshot.getChildren()){
+                    if(data.getValue(String.class).equals(gameStatus.playerName))
+                        numVictories ++;
+                }
+                playerTextView[11].setText("Totale vittorie non ufficiali: ");
+                playerTextView[12].setText(String.valueOf(numVictories));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void setValidatedVictories(){
+        playerTextView[13]= (TextView) findViewById(R.id.statTextView7);
+        playerTextView[14] = (TextView) findViewById(R.id.statValueTextView7);
+        playerTextView[13].setText("Totale vittorie ufficiali: ");
+        playerTextView[14].setText("");
+        db = FirebaseDatabase.getInstance().getReference().child("ValidatedGame");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                int numVictories=0;
+                for (DataSnapshot data: dataSnapshot.getChildren()){
+                    if(data.getValue(String.class).equals(gameStatus.playerName))
+                        numVictories ++;
+                }
+                playerTextView[13].setText("Totale vittorie ufficiali: ");
+                playerTextView[14].setText(String.valueOf(numVictories));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void setMostPlayedPlayerWith(){
+        playerTextView[15]= (TextView) findViewById(R.id.statTextView8);
+        playerTextView[16] = (TextView) findViewById(R.id.statValueTextView8);
+        playerTextView[17]= (TextView) findViewById(R.id.statTextView9);
+        playerTextView[18] = (TextView) findViewById(R.id.statValueTextView9);
+        playerTextView[15].setText("Compagno più fidato: ");
+        playerTextView[16].setText("");
+        playerTextView[17].setText("Partite con il compagno più fidato: ");
+        playerTextView[18].setText("");
+        db = FirebaseDatabase.getInstance().getReference().child("PlayersRecord");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                HashMap<String,Integer> players = new HashMap<>();
+                int max = 0;
+                String player="";
+                for(DataSnapshot data: dataSnapshot.getChildren()){
+                    if(data.getValue(Users.class).getPlayers().get(0).equals(gameStatus.playerName)){
+                        for(String name: data.getValue(Users.class).getPlayers()){
+                            if(players.containsKey(name))
+                                players.put(name,players.get(name)+1);
+                            else
+                                players.put(name,1);
+                        }
+
+                    }
+                }
+                for(String name: players.keySet())
+                    if(players.get(name) > max && !name.equals(gameStatus.playerName)){
+                        max = players.get(name);
+                        player = name;
+                    }
+                if(max!=0) {
+                    playerTextView[15].setText("Compagno più fidato: ");
+                    playerTextView[16].setText(player);
+                }else {
+                    playerTextView[15].setText("Compagno più fidato: ");
+                    playerTextView[16].setText("NA");
+                }
+                playerTextView[17].setText("Partite con il compagno più fidato: ");
+                playerTextView[18].setText(String.valueOf(max));
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void setBestPlayer(){
+        playerTextView[19]= (TextView) findViewById(R.id.statTextView10);
+        playerTextView[20] = (TextView) findViewById(R.id.statValueTextView10);
+        playerTextView[19].setText("Miglior giocatore: ");
+        playerTextView[20].setText("");
+        db = FirebaseDatabase.getInstance().getReference().child("ValidatedGame");
+        db.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                HashMap<String,Integer> players = new HashMap<>();
+                int max = 0;
+                String player="";
+                for (DataSnapshot data: dataSnapshot.getChildren()){
+                    if(players.containsKey(data.getValue(String.class)))
+                        players.put(data.getValue(String.class), players.get(data.getValue(String.class))+1);
+                    else
+                        players.put(data.getValue(String.class),1);
+                }
+                for(String name: players.keySet())
+                    if(players.get(name) > max){
+                        max = players.get(name);
+                        player = name;
+                    }
+                playerTextView[19].setText("Miglior giocatore: ");
+                playerTextView[20].setText(player);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
     }
 }
