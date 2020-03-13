@@ -1,5 +1,7 @@
 package com.example.cluedokiler;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -24,6 +26,8 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
+
+import static com.example.cluedokiler.Parameters.MyPREFERENCES;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -147,8 +151,23 @@ public class GameActivity extends AppCompatActivity {
             placesRow.setBackgroundColor(Parameters.ORANGE_MAIN_COLOR);
             ((TextView)placesRow.getChildAt(0)).setTextColor(Color.WHITE);
             restoreHighlights();
+        } else if(GameStatus.getInstance().theme.equals(Parameters.BW)){
+            endGameButton.setBackgroundResource(R.drawable.button_background_bw);
+            declareWinnerButton.setBackgroundResource(R.drawable.button_background_bw);
+            title.setBackgroundColor(Parameters.BW_MAIN_COLOR);
+            background.setBackgroundResource(R.drawable.screen_background_bw);
+            suspectsRow.setBackgroundColor(Parameters.BW_MAIN_COLOR);
+            ((TextView)suspectsRow.getChildAt(0)).setTextColor(Color.WHITE);
+            weaponsRow.setBackgroundColor(Parameters.BW_MAIN_COLOR);
+            ((TextView)weaponsRow.getChildAt(0)).setTextColor(Color.WHITE);
+            placesRow.setBackgroundColor(Parameters.BW_MAIN_COLOR);
+            ((TextView)placesRow.getChildAt(0)).setTextColor(Color.WHITE);
+            restoreHighlights();
         }
-
+        SharedPreferences preferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("color", GameStatus.getInstance().theme);
+        editor.apply();
     }
 
 
@@ -466,6 +485,8 @@ public class GameActivity extends AppCompatActivity {
                 tableRow.getChildAt(0).setBackgroundColor(Parameters.GREEN_MAIN_COLOR);
             else if(GameStatus.getInstance().theme.equals(Parameters.ORANGE))
                 tableRow.getChildAt(0).setBackgroundColor(Parameters.ORANGE_MAIN_COLOR);
+            else if(GameStatus.getInstance().theme.equals(Parameters.BW))
+                tableRow.getChildAt(0).setBackgroundColor(Parameters.BW_MAIN_COLOR);
             ((TextView) tableRow.getChildAt(0)).setTextColor(Color.WHITE);
         }
     }
@@ -483,6 +504,8 @@ public class GameActivity extends AppCompatActivity {
                             tableRow.getChildAt(0).setBackgroundColor(Parameters.GREEN_MAIN_COLOR);
                         else if(GameStatus.getInstance().theme.equals(Parameters.ORANGE))
                             tableRow.getChildAt(0).setBackgroundColor(Parameters.ORANGE_MAIN_COLOR);
+                        else if(GameStatus.getInstance().theme.equals(Parameters.BW))
+                            tableRow.getChildAt(0).setBackgroundColor(Parameters.BW_MAIN_COLOR);
                         ((TextView) tableRow.getChildAt(0)).setTextColor(Color.WHITE);
                         GameStatus.getInstance().highlightedRows.add(i);
                     }else{
@@ -495,17 +518,6 @@ public class GameActivity extends AppCompatActivity {
             }
         }
     }
-
-/*
-    private void setAutocompleteButton(){
-        Button autocomplete = (Button) findViewById(R.id.autocompleteButton);
-        autocomplete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                completeRows();
-            }
-        });
-    }*/
 
     private void setDeclareWinnerButton(){
         final Button declareWinnerButton = (Button) findViewById(R.id.declareWinnerButton);
@@ -565,6 +577,10 @@ public class GameActivity extends AppCompatActivity {
                 return true;
             case R.id.gameMenu63:
                 GameStatus.getInstance().theme = Parameters.ORANGE;
+                setColors();
+                return true;
+            case R.id.gameMenu64:
+                GameStatus.getInstance().theme = Parameters.BW;
                 setColors();
                 return true;
             default:

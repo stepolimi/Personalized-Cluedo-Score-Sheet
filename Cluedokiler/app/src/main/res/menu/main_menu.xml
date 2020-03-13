@@ -6,6 +6,9 @@
     <item android:id="@+id/mainMenu1"
         android:title="Inserisci codice"
         app:showAsAction="never"/>
+    <item android:id="@+id/mainMenu3"
+        android:title="Cambia account"
+        app:showAsAction="never"/>
     <item android:id="@+id/mainMenu2"
         android:title="Cambia tema"
         app:showAsAction="never">
@@ -16,10 +19,12 @@
                 android:title="Viola"/>
             <item android:id="@+id/mainMenu23"
                 android:title="Arancione"/>
-
+            <item android:id="@+id/mainMenu24"
+                android:title="Bianco e nero"/>
         </menu>
 
     </item>
+
 
 
 </menu>

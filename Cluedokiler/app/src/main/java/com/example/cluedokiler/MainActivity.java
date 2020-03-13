@@ -1,6 +1,8 @@
 package com.example.cluedokiler;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.Menu;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
@@ -24,30 +27,44 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.example.cluedokiler.Parameters.MyPREFERENCES;
+
 public class MainActivity extends AppCompatActivity {
     Button playButton;
     Button resetButton;
     Button statisticsButton;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        playButton = (Button) findViewById(R.id.playButton);
-        resetButton = (Button) findViewById(R.id.resetButton);
+        preferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        if(!preferences.contains("name")){
+            Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+            loginIntent.putExtra("firstLogin",true);
+            startActivity(loginIntent);
+            Toast.makeText(this,"Ciao, " + GameStatus.getInstance().playerName, Toast.LENGTH_SHORT).show();
+        }else{
+            GameStatus.getInstance().playerName = preferences.getString("name", "");
+            Toast.makeText(this,"Ciao, " + GameStatus.getInstance().playerName, Toast.LENGTH_SHORT).show();
+        }
 
+        GameStatus.getInstance().theme = preferences.getString("color",Parameters.PURPLE);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         toolbar.setElevation(Float.valueOf(100));
+
+        playButton = (Button) findViewById(R.id.playButton);
+        resetButton = (Button) findViewById(R.id.resetButton);
 
         setColors();
 
         compileSpinners();
 
-        playButton.setElevation(Float.valueOf(10));
-        playButton.setTranslationZ(Float.valueOf(10));
-        resetButton.setElevation(Float.valueOf(100));
+        setNameTextView();
 
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -66,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 GameStatus gameStatus = GameStatus.getInstance();
-
+                GameStatus.getInstance().tentativePlayers.set(0,GameStatus.getInstance().playerName);
                 if(!gameStatus.playersSet) {
                     gameStatus.playersNames.clear();
                     for (int i = 0; i < 6; i++) {
@@ -156,7 +173,26 @@ public class MainActivity extends AppCompatActivity {
             statisticsButton.setBackgroundResource(R.drawable.button_background_orange);
             title.setBackgroundColor(Parameters.ORANGE_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background_orange);
+        }else if(GameStatus.getInstance().theme.equals(Parameters.BW)){
+            playButton.setBackgroundResource(R.drawable.button_background_bw);
+            resetButton.setBackgroundResource(R.drawable.button_background_bw);
+            statisticsButton.setBackgroundResource(R.drawable.button_background_bw);
+            title.setBackgroundColor(Parameters.BW_MAIN_COLOR);
+            background.setBackgroundResource(R.drawable.screen_background_bw);
+        }else if(GameStatus.getInstance().theme.equals(Parameters.WB)){
+            playButton.setBackgroundResource(R.drawable.button_background_wb);
+            playButton.setTextColor(Parameters.WB_MAIN_TEXT_COLOR);
+            resetButton.setBackgroundResource(R.drawable.button_background_wb);
+            resetButton.setTextColor(Parameters.WB_MAIN_TEXT_COLOR);
+            statisticsButton.setBackgroundResource(R.drawable.button_background_wb);
+            statisticsButton.setTextColor(Parameters.WB_MAIN_TEXT_COLOR);
+            title.setBackgroundColor(Parameters.WB_MAIN_COLOR);
+            background.setBackgroundResource(R.drawable.screen_background_wb);
         }
+        preferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("color", GameStatus.getInstance().theme);
+        editor.apply();
     }
 
 
@@ -165,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
         ArrayList<String> players = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.players)));
         final ArrayList<ArrayAdapter<String>> adapters = new ArrayList<>();
 
-        final Spinner playerChoiceSpinner1 = (Spinner) findViewById(R.id.playerCoicheSpinner1);
+        //final Spinner playerChoiceSpinner1 = (Spinner) findViewById(R.id.playerCoicheSpinner1);
         final Spinner playerChoiceSpinner2 = (Spinner) findViewById(R.id.playerCoicheSpinner2);
         final Spinner playerChoiceSpinner3 = (Spinner) findViewById(R.id.playerCoicheSpinner3);
         final Spinner playerChoiceSpinner4 = (Spinner) findViewById(R.id.playerCoicheSpinner4);
@@ -178,35 +214,12 @@ public class MainActivity extends AppCompatActivity {
             //adapters.get(i).setDropDownViewResource(R.layout.spinner_drop_down_view);
         }
 
-        playerChoiceSpinner1.setAdapter(adapters.get(0));
+        //playerChoiceSpinner1.setAdapter(adapters.get(0));
         playerChoiceSpinner2.setAdapter(adapters.get(1));
         playerChoiceSpinner3.setAdapter(adapters.get(2));
         playerChoiceSpinner4.setAdapter(adapters.get(3));
         playerChoiceSpinner5.setAdapter(adapters.get(4));
         playerChoiceSpinner6.setAdapter(adapters.get(5));
-
-        playerChoiceSpinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                String playerChoice;
-                playerChoice = parent.getItemAtPosition(position).toString();
-
-                if(!GameStatus.getInstance().tentativePlayers.contains(playerChoice) || playerChoice.equals("--Vuoto--")) {
-                    GameStatus.getInstance().playerName = playerChoice;
-                    GameStatus.getInstance().tentativePlayers.set(0,playerChoice);
-                }
-                else {
-                    Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT).show();
-                    playerChoiceSpinner1.setAdapter(adapters.get(0));
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> parent) { }
-        });
-
-        playerChoiceSpinner1.setElevation(Float.valueOf(10));
-        playerChoiceSpinner1.setTranslationZ(Float.valueOf(10));
 
         playerChoiceSpinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -315,7 +328,10 @@ public class MainActivity extends AppCompatActivity {
         playerChoiceSpinner6.setTranslationZ(Float.valueOf(10));
     }
 
-
+    private void setNameTextView(){
+        TextView textView = findViewById(R.id.nameTextView);
+        textView.setText(GameStatus.getInstance().playerName);
+    }
 
     public void setStatisticsButton(){
         statisticsButton = (Button) findViewById(R.id.statisticsButton);
@@ -356,6 +372,8 @@ public class MainActivity extends AppCompatActivity {
         final GameStatus gameStatus = GameStatus.getInstance();
         final Button playButton = (Button) findViewById(R.id.playButton);
 
+        setNameTextView();
+
         setColors();
 
         compileSpinners();
@@ -393,6 +411,11 @@ public class MainActivity extends AppCompatActivity {
                 CodeAlert codeAlert = new CodeAlert();
                 codeAlert.show(getSupportFragmentManager(), "codeAlert");
                 return true;
+            case R.id.mainMenu3:
+                Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
+                loginIntent.putExtra("firstLogin",false);
+                startActivity(loginIntent);
+                return true;
             case R.id.mainMenu21:
                 GameStatus.getInstance().theme = Parameters.GREEN;
                 setColors();
@@ -405,6 +428,10 @@ public class MainActivity extends AppCompatActivity {
                 GameStatus.getInstance().theme = Parameters.ORANGE;
                 setColors();
                 return true;
+            case R.id.mainMenu24:
+                GameStatus.getInstance().theme = Parameters.BW;
+                setColors();
+                return true;
             default:super.onOptionsItemSelected(item);
         }
 
@@ -414,3 +441,4 @@ public class MainActivity extends AppCompatActivity {
 
 //todo: persistent player
 //todo: damn spinners
+//todo: hide button

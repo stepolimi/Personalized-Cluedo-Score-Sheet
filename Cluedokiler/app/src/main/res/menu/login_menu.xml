@@ -2,24 +2,19 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:id="@+id/settingsMenu1"
-        android:title="Inserisci codice"
-        app:showAsAction="never"/>
-    <item android:id="@+id/settingsMenu2"
+    <item android:id="@+id/loginMenu1"
         android:title="Cambia tema"
         app:showAsAction="never">
         <menu>
-            <item android:id="@+id/settingsMenu21"
+            <item android:id="@+id/loginMenu11"
                 android:title="Verde"/>
-            <item android:id="@+id/settingsMenu22"
+            <item android:id="@+id/loginMenu12"
                 android:title="Viola"/>
-            <item android:id="@+id/settingsMenu23"
+            <item android:id="@+id/loginMenu13"
                 android:title="Arancione"/>
-            <item android:id="@+id/settingsMenu24"
+            <item android:id="@+id/loginMenu14"
                 android:title="Bianco e nero"/>
         </menu>
 
     </item>
-
-
 </menu>

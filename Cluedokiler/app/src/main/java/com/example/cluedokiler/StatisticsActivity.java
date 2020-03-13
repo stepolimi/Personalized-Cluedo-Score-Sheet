@@ -1,11 +1,12 @@
 package com.example.cluedokiler;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,6 +23,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
+
+import static com.example.cluedokiler.Parameters.MyPREFERENCES;
 
 public class StatisticsActivity extends AppCompatActivity {
 
@@ -76,7 +79,14 @@ public class StatisticsActivity extends AppCompatActivity {
         } else if(GameStatus.getInstance().theme.equals(Parameters.ORANGE)){
             title.setBackgroundColor(Parameters.ORANGE_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background_orange);
+        } else if(GameStatus.getInstance().theme.equals(Parameters.BW)){
+            title.setBackgroundColor(Parameters.BW_MAIN_COLOR);
+            background.setBackgroundResource(R.drawable.screen_background_bw);
         }
+        SharedPreferences preferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("color", GameStatus.getInstance().theme);
+        editor.apply();
     }
 
     private void setBackButton() {
@@ -130,6 +140,10 @@ public class StatisticsActivity extends AppCompatActivity {
                 return true;
             case R.id.settingsMenu23:
                 GameStatus.getInstance().theme = Parameters.ORANGE;
+                setColors();
+                return true;
+            case R.id.settingsMenu24:
+                GameStatus.getInstance().theme = Parameters.BW;
                 setColors();
                 return true;
             default:super.onOptionsItemSelected(item);

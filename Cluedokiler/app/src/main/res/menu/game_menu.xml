@@ -23,6 +23,7 @@
                 android:title="Giulio" />
             <item android:id="@+id/menuItem26"
                 android:title="Darko" />
+
         </menu>
 
     </item>
@@ -91,6 +92,8 @@
                 android:title="Viola"/>
             <item android:id="@+id/gameMenu63"
                 android:title="Arancione"/>
+            <item android:id="@+id/gameMenu64"
+                android:title="Bianco e nero"/>
         </menu>
 
     </item>

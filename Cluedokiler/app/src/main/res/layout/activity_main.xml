@@ -30,7 +30,7 @@
             <LinearLayout
                 android:id="@+id/constraintLayout"
                 android:layout_width="match_parent"
-                android:layout_height="420dp"
+                android:layout_height="370dp"
                 android:layout_weight="5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -70,17 +70,21 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintVertical_bias="0.48000002"
                         app:srcCompat="@drawable/exit_ap_icon" />
-<!--
-                    <ImageView
-                        android:id="@+id/settingsImageView"
+
+                    <TextView
+                        android:id="@+id/nameTextView"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="4dp"
+                        android:text="TextView"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#ffffff"
+                        android:textSize="16sp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:srcCompat="@drawable/round_settings" />
--->
+                        app:layout_constraintVertical_bias="0.0" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <LinearLayout
@@ -91,28 +95,14 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/enterNamesTextView">
+                    app:layout_constraintTop_toBottomOf="@+id/enterNamesTextView"
+                    android:paddingTop = "15dp">
 
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/player1TextView"
-                            style="@style/Widget.AppCompat.TextView"
-                            android:layout_width="match_parent"
-                            android:layout_height="54dp"
-                            android:layout_marginTop="2dp"
-                            android:text="\nIl tuo nome"
-                            android:textAlignment="center"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toStartOf="@+id/playerCoicheSpinner6"
-                            app:layout_constraintHorizontal_bias="0.0"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/enterNamesTextView"
-                            android:layout_marginEnd="10dp"/>
 
                         <TextView
                             android:id="@+id/player2TextView"
@@ -194,7 +184,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:orientation="vertical">
-
+<!--
                         <Spinner
                             android:id="@+id/playerCoicheSpinner1"
                             style="@android:style/Widget.Spinner.DropDown"
@@ -206,7 +196,7 @@
                             android:textStyle="bold"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/playerCoicheSpinner2" />
-
+-->
                         <Spinner
                             android:id="@+id/playerCoicheSpinner2"
                             style="@android:style/Widget.Spinner.DropDown"
