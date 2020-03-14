@@ -15,13 +15,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -172,7 +172,7 @@ public class GameActivity extends AppCompatActivity {
 
 
     private void setHideSwitcher(){
-        final Switch hideAnswersSwitch = (Switch) findViewById(R.id.switch1);
+        final SwitchCompat hideAnswersSwitch =  findViewById(R.id.switch1);
         final GameStatus gameStatus = GameStatus.getInstance();
 
         if(gameStatus.hideTable) {

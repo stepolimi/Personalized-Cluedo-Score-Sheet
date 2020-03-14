@@ -182,24 +182,12 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
+                        android:layout_weight="1"
                         android:orientation="vertical">
-<!--
-                        <Spinner
-                            android:id="@+id/playerCoicheSpinner1"
-                            style="@android:style/Widget.Spinner.DropDown"
-                            android:layout_width="match_parent"
-                            android:layout_height="46dp"
-                            android:layout_marginStart="5dp"
-                            android:layout_marginTop="11dp"
-                            android:layout_marginEnd="5dp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/playerCoicheSpinner2" />
--->
+
                         <Spinner
                             android:id="@+id/playerCoicheSpinner2"
-                            style="@android:style/Widget.Spinner.DropDown"
+                            style="@android:style/Widget.Material.Spinner.Underlined"
                             android:layout_width="match_parent"
                             android:layout_height="46dp"
                             android:layout_marginStart="5dp"
@@ -211,7 +199,7 @@
 
                         <Spinner
                             android:id="@+id/playerCoicheSpinner3"
-                            style="@android:style/Widget.Spinner.DropDown"
+                            style="@android:style/Widget.Material.Spinner.Underlined"
                             android:layout_width="match_parent"
                             android:layout_height="46dp"
                             android:layout_marginStart="5dp"
@@ -223,7 +211,7 @@
 
                         <Spinner
                             android:id="@+id/playerCoicheSpinner4"
-                            style="@android:style/Widget.Spinner.DropDown"
+                            style="@android:style/Widget.Material.Spinner.Underlined"
                             android:layout_width="match_parent"
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="5dp"                            android:layout_height="46dp"
@@ -234,7 +222,7 @@
 
                         <Spinner
                             android:id="@+id/playerCoicheSpinner5"
-                            style="@android:style/Widget.Spinner.DropDown"
+                            style="@android:style/Widget.Material.Spinner.Underlined"
                             android:layout_width="match_parent"
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="5dp"                            android:layout_height="46dp"
@@ -245,7 +233,7 @@
 
                         <Spinner
                             android:id="@+id/playerCoicheSpinner6"
-                            style="@android:style/Widget.Spinner.DropDown"
+                            style="@android:style/Widget.Material.Spinner.Underlined"
                             android:layout_width="match_parent"
                             android:layout_marginStart="5dp"
                             android:layout_marginEnd="5dp"                            android:layout_height="46dp"

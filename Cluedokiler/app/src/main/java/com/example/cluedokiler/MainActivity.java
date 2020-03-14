@@ -10,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -45,10 +44,11 @@ public class MainActivity extends AppCompatActivity {
             Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
             loginIntent.putExtra("firstLogin",true);
             startActivity(loginIntent);
-            Toast.makeText(this,"Ciao, " + GameStatus.getInstance().playerName, Toast.LENGTH_SHORT).show();
         }else{
             GameStatus.getInstance().playerName = preferences.getString("name", "");
-            Toast.makeText(this,"Ciao, " + GameStatus.getInstance().playerName, Toast.LENGTH_SHORT).show();
+            Toast toast = Toast.makeText(this,"Ciao, " + GameStatus.getInstance().playerName, Toast.LENGTH_SHORT);
+            toast.setGravity(Gravity.BOTTOM, 0, 20);
+            toast.show();
         }
 
         GameStatus.getInstance().theme = preferences.getString("color",Parameters.PURPLE);
@@ -57,15 +57,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setElevation(Float.valueOf(100));
 
-        playButton = (Button) findViewById(R.id.playButton);
-        resetButton = (Button) findViewById(R.id.resetButton);
-
         setColors();
 
         compileSpinners();
 
         setNameTextView();
 
+        resetButton = (Button) findViewById(R.id.resetButton);
         resetButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
         else
             playButton.setText(getResources().getString(R.string.giocaPlayButton));
 
+        playButton = (Button) findViewById(R.id.playButton);
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,21 +85,15 @@ public class MainActivity extends AppCompatActivity {
                 GameStatus.getInstance().tentativePlayers.set(0,GameStatus.getInstance().playerName);
                 if(!gameStatus.playersSet) {
                     gameStatus.playersNames.clear();
-                    for (int i = 0; i < 6; i++) {
-                       // if (!spinnerListeners.get(i).getPlayerChoice().equals("--Vuoto--") && !spinnerListeners.get(i).getPlayerChoice().equals(""))
-                         //   if (!gameStatus.playersSet)
-                           //     gameStatus.playersNames.add(spinnerListeners.get(i).getPlayerChoice());
+                    for (int i = 0; i < 6; i++)
                         if(!gameStatus.tentativePlayers.get(i).equals("--Vuoto--") && !gameStatus.tentativePlayers.get(i).equals(""))
                             if(!gameStatus.playersSet)
                                 gameStatus.playersNames.add(gameStatus.tentativePlayers.get(i));
-                    }
-
                     if( ! (gameStatus.playersNames.size() > 2))
                         gameStatus.playersNames.clear();
                     else
                         gameStatus.playersSet = true;
                 }
-
                 if(gameStatus.playersNames.size() > 2 && !gameStatus.playerName.equals("--Vuoto--")){
                     Intent startGameIntent = new Intent(getApplicationContext(), GameActivity.class);
                     startActivity(startGameIntent);
@@ -110,19 +103,17 @@ public class MainActivity extends AppCompatActivity {
                         gameStatus.gameTableHash.setPlayer(gameStatus.playerName);
                         DbManager.getInstance().savePlayersRecord();
                     }
-
                 }else {
                     if(gameStatus.tableSet){
                         Intent startGameIntent = new Intent(getApplicationContext(), GameActivity.class);
                         startActivity(startGameIntent);
-
                     } else if(gameStatus.playersNames.size() <=2) {
                         Toast toast = Toast.makeText(getApplicationContext(), "Devono esserci almeno 3 giocatori!", Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.BOTTOM|Gravity.FILL_HORIZONTAL, 0, 20);
+                        toast.setGravity(Gravity.BOTTOM, 0, 20);
                         toast.show();
                     }else{
                         Toast toast = Toast.makeText(getApplicationContext(), "Inserisci il tuo nome prima", Toast.LENGTH_LONG);
-                        toast.setGravity(Gravity.BOTTOM|Gravity.FILL_HORIZONTAL, 0, 20);
+                        toast.setGravity(Gravity.BOTTOM, 0, 20);
                         toast.show();
                     }
                 }
@@ -195,31 +186,40 @@ public class MainActivity extends AppCompatActivity {
         editor.apply();
     }
 
-
-
     private void compileSpinners() {
-        ArrayList<String> players = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.players)));
-        final ArrayList<ArrayAdapter<String>> adapters = new ArrayList<>();
+        final ArrayList<String> players = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.players)));
+        if(players.contains(GameStatus.getInstance().playerName) && !GameStatus.getInstance().playerName.equals("--Vuoto--"))
+            players.remove(GameStatus.getInstance().playerName);
 
-        //final Spinner playerChoiceSpinner1 = (Spinner) findViewById(R.id.playerCoicheSpinner1);
         final Spinner playerChoiceSpinner2 = (Spinner) findViewById(R.id.playerCoicheSpinner2);
         final Spinner playerChoiceSpinner3 = (Spinner) findViewById(R.id.playerCoicheSpinner3);
         final Spinner playerChoiceSpinner4 = (Spinner) findViewById(R.id.playerCoicheSpinner4);
         final Spinner playerChoiceSpinner5 = (Spinner) findViewById(R.id.playerCoicheSpinner5);
         final Spinner playerChoiceSpinner6 = (Spinner) findViewById(R.id.playerCoicheSpinner6);
 
-        for(int i=0; i<6; i++){
-            adapters.add(new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,players));
-            adapters.get(i).setDropDownViewResource(android.R.layout.simple_spinner_item);
-            //adapters.get(i).setDropDownViewResource(R.layout.spinner_drop_down_view);
-        }
+        final PlayersAdapter playersAdapter = new PlayersAdapter(this,players);
 
-        //playerChoiceSpinner1.setAdapter(adapters.get(0));
-        playerChoiceSpinner2.setAdapter(adapters.get(1));
-        playerChoiceSpinner3.setAdapter(adapters.get(2));
-        playerChoiceSpinner4.setAdapter(adapters.get(3));
-        playerChoiceSpinner5.setAdapter(adapters.get(4));
-        playerChoiceSpinner6.setAdapter(adapters.get(5));
+        playerChoiceSpinner2.setAdapter(playersAdapter);
+        playerChoiceSpinner2.setDropDownVerticalOffset(100);
+        playerChoiceSpinner3.setAdapter(playersAdapter);
+        playerChoiceSpinner3.setDropDownVerticalOffset(100);
+        playerChoiceSpinner4.setAdapter(playersAdapter);
+        playerChoiceSpinner4.setDropDownVerticalOffset(100);
+        playerChoiceSpinner5.setAdapter(playersAdapter);
+        playerChoiceSpinner5.setDropDownVerticalOffset(100);
+        playerChoiceSpinner6.setAdapter(playersAdapter);
+        playerChoiceSpinner6.setDropDownVerticalOffset(100);
+
+        int pos1 = players.indexOf(GameStatus.getInstance().tentativePlayers.get(1));
+        playerChoiceSpinner2.setSelection(pos1);
+        int pos2 = players.indexOf(GameStatus.getInstance().tentativePlayers.get(2));
+        playerChoiceSpinner3.setSelection(pos2);
+        int pos3 = players.indexOf(GameStatus.getInstance().tentativePlayers.get(3));
+        playerChoiceSpinner4.setSelection(pos3);
+        int pos4 = players.indexOf(GameStatus.getInstance().tentativePlayers.get(4));
+        playerChoiceSpinner5.setSelection(pos4);
+        int pos5 = players.indexOf(GameStatus.getInstance().tentativePlayers.get(5));
+        playerChoiceSpinner6.setSelection(pos5);
 
         playerChoiceSpinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -227,20 +227,22 @@ public class MainActivity extends AppCompatActivity {
                 String playerChoice;
                 playerChoice = parent.getItemAtPosition(position).toString();
 
-                if(!GameStatus.getInstance().tentativePlayers.contains(playerChoice) || playerChoice.equals("--Vuoto--")) {
+                if((!GameStatus.getInstance().tentativePlayers.contains(playerChoice) || GameStatus.getInstance().tentativePlayers.indexOf(playerChoice) == 1) || playerChoice.equals("--Vuoto--")) {
                     GameStatus.getInstance().tentativePlayers.set(1,playerChoice);
+
                 }
                 else {
-                    Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT).show();
-                    playerChoiceSpinner2.setAdapter(adapters.get(1));
+                    Toast toast = Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM, 0, 20);
+                    toast.show();
+                    int pos = players.indexOf(GameStatus.getInstance().tentativePlayers.get(1));
+                    playerChoiceSpinner2.setSelection(pos);
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
         });
-        playerChoiceSpinner2.setElevation(Float.valueOf(10));
-        playerChoiceSpinner2.setTranslationZ(Float.valueOf(10));
 
         playerChoiceSpinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -248,20 +250,21 @@ public class MainActivity extends AppCompatActivity {
                 String playerChoice;
                 playerChoice = parent.getItemAtPosition(position).toString();
 
-                if(!GameStatus.getInstance().tentativePlayers.contains(playerChoice) || playerChoice.equals("--Vuoto--")) {
+                if((!GameStatus.getInstance().tentativePlayers.contains(playerChoice) || GameStatus.getInstance().tentativePlayers.indexOf(playerChoice) == 2) || playerChoice.equals("--Vuoto--")) {
                     GameStatus.getInstance().tentativePlayers.set(2,playerChoice);
                 }
                 else {
-                    Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT).show();
-                    playerChoiceSpinner3.setAdapter(adapters.get(2));
+                    Toast toast = Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM, 0, 20);
+                    toast.show();
+                    int pos = players.indexOf(GameStatus.getInstance().tentativePlayers.get(2));
+                    playerChoiceSpinner3.setSelection(pos);
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
         });
-        playerChoiceSpinner3.setElevation(Float.valueOf(10));
-        playerChoiceSpinner3.setTranslationZ(Float.valueOf(10));
 
         playerChoiceSpinner4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -270,20 +273,21 @@ public class MainActivity extends AppCompatActivity {
                 playerChoice = parent.getItemAtPosition(position).toString();
 
 
-                if(!GameStatus.getInstance().tentativePlayers.contains(playerChoice) || playerChoice.equals("--Vuoto--")) {
+                if((!GameStatus.getInstance().tentativePlayers.contains(playerChoice) || GameStatus.getInstance().tentativePlayers.indexOf(playerChoice) == 3) || playerChoice.equals("--Vuoto--")) {
                     GameStatus.getInstance().tentativePlayers.set(3,playerChoice);
                 }
                 else {
-                    Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT).show();
-                    playerChoiceSpinner4.setAdapter(adapters.get(3));
+                    Toast toast = Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM, 0, 20);
+                    toast.show();
+                    int pos = players.indexOf(GameStatus.getInstance().tentativePlayers.get(3));
+                    playerChoiceSpinner4.setSelection(pos);
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
         });
-        playerChoiceSpinner4.setElevation(Float.valueOf(10));
-        playerChoiceSpinner4.setTranslationZ(Float.valueOf(10));
 
         playerChoiceSpinner5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -291,20 +295,21 @@ public class MainActivity extends AppCompatActivity {
                 String playerChoice;
                 playerChoice = parent.getItemAtPosition(position).toString();
 
-                if(!GameStatus.getInstance().tentativePlayers.contains(playerChoice) || playerChoice.equals("--Vuoto--")) {
+                if((!GameStatus.getInstance().tentativePlayers.contains(playerChoice) || GameStatus.getInstance().tentativePlayers.indexOf(playerChoice) == 4) || playerChoice.equals("--Vuoto--")) {
                     GameStatus.getInstance().tentativePlayers.set(4,playerChoice);
                 }
                 else {
-                    Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT).show();
-                    playerChoiceSpinner5.setAdapter(adapters.get(4));
+                    Toast toast = Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM, 0, 20);
+                    toast.show();
+                    int pos = players.indexOf(GameStatus.getInstance().tentativePlayers.get(4));
+                    playerChoiceSpinner5.setSelection(pos);
                 }
             }
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
         });
-        playerChoiceSpinner5.setElevation(Float.valueOf(10));
-        playerChoiceSpinner5.setTranslationZ(Float.valueOf(10));
 
         playerChoiceSpinner6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -312,20 +317,21 @@ public class MainActivity extends AppCompatActivity {
                 String playerChoice;
                 playerChoice = parent.getItemAtPosition(position).toString();
 
-                if(!GameStatus.getInstance().tentativePlayers.contains(playerChoice) || playerChoice.equals("--Vuoto--")) {
+                if((!GameStatus.getInstance().tentativePlayers.contains(playerChoice) || GameStatus.getInstance().tentativePlayers.indexOf(playerChoice) == 5) || playerChoice.equals("--Vuoto--")) {
                     GameStatus.getInstance().tentativePlayers.set(5,playerChoice);
                 }
                 else {
-                    Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT).show();
-                    playerChoiceSpinner6.setAdapter(adapters.get(5));
+                    Toast toast = Toast.makeText(MainActivity.super.getApplicationContext(), "Nome già selezionato", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM, 0, 20);
+                    toast.show();
+                    int pos = players.indexOf(GameStatus.getInstance().tentativePlayers.get(5));
+                    playerChoiceSpinner6.setSelection(pos);
                 }
             }
-
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
         });
-        playerChoiceSpinner6.setElevation(Float.valueOf(10));
-        playerChoiceSpinner6.setTranslationZ(Float.valueOf(10));
+
     }
 
     private void setNameTextView(){
@@ -345,6 +351,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(startGameIntent);
                 }else{
                     Toast toast = Toast.makeText(getApplicationContext(), "Inserisci il tuo nome prima", Toast.LENGTH_LONG);
+                    toast.setGravity(Gravity.BOTTOM, 0, 20);
                     toast.show();
                 }
             }
@@ -364,12 +371,9 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
-
     @Override
     protected void onResume(){
         super.onResume();
-        final GameStatus gameStatus = GameStatus.getInstance();
         final Button playButton = (Button) findViewById(R.id.playButton);
 
         setNameTextView();
@@ -378,11 +382,10 @@ public class MainActivity extends AppCompatActivity {
 
         compileSpinners();
 
-        if(gameStatus.playersSet)
+        if(GameStatus.getInstance().playersSet)
             playButton.setText(getResources().getString(R.string.riprendiPlayButton));
         else
             playButton.setText(getResources().getString(R.string.giocaPlayButton));
-
     }
 
     @Override
@@ -406,7 +409,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-
             case R.id.mainMenu1:
                 CodeAlert codeAlert = new CodeAlert();
                 codeAlert.show(getSupportFragmentManager(), "codeAlert");
@@ -434,11 +436,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             default:super.onOptionsItemSelected(item);
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
-
-//todo: persistent player
-//todo: damn spinners
-//todo: hide button

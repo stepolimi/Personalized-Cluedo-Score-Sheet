@@ -36,7 +36,7 @@ public class ImageDialog extends DialogFragment {
 
         if(name.equals("Luchino")) {
             resource = R.drawable.luchino;
-            text = "A me basta che sia Heineken";
+            text = "Sono una signorina!";
         }else if(name.equals("Virgi")) {
             resource = R.drawable.virgi;
             text = "Aspetta, hai detto Lucius o Draco?";
@@ -45,7 +45,7 @@ public class ImageDialog extends DialogFragment {
             text = "Da grandi poteri derivano grandi weiss medie";
         }else if(name.equals("Teo")) {
             resource = R.drawable.teo;
-            text = "Datemi un drago e vi solleverò il mondo";
+            text = "La vita è un pendolo che oscilla tra draghi e viverne";
         }else if(name.equals("Bean")) {
             resource = R.drawable.bean;
             text = "Sono troppo vecchio per questa merda";

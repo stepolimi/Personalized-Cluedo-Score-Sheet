@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -80,10 +81,16 @@ public class LoginActivity extends AppCompatActivity {
                     editor.putString("name", name);
                     editor.apply();
                     GameStatus.getInstance().playerName = name;
+                    Toast toast = Toast.makeText(LoginActivity.super.getApplicationContext(),"Ciao, " + GameStatus.getInstance().playerName, Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM, 0, 20);
+                    toast.show();
                     finish();
                 }
-                else
-                    Toast.makeText(LoginActivity.super.getApplicationContext(),"Seleziona il tuo nome", Toast.LENGTH_SHORT).show();
+                else {
+                    Toast toast = Toast.makeText(LoginActivity.super.getApplicationContext(), "Seleziona il tuo nome", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM, 0, 20);
+                    toast.show();
+                }
             }
         });
 
@@ -93,17 +100,21 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if(!GameStatus.getInstance().playerName.equals("--Vuoto--") && !GameStatus.getInstance().playerName.equals(""))
                     finish();
-                else
-                    Toast.makeText(LoginActivity.super.getApplicationContext(),"Seleziona il tuo nome e schiaccia 'conferma'", Toast.LENGTH_SHORT).show();
+                else {
+                    Toast toast = Toast.makeText(LoginActivity.super.getApplicationContext(), "Seleziona il tuo nome e schiaccia 'conferma'", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM, 0, 20);
+                    toast.show();
+                }
+
             }
         });
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true ) {
             @Override
             public void handleOnBackPressed() {
-                if(!GameStatus.getInstance().playerName.equals("--Vuoto--") && !GameStatus.getInstance().playerName.equals("")) {
-                    ExitGameAlert exitAlert = new ExitGameAlert();
-                    exitAlert.show(getSupportFragmentManager(), "exitGameAlert");
+                if(GameStatus.getInstance().playerName.equals("--Vuoto--") || GameStatus.getInstance().playerName.equals("")) {
+                   // ExitGameAlert exitAlert = new ExitGameAlert();
+                   // exitAlert.show(getSupportFragmentManager(), "exitGameAlert");
                 }else
                     finish();
             }
