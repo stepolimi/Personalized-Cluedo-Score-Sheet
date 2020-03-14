@@ -25,6 +25,9 @@
 
     </item>
 
+    <item android:id="@+id/mainMenu4"
+        android:title="Personalizza partita"
+        app:showAsAction="never"/>
 
 
 </menu>

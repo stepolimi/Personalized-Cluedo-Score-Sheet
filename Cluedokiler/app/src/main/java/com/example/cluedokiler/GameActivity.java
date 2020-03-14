@@ -47,9 +47,9 @@ public class GameActivity extends AppCompatActivity {
 
         Resources res = getResources();
         players = res.getStringArray(R.array.players);
-        suspects = res.getStringArray(R.array.suspects);
-        weapons = res.getStringArray(R.array.weapons);
-        places = res.getStringArray(R.array.places);
+        suspects = GameStatus.getInstance().gameNames.getSuspects();
+        weapons =  GameStatus.getInstance().gameNames.getWeapons();
+        places =  GameStatus.getInstance().gameNames.getPlaces();
 
         final ArrayList <TextView> playerTextViews = new ArrayList<>();
         playerTextViews.add(0,(TextView) findViewById(R.id.player1TextView));
@@ -96,8 +96,6 @@ public class GameActivity extends AppCompatActivity {
         nameViews();
 
         setHideSwitcher();
-
- //       setAutocompleteButton();
 
         restoreHighlights();
 
@@ -266,19 +264,21 @@ public class GameActivity extends AppCompatActivity {
 
         for (int i = 0; i < 6; i++) {
             susTextViews.get(i).setText(suspects[i]);
-            final TextView textView = susTextViews.get(i);
-            susTextViews.get(i).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ImageDialog imageDialog = new ImageDialog();
-                    Bundle args = new Bundle();
-                    args.putString("player", textView.getText().toString());
-                    imageDialog.setArguments(args);
+            if(!GameStatus.getInstance().gameNames.isModified()) {
+                final TextView textView = susTextViews.get(i);
+                susTextViews.get(i).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ImageDialog imageDialog = new ImageDialog();
+                        Bundle args = new Bundle();
+                        args.putString("suspect", textView.getText().toString());
+                        imageDialog.setArguments(args);
 
-                    imageDialog.show(getSupportFragmentManager(), "imageDialog");
+                        imageDialog.show(getSupportFragmentManager(), "imageDialog");
 
-                }
-            });
+                    }
+                });
+            }
         }
 
         ArrayList<TextView> weapTextViews = new ArrayList<>();
@@ -291,19 +291,21 @@ public class GameActivity extends AppCompatActivity {
 
         for (int i = 0; i < 6; i++) {
             weapTextViews.get(i).setText(weapons[i]);
-            final TextView textView = weapTextViews.get(i);
-            weapTextViews.get(i).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ImageDialog imageDialog = new ImageDialog();
-                    Bundle args = new Bundle();
-                    args.putString("player", textView.getText().toString());
-                    imageDialog.setArguments(args);
+            if(!GameStatus.getInstance().gameNames.isModified()) {
+                final TextView textView = weapTextViews.get(i);
+                weapTextViews.get(i).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ImageDialog imageDialog = new ImageDialog();
+                        Bundle args = new Bundle();
+                        args.putString("weapon", textView.getText().toString());
+                        imageDialog.setArguments(args);
 
-                    imageDialog.show(getSupportFragmentManager(), "imageDialog");
+                        imageDialog.show(getSupportFragmentManager(), "imageDialog");
 
-                }
-            });
+                    }
+                });
+            }
         }
 
         ArrayList<TextView> placeTextViews = new ArrayList<>();
@@ -319,19 +321,21 @@ public class GameActivity extends AppCompatActivity {
 
         for (int i = 0; i < 9; i++) {
             placeTextViews.get(i).setText(places[i]);
-            final TextView textView = placeTextViews.get(i);
-            placeTextViews.get(i).setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ImageDialog imageDialog = new ImageDialog();
-                    Bundle args = new Bundle();
-                    args.putString("player", textView.getText().toString());
-                    imageDialog.setArguments(args);
+            if(!GameStatus.getInstance().gameNames.isModified()) {
+                final TextView textView = placeTextViews.get(i);
+                placeTextViews.get(i).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        ImageDialog imageDialog = new ImageDialog();
+                        Bundle args = new Bundle();
+                        args.putString("place", textView.getText().toString());
+                        imageDialog.setArguments(args);
 
-                    imageDialog.show(getSupportFragmentManager(), "imageDialog");
+                        imageDialog.show(getSupportFragmentManager(), "imageDialog");
 
-                }
-            });
+                    }
+                });
+            }
         }
 
 

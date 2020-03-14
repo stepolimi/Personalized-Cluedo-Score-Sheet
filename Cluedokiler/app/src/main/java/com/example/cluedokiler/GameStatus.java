@@ -19,6 +19,7 @@ public class GameStatus {
     public String gameTime;
     public ArrayList<String> tentativePlayers;
     public String theme;
+    public GameNames gameNames;
 
     private GameStatus() {
         tentativePlayers=new ArrayList<>();

@@ -60,7 +60,7 @@
 
     <Spinner
         android:id="@+id/mainPlayerCoicheSpinner"
-        style="@android:style/Widget.Spinner.DropDown"
+        style="@android:style/Widget.Material.Spinner.Underlined"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="20dp"

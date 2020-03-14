@@ -99,6 +99,13 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(startGameIntent);
 
                     if(!gameStatus.tableSet) {
+                        if(gameStatus.gameNames == null) {
+                            GameNames gameNames = new GameNames();
+                            gameNames.setSuspects(getResources().getStringArray(R.array.suspects));
+                            gameNames.setWeapons(getResources().getStringArray(R.array.weapons));
+                            gameNames.setPlaces(getResources().getStringArray(R.array.places));
+                            GameStatus.getInstance().gameNames = gameNames;
+                        }
                         GameStatus.getInstance().gameTime = java.util.Calendar.getInstance().getTime().toString();
                         gameStatus.gameTableHash.setPlayer(gameStatus.playerName);
                         DbManager.getInstance().savePlayersRecord();
@@ -433,6 +440,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.mainMenu24:
                 GameStatus.getInstance().theme = Parameters.BW;
                 setColors();
+                return true;
+            case R.id.mainMenu4:
+                Intent personalizeIntent = new Intent(getApplicationContext(), PersonalizeGameActivity.class);
+                personalizeIntent.putExtra("personalizeNames",false);
+                startActivity(personalizeIntent);
                 return true;
             default:super.onOptionsItemSelected(item);
         }

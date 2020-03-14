@@ -1,0 +1,527 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/layoutPersonalizeActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:weightSum="10"
+    android:background="@drawable/screen_background">
+
+    <include
+        layout="@layout/toolbar" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/titlePersonalizeActivity"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:background="#512da8"
+                    android:elevation="10dp">
+
+                    <TextView
+                        android:id="@+id/enterNamesTextView"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:text="Inserisci i nomi"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#ffffff"
+                        android:textSize="20sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:textAllCaps="false" />
+
+                    <ImageView
+                        android:id="@+id/exitPersonalizeGameImageVIew"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.48000002"
+                        app:srcCompat="@drawable/back_arrow" />
+
+                    <TextView
+                        android:id="@+id/playerNameTextView"
+                        style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="4dp"
+                        android:text="TextView"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#ffffff"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_bias="0.0" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width ="match_parent"
+                android:layout_height="40dp">
+
+
+                <TextView
+                    android:id="@+id/suspectsTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sospettati"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/suspects1"
+                    android:hint="sospettato 1"
+
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/suspects2"
+                    android:hint="sospettato 2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/suspects3"
+                    android:hint="sospettato 3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/suspects4"
+                    android:hint="sospettato 4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/suspects5"
+                    android:hint="sospettato 5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/suspects6"
+                    android:hint="sospettato 6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width ="match_parent"
+                android:layout_height="40dp">
+
+
+                <TextView
+                    android:id="@+id/weaponsTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#000000"
+                    android:text="Armi"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/weapons1"
+                    android:hint="arma 1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/weapons2"
+                    android:hint="arma 2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/weapons3"
+                    android:hint="arma 3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/weapons4"
+                    android:hint="arma 4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/weapons5"
+                    android:hint="arma 5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/weapons6"
+                    android:hint="arma 6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width ="match_parent"
+                android:layout_height="40dp">
+
+
+                <TextView
+                    android:id="@+id/placesTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textColor="#000000"
+                    android:text="Posti"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/places1"
+                    android:hint="posto 1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/places2"
+                    android:hint="posto 2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/places3"
+                    android:hint="posto 3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+            android:layout_weight="2"
+            android:layout_width ="match_parent"
+            android:layout_height="50dp">
+
+
+            <EditText
+                android:id="@+id/places4"
+                android:hint="posto 4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:layout_margin = "5dp"/>
+        </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/places5"
+                    android:hint="posto 5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/places6"
+                    android:hint="posto 6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/places7"
+                    android:hint="posto 7"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/places8"
+                    android:hint="posto 8"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_weight="2"
+                android:layout_width ="match_parent"
+                android:layout_height="50dp">
+
+
+                <EditText
+                    android:id="@+id/places9"
+                    android:hint="posto 9"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:layout_margin = "5dp"/>
+            </LinearLayout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_weight="2"
+            android:layout_width ="match_parent"
+            android:layout_height="80dp">
+
+            <Button
+                android:id="@+id/resetNamesButton"
+                style="@android:style/Widget.Holo.Button.Small"
+                android:layout_width="116dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/button_background"
+                android:elevation="10dp"
+                android:text="Reset"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/saveNamesButton"
+                style="@android:style/Widget.Holo.Button.Small"
+                android:layout_width="116dp"
+                android:layout_height="54dp"
+                android:layout_marginEnd="60dp"
+                android:text="Salva"
+                android:background="@drawable/button_background"
+                android:elevation="10dp"
+                android:textColor="#ffffff"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
+</LinearLayout>

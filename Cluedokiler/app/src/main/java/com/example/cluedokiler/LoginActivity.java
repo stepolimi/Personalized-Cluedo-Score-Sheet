@@ -10,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -58,9 +57,9 @@ public class LoginActivity extends AppCompatActivity {
 
         loginSpinner = findViewById(R.id.mainPlayerCoicheSpinner);
         ArrayList<String> players = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.players)));
-        ArrayAdapter arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item,players);
-        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_item);
-        loginSpinner.setAdapter(arrayAdapter);
+        final PlayersAdapter playersAdapter = new PlayersAdapter(this,players);
+        loginSpinner.setAdapter(playersAdapter);
+        loginSpinner.setDropDownVerticalOffset(100);
         loginSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -147,6 +146,7 @@ public class LoginActivity extends AppCompatActivity {
             title.setBackgroundColor(Parameters.BW_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background_bw);
         }else if(GameStatus.getInstance().theme.equals(Parameters.WB)){
+            loginButton.setBackgroundResource(R.drawable.button_background_wb);
             title.setBackgroundColor(Parameters.WB_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background_wb);
         }
