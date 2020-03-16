@@ -19,6 +19,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
@@ -59,8 +60,6 @@ public class GameActivity extends AppCompatActivity {
         playerTextViews.add(4,(TextView) findViewById(R.id.player5TextView));
         playerTextViews.add(5,(TextView) findViewById(R.id.player6TextView));
 
-
-
         final GameStatus gameStatus = GameStatus.getInstance();
         for (int i = 0; i<7;i++) {
             if(i<gameStatus.playersNames.size()) {
@@ -83,8 +82,6 @@ public class GameActivity extends AppCompatActivity {
                 if(i<6 || gameStatus.playersNames.size()==6) {
                     TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
                     gameTableLayout.setColumnCollapsed(i + 1, true);
-
-
                 }
             }
         }
@@ -103,6 +100,14 @@ public class GameActivity extends AppCompatActivity {
 
         setDeclareWinnerButton();
 
+        OnBackPressedCallback callback = new OnBackPressedCallback(true ) {
+            @Override
+            public void handleOnBackPressed() {
+                ExitAlert exitAlert = new ExitAlert();
+                exitAlert.show(getSupportFragmentManager(), "exitAlert");
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     private void setColors(){
@@ -275,7 +280,6 @@ public class GameActivity extends AppCompatActivity {
                         imageDialog.setArguments(args);
 
                         imageDialog.show(getSupportFragmentManager(), "imageDialog");
-
                     }
                 });
             }

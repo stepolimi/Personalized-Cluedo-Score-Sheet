@@ -1,8 +1,11 @@
 package com.example.cluedokiler;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -11,11 +14,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
-
-import java.util.ArrayList;
 
 import static com.example.cluedokiler.Parameters.MyPREFERENCES;
 
@@ -27,6 +30,12 @@ public class PersonalizeGameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_personalize_game);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setElevation(Float.valueOf(100));
+
+        setColors();
 
         gameNames = new GameNames();
 
@@ -57,24 +66,10 @@ public class PersonalizeGameActivity extends AppCompatActivity {
         places[7] = findViewById(R.id.places8);
         places[8] = findViewById(R.id.places9);
 
-        Button resetNamesButton = findViewById(R.id.resetNamesButton);
         Button saveNamesButton = findViewById(R.id.saveNamesButton);
         ImageView exitActivity = findViewById(R.id.exitPersonalizeGameImageVIew);
         TextView playerName = findViewById(R.id.playerNameTextView);
         playerName.setText(GameStatus.getInstance().playerName);
-
-        resetNamesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gameNames.setSuspects(getResources().getStringArray(R.array.suspects));
-                gameNames.setWeapons(getResources().getStringArray(R.array.weapons));
-                gameNames.setPlaces(getResources().getStringArray(R.array.places));
-                gameNames.setModified(false);
-                GameStatus.getInstance().gameNames = gameNames;
-                Toast.makeText(PersonalizeGameActivity.super.getApplicationContext(), "Nomi reimpostati corettamente", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        });
 
         saveNamesButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,6 +97,9 @@ public class PersonalizeGameActivity extends AppCompatActivity {
                 }
                 gameNames.setModified(true);
                 GameStatus.getInstance().gameNames = gameNames;
+
+                Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(mainIntent);
                 finish();
             }
         });
@@ -109,40 +107,45 @@ public class PersonalizeGameActivity extends AppCompatActivity {
         exitActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent gameSelector = new Intent(getApplicationContext(), GameSelectorActivity.class);
+                startActivity(gameSelector);
                 finish();
             }
         });
 
+        OnBackPressedCallback callback = new OnBackPressedCallback(true ) {
+            @Override
+            public void handleOnBackPressed() {
+                Intent gameSelector = new Intent(getApplicationContext(), GameSelectorActivity.class);
+                startActivity(gameSelector);
+                finish();
+            }
+        };
+        getOnBackPressedDispatcher().addCallback(this, callback);
     }
 
     private void setColors(){
-        Button reset = findViewById(R.id.resetNamesButton);
         Button save = findViewById(R.id.saveNamesButton);
         ConstraintLayout title = findViewById(R.id.titlePersonalizeActivity);
         LinearLayout background = findViewById(R.id.layoutPersonalizeActivity);
 
         if(GameStatus.getInstance().theme.equals(Parameters.PURPLE)){
-            reset.setBackgroundResource(R.drawable.button_background);
             save.setBackgroundResource(R.drawable.button_background);
             title.setBackgroundColor(Parameters.PURPLE_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background);
         }else if(GameStatus.getInstance().theme.equals(Parameters.GREEN)){
-            reset.setBackgroundResource(R.drawable.button_background_green);
             save.setBackgroundResource(R.drawable.button_background_green);
             title.setBackgroundColor(Parameters.GREEN_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background_green);
         }else if(GameStatus.getInstance().theme.equals(Parameters.ORANGE)){
-            reset.setBackgroundResource(R.drawable.button_background_orange);
             save.setBackgroundResource(R.drawable.button_background_orange);
             title.setBackgroundColor(Parameters.ORANGE_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background_orange);
         }else if(GameStatus.getInstance().theme.equals(Parameters.BW)){
-            reset.setBackgroundResource(R.drawable.button_background_bw);
             save.setBackgroundResource(R.drawable.button_background_bw);
             title.setBackgroundColor(Parameters.BW_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background_bw);
         }else if(GameStatus.getInstance().theme.equals(Parameters.WB)){
-            reset.setBackgroundResource(R.drawable.button_background_wb);
             save.setBackgroundResource(R.drawable.button_background_wb);
             title.setBackgroundColor(Parameters.WB_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background_wb);
@@ -154,21 +157,28 @@ public class PersonalizeGameActivity extends AppCompatActivity {
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.personalize_menu,menu);
+        return true;
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.loginMenu11:
+            case R.id.personalizeMenu11:
                 GameStatus.getInstance().theme = Parameters.GREEN;
                 setColors();
                 return true;
-            case R.id.loginMenu12:
+            case R.id.personalizeMenu12:
                 GameStatus.getInstance().theme = Parameters.PURPLE;
                 setColors();
                 return true;
-            case R.id.loginMenu13:
+            case R.id.personalizeMenu13:
                 GameStatus.getInstance().theme = Parameters.ORANGE;
                 setColors();
                 return true;
-            case R.id.loginMenu14:
+            case R.id.personalizeMenu14:
                 GameStatus.getInstance().theme = Parameters.BW;
                 setColors();
                 return true;

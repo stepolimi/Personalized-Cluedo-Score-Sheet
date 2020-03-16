@@ -107,22 +107,22 @@ public class ImageDialog extends DialogFragment {
         } else if(args.containsKey("weapon")) {
             String name = args.getString("weapon");
 
-            if(name.equals("coltello")) {
+            if(name.equals("Coltello")) {
                 resource = R.drawable.coltello;
                 text = "tbd";
-            }else if(name.equals("peroni da 75cl")) {
+            }else if(name.equals("Peroni da 75cl")) {
                 resource = R.drawable.peroni;
                 text = "tbd";
-            }else if(name.equals("cocktail di farmaci")) {
+            }else if(name.equals("Cocktail di farmaci")) {
                 resource = R.drawable.cocktail;
                 text = "tbd";
-            }else if(name.equals("punto")) {
+            }else if(name.equals("Punto")) {
                 resource = R.drawable.punto;
                 text = "tbd";
-            }else if(name.equals("drum")) {
+            }else if(name.equals("Drum")) {
                 resource = R.drawable.drum;
                 text = "tbd";
-            }else if(name.equals("bilanciere")) {
+            }else if(name.equals("Bilanciere")) {
                 resource = R.drawable.bilanciere;
                 text = "tbd";
             } else {
@@ -132,31 +132,31 @@ public class ImageDialog extends DialogFragment {
         } else if(args.containsKey("place")) {
             String name = args.getString("place");
 
-            if(name.equals("solaio del bean")) {
+            if(name.equals("Solaio del bean")) {
                 resource = R.drawable.solaio;
                 text = "tbd";
-            }else if(name.equals("porto 05")) {
+            }else if(name.equals("Porto 05")) {
                 resource = R.drawable.porto;
                 text = "tbd";
-            }else if(name.equals("giardino del baga")) {
+            }else if(name.equals("Giardino del baga")) {
                 resource = R.drawable.giardino;
                 text = "tbd";
-            }else if(name.equals("taverna del teo")) {
+            }else if(name.equals("Taverna del teo")) {
                 resource = R.drawable.taverna;
                 text = "tbd";
-            }else if(name.equals("bliss")) {
+            }else if(name.equals("Bliss")) {
                 resource = R.drawable.bliss;
                 text = "tbd";
-            }else if(name.equals("piscina di angelo")) {
+            }else if(name.equals("Piscina di angelo")) {
                 resource = R.drawable.piscina;
                 text = "tbd";
-            }else if(name.equals("cucina delle vi")) {
+            }else if(name.equals("Cucina delle vi")) {
                 resource = R.drawable.cucina;
                 text = "tbd";
-            }else if(name.equals("spa del luca")) {
+            }else if(name.equals("Spa del luca")) {
                 resource = R.drawable.spa;
                 text = "tbd";
-            }else if(name.equals("black")) {
+            }else if(name.equals("Black")) {
                 resource = R.drawable.black;
                 text = "tbd";
             } else {

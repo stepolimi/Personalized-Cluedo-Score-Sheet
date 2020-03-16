@@ -490,34 +490,18 @@
             android:layout_height="80dp">
 
             <Button
-                android:id="@+id/resetNamesButton"
-                style="@android:style/Widget.Holo.Button.Small"
-                android:layout_width="116dp"
-                android:layout_height="54dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="10dp"
-                android:background="@drawable/button_background"
-                android:elevation="10dp"
-                android:text="Reset"
-                android:textColor="#ffffff"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <Button
                 android:id="@+id/saveNamesButton"
                 style="@android:style/Widget.Holo.Button.Small"
                 android:layout_width="116dp"
                 android:layout_height="54dp"
-                android:layout_marginEnd="60dp"
-                android:text="Salva"
                 android:background="@drawable/button_background"
                 android:elevation="10dp"
+                android:text="Salva"
                 android:textColor="#ffffff"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>

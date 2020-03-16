@@ -19,20 +19,13 @@ public class ExitGameAlert extends DialogFragment {
         super.onCreate(savedInstanceState);
         builder = new AlertDialog.Builder(getActivity());
 
-//        Bundle args = getArguments();
-//        String name = args.getString("player");
-
         final Context context = super.getContext();
-
-
         CharSequence text;
     }
-
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.exit_alert, container, false);
-
 
         Button yesButton = (Button) v.findViewById(R.id.yesButton);
         Button noButton = (Button) v.findViewById(R.id.noButton);
@@ -44,8 +37,6 @@ public class ExitGameAlert extends DialogFragment {
         yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GameStatus.getInstance().resetGame();
-
                 getActivity().finish();
                 ExitGameAlert.this.dismiss();
             }

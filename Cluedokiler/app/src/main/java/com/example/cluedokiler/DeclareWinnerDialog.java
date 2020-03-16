@@ -39,6 +39,19 @@ public class DeclareWinnerDialog extends DialogFragment implements AdapterView.O
             @Override
             public void onClick(View v) {
                 GameStatus.getInstance().winner = winner;
+                final GameStatus gameStatus = GameStatus.getInstance();
+                gameStatus.gameTableHash.values();
+
+                DbManager.getInstance().saveGameRecord();
+
+                if(!GameStatus.getInstance().winner.equals("")) {
+                    if (GameStatus.getInstance().confirmationCode.equals(getResources().getString(R.string.code)))
+                        DbManager.getInstance().saveValidatedGame();
+                    else
+                        DbManager.getInstance().saveUnValidatedGame(GameStatus.getInstance().winner);
+                }
+                GameStatus.getInstance().newGame();
+                getActivity().finish();
                 DeclareWinnerDialog.this.dismiss();
             }
         });

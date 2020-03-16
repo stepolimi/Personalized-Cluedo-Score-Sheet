@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/layoutGameSelectorActivity"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".GameSelectorActivity"
+    android:orientation="vertical"
+    android:background="@drawable/screen_background">
+
+    <include
+        layout="@layout/toolbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/titleGameSelectorActivity"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#512da8"
+        android:elevation="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include">
+
+
+        <ImageView
+            android:id="@+id/exitAppGameSelectorImageVIew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.48000002"
+            app:srcCompat="@drawable/exit_ap_icon" />
+
+        <TextView
+            android:id="@+id/gameSelectorTextViewTitle"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Seleziona il gioco"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.462"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/nameGameSelectorTextView"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="4dp"
+            android:text="TextView"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:textColor="#ffffff"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:padding="20dp"
+            android:stretchColumns="1,2">
+
+            <TableRow android:layout_height="62dp"
+                android:weightSum = "2"
+                >
+
+                <TextView
+                    android:id="@+id/ourCluedoTextView"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sondrio crime"
+                    android:textColor="#000000"
+                    android:gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+                <TextView
+                    android:id="@+id/harryPotterCluedoTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Harry Potter"
+                    android:textColor="#000000"
+                    android:gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+            </TableRow>
+
+            <TableRow
+                android:weightSum = "2"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/ourCluedoCardView"
+                    android:layout_width="220dp"
+                    android:layout_height="170dp"
+                    android:layout_weight="1"
+                    android:background = "@drawable/our_cluedo_img"
+                    android:layout_margin="20dp">
+
+
+                    <ImageView
+                        android:id="@+id/ourCluedoImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/our_cluedo_img" />
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/harryPotterCluedoCardView"
+                    android:layout_width="220dp"
+                    android:layout_height="170dp"
+                    android:layout_weight="1"
+                    android:layout_margin="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ourCluedoCardView">
+
+                    <ImageView
+                        android:id="@+id/harryPotterCluedoImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/harry_potter_cluedo_img" />
+                </androidx.cardview.widget.CardView>
+            </TableRow>
+
+            <TableRow android:layout_height="62dp"
+                android:weightSum = "2"
+                >
+
+                <TextView
+                    android:id="@+id/cluedoTextView"
+                    android:layout_width="220dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Classico"
+                    android:textColor="#000000"
+                    android:gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+
+                <TextView
+                    android:id="@+id/customCluedoTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Personalizza"
+                    android:textColor="#000000"
+                    android:gravity="center"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"/>
+            </TableRow>
+
+            <TableRow
+                android:weightSum = "2"
+                >
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cluedoCardView"
+                    android:layout_width="220dp"
+                    android:layout_height="170dp"
+                    android:layout_weight="1"
+                    android:background = "@drawable/our_cluedo_img"
+                    android:layout_margin="20dp">
+
+
+                    <ImageView
+                        android:id="@+id/cluedoImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/cluedo_img" />
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/customCluedoCardView"
+                    android:layout_width="220dp"
+                    android:layout_height="170dp"
+                    android:layout_weight="1"
+                    android:layout_margin="20dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.496"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ourCluedoCardView">
+
+                    <ImageView
+                        android:id="@+id/customCluedoImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop"
+                        app:srcCompat="@drawable/custom_cluedo_img" />
+                </androidx.cardview.widget.CardView>
+            </TableRow>
+
+
+        </TableLayout>
+    </ScrollView>
+
+</LinearLayout>

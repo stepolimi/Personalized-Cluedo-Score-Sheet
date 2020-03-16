@@ -2,33 +2,93 @@
     <string name="app_name">Cluedo killer</string>
 
     <string-array name="suspects">
-        <item>Gio bliss</item>
-        <item>Jorko</item>
-        <item>Chiara DiFra</item>
-        <item>Fungo</item>
-        <item>Giulio</item>
-        <item>Darko</item>
-    </string-array>
+    <item>Gio bliss</item>
+    <item>Jorko</item>
+    <item>Chiara DiFra</item>
+    <item>Fungo</item>
+    <item>Giulio</item>
+    <item>Darko</item>
+</string-array>
 
     <string-array name="weapons">
-        <item>coltello</item>
-        <item>peroni da 75cl</item>
-        <item>cocktail di farmaci</item>
-        <item>punto</item>
-        <item>drum</item>
-        <item>bilanciere</item>
+        <item>Coltello</item>
+        <item>Peroni da 75cl</item>
+        <item>Cocktail di farmaci</item>
+        <item>Punto</item>
+        <item>Drum</item>
+        <item>Bilanciere</item>
     </string-array>
 
     <string-array name="places">
-        <item>solaio del bean</item>
-        <item>porto 05</item>
-        <item>giardino del baga</item>
-        <item>taverna del teo</item>
-        <item>bliss</item>
-        <item>piscina di angelo</item>
-        <item>cucina delle vi</item>
-        <item>spa del luca</item>
-        <item>black</item>
+        <item>Solaio del bean</item>
+        <item>Porto 05</item>
+        <item>Giardino del baga</item>
+        <item>Taverna del teo</item>
+        <item>Bliss</item>
+        <item>Piscina di angelo</item>
+        <item>Cucina delle vi</item>
+        <item>Spa del luca</item>
+        <item>Black</item>
+    </string-array>
+
+    <string-array name="suspectsHarry">
+        <item>Draco Malfoy</item>
+        <item>Tiger e Goyle</item>
+        <item>Lucius Malfoy</item>
+        <item>Dolores Umbridge</item>
+        <item>Peter Minus</item>
+        <item>Bellatrix Lestrange</item>
+    </string-array>
+
+    <string-array name="weaponsHarry">
+        <item>Pozione soporifera</item>
+        <item>Armadio svanitore</item>
+        <item>Passaporta</item>
+        <item>Impedimenta</item>
+        <item>Petrificus totalus</item>
+        <item>Mandragora</item>
+    </string-array>
+
+    <string-array name="placesHarry">
+        <item>Sala grande</item>
+        <item>Ala dell ospedale</item>
+        <item>Stanza necessità</item>
+        <item>Aula di pozioni</item>
+        <item>Sala dei trofei</item>
+        <item>Aula divinazione</item>
+        <item>Gufaia</item>
+        <item>Biblioteca</item>
+        <item>Difesa arti oscure</item>
+    </string-array>
+
+    <string-array name="suspectsStandard">
+        <item>plum</item>
+        <item>Orchid</item>
+        <item>Scarlet</item>
+        <item>Green</item>
+        <item>Mustard</item>
+        <item>Peacock</item>
+    </string-array>
+
+    <string-array name="weaponsStandard">
+        <item>Corda</item>
+        <item>Pugnale</item>
+        <item>Candeliere</item>
+        <item>Chiave inglese</item>
+        <item>Pistola</item>
+        <item>Tubo di piombo</item>
+    </string-array>
+
+    <string-array name="placesStandard">
+        <item>Ingresso</item>
+        <item>Veranda</item>
+        <item>Biblioteca</item>
+        <item>Sala da ballo</item>
+        <item>Sala da pranzo</item>
+        <item>Studio</item>
+        <item>Cucina</item>
+        <item>Sala del biliardo</item>
+        <item>Salotto</item>
     </string-array>
 
     <string-array name="players">

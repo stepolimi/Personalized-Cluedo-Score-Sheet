@@ -20,6 +20,7 @@ public class GameStatus {
     public ArrayList<String> tentativePlayers;
     public String theme;
     public GameNames gameNames;
+    public long multiPlayerCode;
 
     private GameStatus() {
         tentativePlayers=new ArrayList<>();
@@ -35,6 +36,7 @@ public class GameStatus {
         winner ="";
         confirmationCode="";
         theme = Parameters.PURPLE;
+        multiPlayerCode = 0;
     }
 
     public static GameStatus getInstance() {
@@ -43,32 +45,19 @@ public class GameStatus {
         return single_instance;
     }
 
-    public void resetGame(){
-        tentativePlayers=new ArrayList<>();
-        for(int i=0; i<6; i++)
-            tentativePlayers.add("");
-        gameTableHash = new GameTable();
-        tableSet = false;
-        playersSet = false;
-        hideTable = false;
-        playersNames = new ArrayList<>();
-        playerName = "--Vuoto--";
-        highlightedRows = new ArrayList<>();
-        winner ="";
-        gameTime="";
-    }
-
     public void newGame(){
         tentativePlayers=new ArrayList<>();
         for(int i=0; i<6; i++)
             tentativePlayers.add("");
         gameTableHash = new GameTable();
+        playersNames.clear();
         tableSet = false;
         hideTable = false;
         playersSet = false;
         highlightedRows = new ArrayList<>();
         winner ="";
         gameTime="";
+        multiPlayerCode = 0;
     }
 
 }

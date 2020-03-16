@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -32,26 +33,13 @@ public class MainActivity extends AppCompatActivity {
     Button playButton;
     Button resetButton;
     Button statisticsButton;
+    Button multiPlayerCodeButton;
     SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        preferences = getSharedPreferences(MyPREFERENCES, Context.MODE_PRIVATE);
-        if(!preferences.contains("name")){
-            Intent loginIntent = new Intent(getApplicationContext(), LoginActivity.class);
-            loginIntent.putExtra("firstLogin",true);
-            startActivity(loginIntent);
-        }else{
-            GameStatus.getInstance().playerName = preferences.getString("name", "");
-            Toast toast = Toast.makeText(this,"Ciao, " + GameStatus.getInstance().playerName, Toast.LENGTH_SHORT);
-            toast.setGravity(Gravity.BOTTOM, 0, 20);
-            toast.show();
-        }
-
-        GameStatus.getInstance().theme = preferences.getString("color",Parameters.PURPLE);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -84,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 GameStatus gameStatus = GameStatus.getInstance();
                 GameStatus.getInstance().tentativePlayers.set(0,GameStatus.getInstance().playerName);
                 if(!gameStatus.playersSet) {
-                    gameStatus.playersNames.clear();
+
                     for (int i = 0; i < 6; i++)
                         if(!gameStatus.tentativePlayers.get(i).equals("--Vuoto--") && !gameStatus.tentativePlayers.get(i).equals(""))
                             if(!gameStatus.playersSet)
@@ -108,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
                         }
                         GameStatus.getInstance().gameTime = java.util.Calendar.getInstance().getTime().toString();
                         gameStatus.gameTableHash.setPlayer(gameStatus.playerName);
+                        DbManager.getInstance().saveMultiPlayerCode();
                         DbManager.getInstance().savePlayersRecord();
                     }
                 }else {
@@ -136,6 +125,8 @@ public class MainActivity extends AppCompatActivity {
 
         setTopBarButtons();
 
+        setMultiPlayerCode();
+
         OnBackPressedCallback callback = new OnBackPressedCallback(true ) {
             @Override
             public void handleOnBackPressed() {
@@ -147,6 +138,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setColors(){
+        multiPlayerCodeButton = findViewById(R.id.insertMultiCodeButton);
         statisticsButton = (Button) findViewById(R.id.statisticsButton);
         playButton = (Button) findViewById(R.id.playButton);
         resetButton = (Button) findViewById(R.id.resetButton);
@@ -154,30 +146,36 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout background = findViewById(R.id.layoutMainActivity);
 
         if(GameStatus.getInstance().theme.equals(Parameters.PURPLE)){
+            multiPlayerCodeButton.setBackgroundResource(R.drawable.button_background);
             playButton.setBackgroundResource(R.drawable.button_background);
             resetButton.setBackgroundResource(R.drawable.button_background);
             statisticsButton.setBackgroundResource(R.drawable.button_background);
             title.setBackgroundColor(Parameters.PURPLE_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background);
         }else if(GameStatus.getInstance().theme.equals(Parameters.GREEN)){
+            multiPlayerCodeButton.setBackgroundResource(R.drawable.button_background_green);
             playButton.setBackgroundResource(R.drawable.button_background_green);
             resetButton.setBackgroundResource(R.drawable.button_background_green);
             statisticsButton.setBackgroundResource(R.drawable.button_background_green);
             title.setBackgroundColor(Parameters.GREEN_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background_green);
         }else if(GameStatus.getInstance().theme.equals(Parameters.ORANGE)){
+            multiPlayerCodeButton.setBackgroundResource(R.drawable.button_background_orange);
             playButton.setBackgroundResource(R.drawable.button_background_orange);
             resetButton.setBackgroundResource(R.drawable.button_background_orange);
             statisticsButton.setBackgroundResource(R.drawable.button_background_orange);
             title.setBackgroundColor(Parameters.ORANGE_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background_orange);
         }else if(GameStatus.getInstance().theme.equals(Parameters.BW)){
+            multiPlayerCodeButton.setBackgroundResource(R.drawable.button_background_bw);
             playButton.setBackgroundResource(R.drawable.button_background_bw);
             resetButton.setBackgroundResource(R.drawable.button_background_bw);
             statisticsButton.setBackgroundResource(R.drawable.button_background_bw);
             title.setBackgroundColor(Parameters.BW_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background_bw);
         }else if(GameStatus.getInstance().theme.equals(Parameters.WB)){
+            multiPlayerCodeButton.setBackgroundResource(R.drawable.button_background_wb);
+            multiPlayerCodeButton.setTextColor(Parameters.WB_MAIN_TEXT_COLOR);
             playButton.setBackgroundResource(R.drawable.button_background_wb);
             playButton.setTextColor(Parameters.WB_MAIN_TEXT_COLOR);
             resetButton.setBackgroundResource(R.drawable.button_background_wb);
@@ -366,6 +364,35 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void setMultiPlayerCode(){
+        Button insertCodeButton = findViewById(R.id.insertMultiCodeButton);
+        final TextView getCodeText = findViewById(R.id.generateMultiCodeText);
+        final EditText setCodeText = findViewById(R.id.insertMultiCodeText);
+
+        setCodeText.setText("");
+
+        if(GameStatus.getInstance().multiPlayerCode == 0) {
+            long time = java.util.Calendar.getInstance().getTime().getTime();
+            getCodeText.setText(String.valueOf(time));
+            GameStatus.getInstance().multiPlayerCode = time;
+        }
+
+        insertCodeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(setCodeText.getText().toString().equals("")){
+                    Toast toast = Toast.makeText(MainActivity.super.getApplicationContext(), "Nessun codice inserito", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM, 0, 20);
+                    toast.show();
+                }else {
+                    GameStatus.getInstance().multiPlayerCode = Long.parseLong(setCodeText.getText().toString());
+                    getCodeText.setText(String.valueOf(GameStatus.getInstance().multiPlayerCode));
+                }
+            }
+        });
+
+    }
+
     private void setTopBarButtons(){
         ImageView exitApp = (ImageView) findViewById(R.id.exitAppImageVIew);
 
@@ -388,6 +415,8 @@ public class MainActivity extends AppCompatActivity {
         setColors();
 
         compileSpinners();
+
+        setMultiPlayerCode();
 
         if(GameStatus.getInstance().playersSet)
             playButton.setText(getResources().getString(R.string.riprendiPlayButton));
@@ -442,9 +471,10 @@ public class MainActivity extends AppCompatActivity {
                 setColors();
                 return true;
             case R.id.mainMenu4:
-                Intent personalizeIntent = new Intent(getApplicationContext(), PersonalizeGameActivity.class);
-                personalizeIntent.putExtra("personalizeNames",false);
-                startActivity(personalizeIntent);
+                Intent gameSelector = new Intent(getApplicationContext(), GameSelectorActivity.class);
+                startActivity(gameSelector);
+                GameStatus.getInstance().newGame();
+                finish();
                 return true;
             default:super.onOptionsItemSelected(item);
         }

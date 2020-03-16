@@ -20,11 +20,9 @@ public class ExitAlert extends DialogFragment {
 
     }
 
-
     @Override
     public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.exit_alert, container, false);
-
 
         Button yesButton = (Button) v.findViewById(R.id.yesButton);
         Button noButton = (Button) v.findViewById(R.id.noButton);
@@ -45,7 +43,7 @@ public class ExitAlert extends DialogFragment {
                     if (GameStatus.getInstance().confirmationCode.equals(getResources().getString(R.string.code)))
                         DbManager.getInstance().saveValidatedGame();
                     else
-                        DbManager.getInstance().saveUnValidatedGame();
+                        DbManager.getInstance().saveUnValidatedGame(GameStatus.getInstance().winner);
                 }
                 GameStatus.getInstance().newGame();
                 getActivity().finish();
