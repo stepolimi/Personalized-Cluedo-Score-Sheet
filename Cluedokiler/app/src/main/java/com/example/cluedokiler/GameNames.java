@@ -1,10 +1,15 @@
 package com.example.cluedokiler;
 
-public class GameNames {
+import java.io.Serializable;
+
+import static com.example.cluedokiler.Parameters.OUR_CLUEDO;
+
+public class GameNames implements Serializable {
 
     private String[] suspects;
     private String[] weapons;
     private String[] places;
+    private String gameMode;
     boolean modified;
 
     public GameNames(String[] suspects, String[] weapons, String[] places) {
@@ -12,6 +17,7 @@ public class GameNames {
         this.weapons = weapons;
         this.places = places;
         modified = false;
+        gameMode = OUR_CLUEDO;
     }
 
     public GameNames(){
@@ -63,5 +69,13 @@ public class GameNames {
 
     public void setModified(boolean modified) {
         this.modified = modified;
+    }
+
+    public String getGameMode() {
+        return gameMode;
+    }
+
+    public void setGameMode(String gameMode) {
+        this.gameMode = gameMode;
     }
 }

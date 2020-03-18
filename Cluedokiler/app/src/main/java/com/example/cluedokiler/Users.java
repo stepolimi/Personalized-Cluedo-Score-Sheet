@@ -8,6 +8,7 @@ public class Users {
     public Users(ArrayList<String> players) {
         this.players = players;
     }
+
     public Users(){}
 
     public ArrayList<String> getPlayers() {

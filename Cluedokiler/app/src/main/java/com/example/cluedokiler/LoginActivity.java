@@ -43,7 +43,6 @@ public class LoginActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setElevation(Float.valueOf(100));
 
-
         TextView loginTextView = findViewById(R.id.loginTextView);
 
         Intent myIntent = getIntent();
@@ -104,7 +103,6 @@ public class LoginActivity extends AppCompatActivity {
                     toast.setGravity(Gravity.BOTTOM, 0, 20);
                     toast.show();
                 }
-
             }
         });
 
@@ -119,8 +117,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         };
         getOnBackPressedDispatcher().addCallback(this, callback);
-
-
     }
 
     private void setColors(){

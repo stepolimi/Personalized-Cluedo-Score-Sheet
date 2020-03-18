@@ -1,9 +1,10 @@
 package com.example.cluedokiler;
 
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.HashMap;
 
-public class GameTable {
+public class GameTable implements Serializable {
 
     public String player;
     public HashMap<String,String> gameTableHash;

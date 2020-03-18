@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         compileSpinners();
 
-        setNameTextView();
+        setProfile();
 
         resetButton = (Button) findViewById(R.id.resetButton);
         resetButton.setOnClickListener(new View.OnClickListener() {
@@ -126,6 +126,8 @@ public class MainActivity extends AppCompatActivity {
         setTopBarButtons();
 
         setMultiPlayerCode();
+
+        setProfile();
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true ) {
             @Override
@@ -339,11 +341,6 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setNameTextView(){
-        TextView textView = findViewById(R.id.nameTextView);
-        textView.setText(GameStatus.getInstance().playerName);
-    }
-
     public void setStatisticsButton(){
         statisticsButton = (Button) findViewById(R.id.statisticsButton);
 
@@ -385,6 +382,9 @@ public class MainActivity extends AppCompatActivity {
                     toast.setGravity(Gravity.BOTTOM, 0, 20);
                     toast.show();
                 }else {
+                    Toast toast = Toast.makeText(MainActivity.super.getApplicationContext(), "Codice inserito correttamente", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.BOTTOM, 0, 20);
+                    toast.show();
                     GameStatus.getInstance().multiPlayerCode = Long.parseLong(setCodeText.getText().toString());
                     getCodeText.setText(String.valueOf(GameStatus.getInstance().multiPlayerCode));
                 }
@@ -405,12 +405,25 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void setProfile(){
+        TextView profileTextView = findViewById(R.id.profileTextView);
+        profileTextView.setText(GameStatus.getInstance().playerName);
+
+        profileTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent profile = new Intent(getApplicationContext(), ProfileActivity.class);
+                startActivity(profile);
+            }
+        });
+    }
+
     @Override
     protected void onResume(){
         super.onResume();
         final Button playButton = (Button) findViewById(R.id.playButton);
 
-        setNameTextView();
+        setProfile();
 
         setColors();
 

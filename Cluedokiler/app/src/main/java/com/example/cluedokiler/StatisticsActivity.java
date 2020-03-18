@@ -119,7 +119,7 @@ public class StatisticsActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.settings_menu,menu);
+        inflater.inflate(R.menu.statistics_menu,menu);
         return true;
     }
 

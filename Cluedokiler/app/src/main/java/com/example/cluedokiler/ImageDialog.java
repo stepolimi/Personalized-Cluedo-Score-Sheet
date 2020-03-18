@@ -17,8 +17,8 @@ import androidx.fragment.app.DialogFragment;
 
 public class ImageDialog extends DialogFragment {
 
-    int resource;
-    AlertDialog.Builder builder;
+    private int resource;
+    private AlertDialog.Builder builder;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -168,8 +168,6 @@ public class ImageDialog extends DialogFragment {
             text = "";
         }
 
-
-
         Toast toast = Toast.makeText(context, text, Toast.LENGTH_LONG);
         toast.setGravity(Gravity.BOTTOM|Gravity.FILL_HORIZONTAL, 0, 20);
         toast.show();
@@ -184,7 +182,6 @@ public class ImageDialog extends DialogFragment {
 
         builder.setView(v)
             .setMessage("ciao");
-
         return v;
     }
 

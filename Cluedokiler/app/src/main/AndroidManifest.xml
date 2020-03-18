@@ -9,6 +9,9 @@
         android:roundIcon="@mipmap/cluedo_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".ShowPastGameActivity"></activity>
+        <activity android:name=".PastGamesActivity" />
+        <activity android:name=".ProfileActivity" />
         <activity android:name=".GameSelectorActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +24,7 @@
         <activity android:name=".CodeAlert" />
         <activity android:name=".StatisticsActivity" />
         <activity android:name=".GameActivity" />
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

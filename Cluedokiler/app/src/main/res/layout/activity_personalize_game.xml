@@ -98,7 +98,9 @@
             <LinearLayout
                 android:layout_weight="2"
                 android:layout_width ="match_parent"
-                android:layout_height="50dp">
+                android:layout_height="50dp"
+                android:descendantFocusability="beforeDescendants"
+                android:focusableInTouchMode="true">
 
 
                 <EditText
@@ -328,7 +330,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:textColor="#000000"
-                    android:text="Posti"
+                    android:text="Luoghi"
                     android:textSize="18sp"
                     android:gravity="center"
                     android:layout_margin = "5dp"/>
@@ -341,7 +343,7 @@
 
                 <EditText
                     android:id="@+id/places1"
-                    android:hint="posto 1"
+                    android:hint="luogo 1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -358,7 +360,7 @@
 
                 <EditText
                     android:id="@+id/places2"
-                    android:hint="posto 2"
+                    android:hint="luogo 2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -375,7 +377,7 @@
 
                 <EditText
                     android:id="@+id/places3"
-                    android:hint="posto 3"
+                    android:hint="luogo 3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -392,7 +394,7 @@
 
             <EditText
                 android:id="@+id/places4"
-                android:hint="posto 4"
+                android:hint="luogo 4"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -409,7 +411,7 @@
 
                 <EditText
                     android:id="@+id/places5"
-                    android:hint="posto 5"
+                    android:hint="luogo 5"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -426,7 +428,7 @@
 
                 <EditText
                     android:id="@+id/places6"
-                    android:hint="posto 6"
+                    android:hint="luogo 6"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -442,7 +444,7 @@
 
                 <EditText
                     android:id="@+id/places7"
-                    android:hint="posto 7"
+                    android:hint="luogo 7"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -459,7 +461,7 @@
 
                 <EditText
                     android:id="@+id/places8"
-                    android:hint="posto 8"
+                    android:hint="luogo 8"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -476,7 +478,7 @@
 
                 <EditText
                     android:id="@+id/places9"
-                    android:hint="posto 9"
+                    android:hint="luogo 9"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

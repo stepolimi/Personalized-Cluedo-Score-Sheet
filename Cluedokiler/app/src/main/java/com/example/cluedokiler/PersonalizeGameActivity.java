@@ -20,6 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import static com.example.cluedokiler.Parameters.CUSTOM_CLUEDO;
 import static com.example.cluedokiler.Parameters.MyPREFERENCES;
 
 public class PersonalizeGameActivity extends AppCompatActivity {
@@ -96,6 +97,7 @@ public class PersonalizeGameActivity extends AppCompatActivity {
                         gameNames.addPlace(places[i].getText().toString(),i);
                 }
                 gameNames.setModified(true);
+                gameNames.setGameMode(CUSTOM_CLUEDO);
                 GameStatus.getInstance().gameNames = gameNames;
 
                 Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);

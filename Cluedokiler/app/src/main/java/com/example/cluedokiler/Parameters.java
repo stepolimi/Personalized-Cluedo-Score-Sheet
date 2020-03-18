@@ -5,13 +5,15 @@ import android.graphics.Color;
 public class Parameters {
     public static String MyPREFERENCES = "preferences";
 
+    //Colors
+
     public static String PURPLE = "purple";
     public static int PURPLE_MAIN_COLOR = Color.parseColor("#512da8");
     public static int PURPLE_SECONDARY_COLOR = Color.parseColor("#e6ceff");
 
     public static String GREEN = "green";
-    public static int GREEN_MAIN_COLOR = Color.parseColor("#23A83E");
-    public static int GREEN_SECONDARY_COLOR = Color.parseColor("#23A83E");
+    public static int GREEN_MAIN_COLOR = Color.parseColor("#2e7d32");
+    public static int GREEN_SECONDARY_COLOR = Color.parseColor("#2e7d32");
 
     public static String ORANGE = "orange";
     public static int ORANGE_MAIN_COLOR = Color.parseColor("#A88420");
@@ -27,6 +29,10 @@ public class Parameters {
     public static int WB_MAIN_TEXT_COLOR = Color.parseColor("#000000");
     public static int WB_SECONDARY_TEXT_COLOR = Color.parseColor("#ffffff");
 
-
+    //Game mods
+    public static String OUR_CLUEDO = "ourCluedo";
+    public static String HARRY_CLUEDO = "harryPotterCluedo";
+    public static String STANDARD_CLUEDO = "standardCluedo";
+    public static String CUSTOM_CLUEDO = "customCluedo";
 
 }

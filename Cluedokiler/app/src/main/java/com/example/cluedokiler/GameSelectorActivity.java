@@ -18,7 +18,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import static com.example.cluedokiler.Parameters.HARRY_CLUEDO;
 import static com.example.cluedokiler.Parameters.MyPREFERENCES;
+import static com.example.cluedokiler.Parameters.OUR_CLUEDO;
+import static com.example.cluedokiler.Parameters.STANDARD_CLUEDO;
 
 public class GameSelectorActivity extends AppCompatActivity {
 
@@ -58,6 +61,7 @@ public class GameSelectorActivity extends AppCompatActivity {
                 gameNames.setSuspects(getResources().getStringArray(R.array.suspects));
                 gameNames.setWeapons(getResources().getStringArray(R.array.weapons));
                 gameNames.setPlaces(getResources().getStringArray(R.array.places));
+                gameNames.setGameMode(OUR_CLUEDO);
                 GameStatus.getInstance().gameNames = gameNames;
                 Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(mainIntent);
@@ -71,6 +75,7 @@ public class GameSelectorActivity extends AppCompatActivity {
                 gameNames.setSuspects(getResources().getStringArray(R.array.suspectsHarry));
                 gameNames.setWeapons(getResources().getStringArray(R.array.weaponsHarry));
                 gameNames.setPlaces(getResources().getStringArray(R.array.placesHarry));
+                gameNames.setGameMode(HARRY_CLUEDO);
                 GameStatus.getInstance().gameNames = gameNames;
                 gameNames.setModified(true);
                 Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
@@ -85,6 +90,7 @@ public class GameSelectorActivity extends AppCompatActivity {
                 gameNames.setSuspects(getResources().getStringArray(R.array.suspectsStandard));
                 gameNames.setWeapons(getResources().getStringArray(R.array.weaponsStandard));
                 gameNames.setPlaces(getResources().getStringArray(R.array.placesStandard));
+                gameNames.setGameMode(STANDARD_CLUEDO);
                 GameStatus.getInstance().gameNames = gameNames;
                 gameNames.setModified(true);
                 Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);

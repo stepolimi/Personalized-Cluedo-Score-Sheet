@@ -62,9 +62,7 @@ public class DeclareWinnerDialog extends DialogFragment implements AdapterView.O
                 DeclareWinnerDialog.this.dismiss();
             }
         });
-
         builder.setView(v);
-
         return v;
     }
 
@@ -74,7 +72,5 @@ public class DeclareWinnerDialog extends DialogFragment implements AdapterView.O
     }
 
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
+    public void onNothingSelected(AdapterView<?> parent) { }
 }

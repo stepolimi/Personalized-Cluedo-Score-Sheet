@@ -20,7 +20,6 @@ public class CodeAlert extends DialogFragment {
         builder = new AlertDialog.Builder(getActivity());
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.code_alert, container, false);
@@ -48,10 +47,7 @@ public class CodeAlert extends DialogFragment {
                 CodeAlert.this.dismiss();
             }
         });
-
         builder.setView(v);
-
         return v;
-
     }
 }

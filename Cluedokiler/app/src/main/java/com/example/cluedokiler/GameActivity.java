@@ -2,7 +2,6 @@ package com.example.cluedokiler;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -32,7 +31,6 @@ import static com.example.cluedokiler.Parameters.MyPREFERENCES;
 
 public class GameActivity extends AppCompatActivity {
 
-    String[] players;
     String[] suspects;
     String[] weapons;
     String[] places;
@@ -46,8 +44,6 @@ public class GameActivity extends AppCompatActivity {
 
         setColors();
 
-        Resources res = getResources();
-        players = res.getStringArray(R.array.players);
         suspects = GameStatus.getInstance().gameNames.getSuspects();
         weapons =  GameStatus.getInstance().gameNames.getWeapons();
         places =  GameStatus.getInstance().gameNames.getPlaces();
@@ -173,7 +169,6 @@ public class GameActivity extends AppCompatActivity {
         editor.apply();
     }
 
-
     private void setHideSwitcher(){
         final SwitchCompat hideAnswersSwitch =  findViewById(R.id.switch1);
         final GameStatus gameStatus = GameStatus.getInstance();
@@ -250,13 +245,10 @@ public class GameActivity extends AppCompatActivity {
                             }
                         }
                     }
-
                 }
-
             }
         });
     }
-
 
     private void nameViews() {
         ArrayList<TextView> susTextViews = new ArrayList<>();
@@ -306,7 +298,6 @@ public class GameActivity extends AppCompatActivity {
                         imageDialog.setArguments(args);
 
                         imageDialog.show(getSupportFragmentManager(), "imageDialog");
-
                     }
                 });
             }
@@ -336,20 +327,15 @@ public class GameActivity extends AppCompatActivity {
                         imageDialog.setArguments(args);
 
                         imageDialog.show(getSupportFragmentManager(), "imageDialog");
-
                     }
                 });
             }
         }
-
-
-
     }
 
     private void setImages(){
         final GameStatus gameStatus = GameStatus.getInstance();
         TableLayout gameTableLayout = (TableLayout) findViewById(R.id.gameTableLayout);
-
 
         for (int i = 0; i < gameTableLayout.getChildCount(); i++) {
             TableRow gameTableRow = (TableRow) gameTableLayout.getChildAt(i);
@@ -385,7 +371,6 @@ public class GameActivity extends AppCompatActivity {
         }
         gameStatus.tableSet = true;
 
-
         for (int i = 0; i < gameTableLayout.getChildCount(); i++) {
             TableRow gameTableRow = (TableRow) gameTableLayout.getChildAt(i);
             for (int x = 0; x < gameTableRow.getChildCount(); x++) {
@@ -396,7 +381,6 @@ public class GameActivity extends AppCompatActivity {
                     itemTableLayout.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-
                             if( tableImageView.getTag().equals("tick")) {
                                 scaleImages((ImageView) itemTableLayout, R.drawable.cross);
                                 tableImageView.setTag("cross");
@@ -429,9 +413,7 @@ public class GameActivity extends AppCompatActivity {
                         }
                     });
                 }
-
             }
-
         }
     }
 
@@ -453,7 +435,6 @@ public class GameActivity extends AppCompatActivity {
 
         Bitmap scaleImg = BitmapFactory.decodeResource(getResources(),pic,scalingOptions);
         imageView.setImageBitmap(scaleImg);
-
     }
 
     private void completeRows(){

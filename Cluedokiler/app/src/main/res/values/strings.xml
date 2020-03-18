@@ -2,13 +2,13 @@
     <string name="app_name">Cluedo killer</string>
 
     <string-array name="suspects">
-    <item>Gio bliss</item>
-    <item>Jorko</item>
-    <item>Chiara DiFra</item>
-    <item>Fungo</item>
-    <item>Giulio</item>
-    <item>Darko</item>
-</string-array>
+        <item>Gio bliss</item>
+        <item>Jorko</item>
+        <item>Chiara DiFra</item>
+        <item>Fungo</item>
+        <item>Giulio</item>
+        <item>Darko</item>
+    </string-array>
 
     <string-array name="weapons">
         <item>Coltello</item>
@@ -62,7 +62,7 @@
     </string-array>
 
     <string-array name="suspectsStandard">
-        <item>plum</item>
+        <item>Plum</item>
         <item>Orchid</item>
         <item>Scarlet</item>
         <item>Green</item>
