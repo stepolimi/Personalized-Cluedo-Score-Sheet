@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ProfileActivity"
+    tools:context=".profile.ProfileActivity"
     android:orientation="vertical"
     android:background="@drawable/screen_background">
 
@@ -120,20 +120,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         >
 
         <Button
-            android:id="@+id/somethingButton1"
+            android:id="@+id/personalStatsButton"
             android:layout_width="300dp"
             android:layout_height="45dp"
             android:layout_marginTop="28dp"
             android:background="@drawable/button_background"
             android:elevation="10dp"
             android:textAllCaps="false"
-            android:text="Qualcosa"
+            android:text="Statistiche personali"
             android:textColor="#ffffff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
@@ -147,14 +148,14 @@
         >
 
         <Button
-            android:id="@+id/somethingButton2"
+            android:id="@+id/visitProfileButton"
             android:layout_width="300dp"
             android:layout_height="45dp"
             android:layout_marginTop="28dp"
             android:background="@drawable/button_background"
             android:elevation="10dp"
             android:textAllCaps="false"
-            android:text="Qualcosa"
+            android:text="Cerca un giocatore"
             android:textColor="#ffffff"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"

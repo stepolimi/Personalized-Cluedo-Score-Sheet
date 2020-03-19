@@ -1,4 +1,4 @@
-package com.example.cluedokiler;
+package com.example.cluedokiler.parameters;
 
 import android.graphics.Color;
 

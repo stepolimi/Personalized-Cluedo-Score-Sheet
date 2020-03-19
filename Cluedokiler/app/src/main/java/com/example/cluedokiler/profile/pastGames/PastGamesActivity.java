@@ -1,4 +1,4 @@
-package com.example.cluedokiler;
+package com.example.cluedokiler.profile.pastGames;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,6 +18,11 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cluedokiler.models.GameNames;
+import com.example.cluedokiler.gameInstance.GameStatus;
+import com.example.cluedokiler.models.GameTable;
+import com.example.cluedokiler.parameters.Parameters;
+import com.example.cluedokiler.R;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,7 +31,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import static com.example.cluedokiler.Parameters.MyPREFERENCES;
+import static com.example.cluedokiler.parameters.Parameters.MyPREFERENCES;
 
 public class PastGamesActivity extends AppCompatActivity {
 
@@ -43,6 +48,7 @@ public class PastGamesActivity extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
     private SharedPreferences preferences;
     private ImageView backArrow;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +56,11 @@ public class PastGamesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_past_games);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        name = getIntent().getStringExtra("name");
 
         setColors();
 
-        db = FirebaseDatabase.getInstance().getReference().child(GameStatus.getInstance().playerName);
+        db = FirebaseDatabase.getInstance().getReference().child(name);
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -73,7 +80,7 @@ public class PastGamesActivity extends AppCompatActivity {
                         gameTables.add(data.child("GameTable").getValue(GameTable.class));
                         winners.add(data.child("Winner").getValue(String.class));
                         gameMode.add(data.child("GameMode").getValue(String.class));
-                       // gameNames.add(data.child("GameNames").getValue(GameNames.class));
+                        gameNames.add(data.child("GameNames").getValue(GameNames.class));
                     }
                     i++;
                 }
@@ -83,7 +90,7 @@ public class PastGamesActivity extends AppCompatActivity {
                 }
 
                 pastGamesRecyclerView = findViewById(R.id.pastGamesRecyclerView);
-                //pastGamesRecyclerView.setHasFixedSize(true);    true if items doesent change
+                //pastGamesRecyclerView.setHasFixedSize(true);    //true if items doesent change
                 layoutManager = new LinearLayoutManager(PastGamesActivity.super.getApplicationContext());
                 pastGamesRecyclerView.setLayoutManager(layoutManager);
                 adapter = new PastGamesAdapter(pastGames);
@@ -93,7 +100,8 @@ public class PastGamesActivity extends AppCompatActivity {
                     public void onItemClick(int position) {
                         Intent showPastGame = new Intent(getApplicationContext(), ShowPastGameActivity.class);
                         showPastGame.putExtra("game", pastGames.get(position));
-                        //showPastGame.putExtra("gameNames", gameNames.get(position));
+                        showPastGame.putExtra("gameNames", gameNames.get(position));
+                        showPastGame.putExtra("name", name);
                         startActivity(showPastGame);
                     }
                 });

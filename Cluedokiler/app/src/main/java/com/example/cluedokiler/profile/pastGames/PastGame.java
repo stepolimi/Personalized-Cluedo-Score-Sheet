@@ -1,4 +1,6 @@
-package com.example.cluedokiler;
+package com.example.cluedokiler.profile.pastGames;
+
+import com.example.cluedokiler.models.GameTable;
 
 import java.io.Serializable;
 import java.util.ArrayList;

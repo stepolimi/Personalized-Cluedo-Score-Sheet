@@ -1,7 +1,9 @@
-package com.example.cluedokiler;
+package com.example.cluedokiler.db;
 
 import androidx.annotation.NonNull;
 
+import com.example.cluedokiler.gameInstance.GameStatus;
+import com.example.cluedokiler.models.Users;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,7 +37,7 @@ public class DbManager {
         DatabaseReference db2= FirebaseDatabase.getInstance().getReference().child(GameStatus.getInstance().playerName).child(String.valueOf(GameStatus.getInstance().multiPlayerCode));
         db2.child("Players").setValue(GameStatus.getInstance().playersNames);
         db2.child("GameTable").setValue(GameStatus.getInstance().gameTableHash);
-        //db2.child("GameNames").setValue(GameStatus.getInstance().gameNames);
+        db2.child("GameNames").setValue(GameStatus.getInstance().gameNames);
         db2.child("GameMode").setValue(GameStatus.getInstance().gameNames.getGameMode());
         db2.child("Winner").setValue(GameStatus.getInstance().winner);
         if (GameStatus.getInstance().confirmationCode.equals("passwordsicurissima"))

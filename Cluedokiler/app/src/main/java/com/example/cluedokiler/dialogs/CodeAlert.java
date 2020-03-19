@@ -1,4 +1,4 @@
-package com.example.cluedokiler;
+package com.example.cluedokiler.dialogs;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
+
+import com.example.cluedokiler.gameInstance.GameStatus;
+import com.example.cluedokiler.R;
 
 public class CodeAlert extends DialogFragment {
     AlertDialog.Builder builder;

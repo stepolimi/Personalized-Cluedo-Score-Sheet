@@ -23,10 +23,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.cluedokiler.gameInstance.GameStatus;
+import com.example.cluedokiler.parameters.Parameters;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static com.example.cluedokiler.Parameters.MyPREFERENCES;
+import static com.example.cluedokiler.parameters.Parameters.MyPREFERENCES;
 
 public class LoginActivity extends AppCompatActivity {
     SharedPreferences preferences;

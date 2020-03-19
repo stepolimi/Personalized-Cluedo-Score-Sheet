@@ -9,19 +9,21 @@
         android:roundIcon="@mipmap/cluedo_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowPastGameActivity"></activity>
-        <activity android:name=".PastGamesActivity" />
-        <activity android:name=".ProfileActivity" />
-        <activity android:name=".GameSelectorActivity">
+        <activity android:name=".profile.SearchProfile"></activity>
+        <activity android:name=".profile.statistics.PersonalStatsActivity" />
+        <activity android:name=".profile.pastGames.ShowPastGameActivity" />
+        <activity android:name=".profile.pastGames.PastGamesActivity" />
+        <activity android:name=".profile.ProfileActivity" />
+        <activity android:name=".gameTypes.GameSelectorActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".PersonalizeGameActivity" />
+        <activity android:name=".gameTypes.PersonalizeGameActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".CodeAlert" />
+        <activity android:name=".dialogs.CodeAlert" />
         <activity android:name=".StatisticsActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name=".MainActivity" />

@@ -1,6 +1,5 @@
-package com.example.cluedokiler;
+package com.example.cluedokiler.dialogs;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,11 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
 
-public class ExitGameAlert extends DialogFragment {
+import com.example.cluedokiler.db.DbManager;
+import com.example.cluedokiler.gameInstance.GameStatus;
+import com.example.cluedokiler.R;
+
+public class ExitAlert extends DialogFragment {
     AlertDialog.Builder builder;
 
     @Override
@@ -19,12 +22,10 @@ public class ExitGameAlert extends DialogFragment {
         super.onCreate(savedInstanceState);
         builder = new AlertDialog.Builder(getActivity());
 
-        final Context context = super.getContext();
-        CharSequence text;
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(final LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.exit_alert, container, false);
 
         Button yesButton = (Button) v.findViewById(R.id.yesButton);
@@ -32,20 +33,32 @@ public class ExitGameAlert extends DialogFragment {
 
         TextView confirmRequestTextView = (TextView) v.findViewById(R.id.confirmRequestTextView);
 
-        confirmRequestTextView.setText("Sei sicuro di voler uscire dal gioco?\n ");
+        confirmRequestTextView.setText("Sei sicuro di voler abbandonare la partita?");
 
         yesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final GameStatus gameStatus = GameStatus.getInstance();
+                gameStatus.gameTableHash.values();
+
+                DbManager.getInstance().saveGameRecord();
+
+                if(!GameStatus.getInstance().winner.equals("")) {
+                    if (GameStatus.getInstance().confirmationCode.equals(getResources().getString(R.string.code)))
+                        DbManager.getInstance().saveValidatedGame();
+                    else
+                        DbManager.getInstance().saveUnValidatedGame(GameStatus.getInstance().winner);
+                }
+                GameStatus.getInstance().newGame();
                 getActivity().finish();
-                ExitGameAlert.this.dismiss();
+                ExitAlert.this.dismiss();
             }
         });
 
         noButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ExitGameAlert.this.dismiss();
+                ExitAlert.this.dismiss();
             }
         });
 

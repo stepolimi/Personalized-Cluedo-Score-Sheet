@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item android:id="@+id/personalStatsMenu1"
+        android:title="Cambia tema"
+        app:showAsAction="never">
+        <menu>
+            <item android:id="@+id/personalStatsMenu11"
+                android:title="Verde"/>
+            <item android:id="@+id/personalStatsMenu12"
+                android:title="Viola"/>
+            <item android:id="@+id/personalStatsMenu13"
+                android:title="Arancione"/>
+            <item android:id="@+id/personalStatsMenu14"
+                android:title="Bianco e nero"/>
+        </menu>
+
+    </item>
+</menu>

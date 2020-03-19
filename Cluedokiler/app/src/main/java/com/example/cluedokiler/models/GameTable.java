@@ -1,4 +1,4 @@
-package com.example.cluedokiler;
+package com.example.cluedokiler.models;
 
 import java.io.Serializable;
 import java.util.Collection;

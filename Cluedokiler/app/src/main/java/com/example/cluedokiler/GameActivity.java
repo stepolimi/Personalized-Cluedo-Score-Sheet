@@ -25,15 +25,23 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.cluedokiler.db.DbManager;
+import com.example.cluedokiler.dialogs.CodeAlert;
+import com.example.cluedokiler.dialogs.DeclareWinnerDialog;
+import com.example.cluedokiler.dialogs.ExitAlert;
+import com.example.cluedokiler.dialogs.ImageDialog;
+import com.example.cluedokiler.gameInstance.GameStatus;
+import com.example.cluedokiler.parameters.Parameters;
+
 import java.util.ArrayList;
 
-import static com.example.cluedokiler.Parameters.MyPREFERENCES;
+import static com.example.cluedokiler.parameters.Parameters.MyPREFERENCES;
 
 public class GameActivity extends AppCompatActivity {
 
-    String[] suspects;
-    String[] weapons;
-    String[] places;
+    ArrayList<String> suspects;
+    ArrayList<String> weapons;
+    ArrayList<String> places;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -260,7 +268,7 @@ public class GameActivity extends AppCompatActivity {
         susTextViews.add(5, (TextView) findViewById(R.id.textView13));
 
         for (int i = 0; i < 6; i++) {
-            susTextViews.get(i).setText(suspects[i]);
+            susTextViews.get(i).setText(suspects.get(i));
             if(!GameStatus.getInstance().gameNames.isModified()) {
                 final TextView textView = susTextViews.get(i);
                 susTextViews.get(i).setOnClickListener(new View.OnClickListener() {
@@ -286,7 +294,7 @@ public class GameActivity extends AppCompatActivity {
         weapTextViews.add(5, (TextView) findViewById(R.id.textView21));
 
         for (int i = 0; i < 6; i++) {
-            weapTextViews.get(i).setText(weapons[i]);
+            weapTextViews.get(i).setText(weapons.get(i));
             if(!GameStatus.getInstance().gameNames.isModified()) {
                 final TextView textView = weapTextViews.get(i);
                 weapTextViews.get(i).setOnClickListener(new View.OnClickListener() {
@@ -315,7 +323,7 @@ public class GameActivity extends AppCompatActivity {
         placeTextViews.add(8, (TextView) findViewById(R.id.textView31));
 
         for (int i = 0; i < 9; i++) {
-            placeTextViews.get(i).setText(places[i]);
+            placeTextViews.get(i).setText(places.get(i));
             if(!GameStatus.getInstance().gameNames.isModified()) {
                 final TextView textView = placeTextViews.get(i);
                 placeTextViews.get(i).setOnClickListener(new View.OnClickListener() {

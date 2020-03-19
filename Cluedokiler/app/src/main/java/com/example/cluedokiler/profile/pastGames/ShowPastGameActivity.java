@@ -1,4 +1,4 @@
-package com.example.cluedokiler;
+package com.example.cluedokiler.profile.pastGames;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -24,22 +24,27 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.cluedokiler.models.GameNames;
+import com.example.cluedokiler.gameInstance.GameStatus;
+import com.example.cluedokiler.parameters.Parameters;
+import com.example.cluedokiler.R;
+import com.example.cluedokiler.dialogs.ImageDialog;
+
 import java.util.ArrayList;
 
-import static com.example.cluedokiler.Parameters.HARRY_CLUEDO;
-import static com.example.cluedokiler.Parameters.MyPREFERENCES;
-import static com.example.cluedokiler.Parameters.OUR_CLUEDO;
-import static com.example.cluedokiler.Parameters.STANDARD_CLUEDO;
+import static com.example.cluedokiler.parameters.Parameters.MyPREFERENCES;
+import static com.example.cluedokiler.parameters.Parameters.OUR_CLUEDO;
 
 public class ShowPastGameActivity extends AppCompatActivity {
 
-    SharedPreferences preferences;
-    PastGame game;
-    GameNames gameNames;
-    int numCol;
-    String[] suspects;
-    String[] weapons;
-    String[] places;
+    private SharedPreferences preferences;
+    private PastGame game;
+    private GameNames gameNames;
+    private int numCol;
+    private ArrayList<String> suspects;
+    private ArrayList<String> weapons;
+    private ArrayList<String> places;
+    private String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +56,8 @@ public class ShowPastGameActivity extends AppCompatActivity {
         setColors();
 
         game = (PastGame)getIntent().getSerializableExtra("game");
-        //gameNames = (GameNames) getIntent().getSerializableExtra("gameNames");
+        gameNames = (GameNames) getIntent().getSerializableExtra("gameNames");
+        name = getIntent().getStringExtra("name");
 
         final ArrayList<TextView> playerTextViews = new ArrayList<>();
         playerTextViews.add(0,(TextView) findViewById(R.id.player1TextView));
@@ -152,6 +158,7 @@ public class ShowPastGameActivity extends AppCompatActivity {
     }
 
     private void setResources(){
+        /*
         if(game.getGameMode().equals(HARRY_CLUEDO)) {
             suspects = (getResources().getStringArray(R.array.suspectsHarry));
             weapons = (getResources().getStringArray(R.array.weaponsHarry));
@@ -172,10 +179,10 @@ public class ShowPastGameActivity extends AppCompatActivity {
             weapons = (getResources().getStringArray(R.array.weaponsStandard));
             places = (getResources().getStringArray(R.array.placesStandard));
         }
-/*
+*/
         suspects = gameNames.getSuspects();
         weapons = gameNames.getWeapons();
-        places = gameNames.getPlaces();*/
+        places = gameNames.getPlaces();
     }
 
     private void nameViews() {
@@ -188,7 +195,7 @@ public class ShowPastGameActivity extends AppCompatActivity {
         susTextViews.add(5, (TextView) findViewById(R.id.textView13));
 
         for (int i = 0; i < 6; i++) {
-            susTextViews.get(i).setText(suspects[i]);
+            susTextViews.get(i).setText(suspects.get(i));
             if(game.getGameMode().equals(OUR_CLUEDO)) {
                 final TextView textView = susTextViews.get(i);
                 susTextViews.get(i).setOnClickListener(new View.OnClickListener() {
@@ -213,7 +220,7 @@ public class ShowPastGameActivity extends AppCompatActivity {
         weapTextViews.add(5, (TextView) findViewById(R.id.textView21));
 
         for (int i = 0; i < 6; i++) {
-            weapTextViews.get(i).setText(weapons[i]);
+            weapTextViews.get(i).setText(weapons.get(i));
             if(game.getGameMode().equals(OUR_CLUEDO)) {
                 final TextView textView = weapTextViews.get(i);
                 weapTextViews.get(i).setOnClickListener(new View.OnClickListener() {
@@ -242,7 +249,7 @@ public class ShowPastGameActivity extends AppCompatActivity {
         placeTextViews.add(8, (TextView) findViewById(R.id.textView31));
 
         for (int i = 0; i < 9; i++) {
-            placeTextViews.get(i).setText(places[i]);
+            placeTextViews.get(i).setText(places.get(i));
             if(game.getGameMode().equals(OUR_CLUEDO)) {
                 final TextView textView = placeTextViews.get(i);
                 placeTextViews.get(i).setOnClickListener(new View.OnClickListener() {

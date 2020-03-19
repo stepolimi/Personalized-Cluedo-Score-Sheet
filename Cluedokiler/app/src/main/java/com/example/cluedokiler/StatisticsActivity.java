@@ -16,6 +16,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.cluedokiler.dialogs.CodeAlert;
+import com.example.cluedokiler.gameInstance.GameStatus;
+import com.example.cluedokiler.models.GameTable;
+import com.example.cluedokiler.models.Users;
+import com.example.cluedokiler.parameters.Parameters;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +29,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
 
-import static com.example.cluedokiler.Parameters.MyPREFERENCES;
+import static com.example.cluedokiler.parameters.Parameters.MyPREFERENCES;
 
 public class StatisticsActivity extends AppCompatActivity {
 
@@ -190,14 +195,13 @@ public class StatisticsActivity extends AppCompatActivity {
         playerTextView[6] = (TextView) findViewById(R.id.statValueTextView3);
         playerTextView[5].setText("Totale spunte inserite: ");
         playerTextView[6].setText("");
-        db = FirebaseDatabase.getInstance().getReference().child("GameRecord");
+        db = FirebaseDatabase.getInstance().getReference().child(gameStatus.playerName);
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int numTicks=0;
                 for (DataSnapshot data: dataSnapshot.getChildren()){
-                    if(data.getValue(GameTable.class).getPlayer().equals(gameStatus.playerName))
-                        numTicks += data.getValue(GameTable.class).getNumTick();
+                    numTicks += data.child("GameTable").getValue(GameTable.class).getNumTick();
                 }
                 playerTextView[5].setText("Totale spunte inserite: ");
                 playerTextView[6].setText(String.valueOf(numTicks));
@@ -215,14 +219,13 @@ public class StatisticsActivity extends AppCompatActivity {
         playerTextView[8] = (TextView) findViewById(R.id.statValueTextView5);
         playerTextView[7].setText("Totale croci inserite: ");
         playerTextView[8].setText("");
-        db = FirebaseDatabase.getInstance().getReference().child("GameRecord");
+        db = FirebaseDatabase.getInstance().getReference().child(gameStatus.playerName);
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int numCrosses=0;
                 for (DataSnapshot data: dataSnapshot.getChildren()){
-                    if(data.getValue(GameTable.class).getPlayer().equals(gameStatus.playerName))
-                        numCrosses += data.getValue(GameTable.class).getNumCross();
+                    numCrosses += data.child("GameTable").getValue(GameTable.class).getNumCross();
                 }
                 playerTextView[7].setText("Totale croci inserite: ");
                 playerTextView[8].setText(String.valueOf(numCrosses));
@@ -240,14 +243,13 @@ public class StatisticsActivity extends AppCompatActivity {
         playerTextView[10] = (TextView) findViewById(R.id.statValueTextView4);
         playerTextView[9].setText("Totale spazi rimasti incerti: ");
         playerTextView[10].setText("");
-        db = FirebaseDatabase.getInstance().getReference().child("GameRecord");
+        db = FirebaseDatabase.getInstance().getReference().child(gameStatus.playerName);
         db.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int numEmpty=0;
                 for (DataSnapshot data: dataSnapshot.getChildren()){
-                    if(data.getValue(GameTable.class).getPlayer().equals(gameStatus.playerName))
-                        numEmpty += data.getValue(GameTable.class).getNumIncerts();
+                     numEmpty += data.child("GameTable").getValue(GameTable.class).getNumIncerts();
                 }
                 playerTextView[9].setText("Totale spazi rimasti incerti: ");
                 playerTextView[10].setText(String.valueOf(numEmpty));

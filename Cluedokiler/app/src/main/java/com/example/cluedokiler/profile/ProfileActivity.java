@@ -1,4 +1,4 @@
-package com.example.cluedokiler;
+package com.example.cluedokiler.profile;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +18,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import static com.example.cluedokiler.Parameters.MyPREFERENCES;
+import com.example.cluedokiler.R;
+import com.example.cluedokiler.gameInstance.GameStatus;
+import com.example.cluedokiler.parameters.Parameters;
+import com.example.cluedokiler.profile.pastGames.PastGamesActivity;
+import com.example.cluedokiler.profile.statistics.PersonalStatsActivity;
+
+import static com.example.cluedokiler.parameters.Parameters.MyPREFERENCES;
 
 public class ProfileActivity extends AppCompatActivity {
 
@@ -27,6 +33,9 @@ public class ProfileActivity extends AppCompatActivity {
     TextView profilePhrase;
     ImageView backArrow;
     Button pastGamesButton;
+    Button personalStatsButton;
+    Button visitProfileButton;
+    String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,19 +46,20 @@ public class ProfileActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setElevation(Float.valueOf(100));
 
+        name = getIntent().getStringExtra("name");
+
         setColors();
 
         setProfileImage();
 
         setBackArrow();
 
-        setPastGamesButton();
+        setButtons();
     }
 
     private void setProfileImage(){
         profileImage = findViewById(R.id.profileImageView);
         profilePhrase = findViewById(R.id.profilePhraseTextView);
-        String name = GameStatus.getInstance().playerName;
         int resource;
         String text;
 
@@ -113,40 +123,75 @@ public class ProfileActivity extends AppCompatActivity {
         });
     }
 
-    private void setPastGamesButton(){
+    private void setButtons(){
         pastGamesButton = findViewById(R.id.pastGamesButton);
+        personalStatsButton = findViewById(R.id.personalStatsButton);
+        visitProfileButton = findViewById(R.id.visitProfileButton);
         pastGamesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent pastGames = new Intent(getApplicationContext(), PastGamesActivity.class);
+                pastGames.putExtra("name", name);
                 startActivity(pastGames);
             }
         });
+        personalStatsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent personalStats = new Intent(getApplicationContext(), PersonalStatsActivity.class);
+                personalStats.putExtra("name", name);
+                startActivity(personalStats);
+            }
+        });
+        if(name.equals(GameStatus.getInstance().playerName)){
+            visitProfileButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent searchProfile = new Intent(getApplicationContext(), SearchProfile.class);
+                    searchProfile.putExtra("name", name);
+                    startActivity(searchProfile);
+                }
+            });
+        }else{
+            visitProfileButton.setVisibility(View.GONE);
+        }
     }
 
     private void setColors(){
         ConstraintLayout title = findViewById(R.id.titleProfileActivity);
         LinearLayout background = findViewById(R.id.layoutProfileActivity);
         pastGamesButton = findViewById(R.id.pastGamesButton);
+        personalStatsButton = findViewById(R.id.personalStatsButton);
+        visitProfileButton = findViewById(R.id.visitProfileButton);
 
         if(GameStatus.getInstance().theme.equals(Parameters.PURPLE)){
             pastGamesButton.setBackgroundResource(R.drawable.button_background);
+            personalStatsButton.setBackgroundResource(R.drawable.button_background);
+            visitProfileButton.setBackgroundResource(R.drawable.button_background);
             title.setBackgroundColor(Parameters.PURPLE_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background);
         }else if(GameStatus.getInstance().theme.equals(Parameters.GREEN)){
             pastGamesButton.setBackgroundResource(R.drawable.button_background_green);
+            personalStatsButton.setBackgroundResource(R.drawable.button_background_green);
+            visitProfileButton.setBackgroundResource(R.drawable.button_background_green);
             title.setBackgroundColor(Parameters.GREEN_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background_green);
         }else if(GameStatus.getInstance().theme.equals(Parameters.ORANGE)){
             pastGamesButton.setBackgroundResource(R.drawable.button_background_orange);
+            personalStatsButton.setBackgroundResource(R.drawable.button_background_orange);
+            visitProfileButton.setBackgroundResource(R.drawable.button_background_orange);
             title.setBackgroundColor(Parameters.ORANGE_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background_orange);
         }else if(GameStatus.getInstance().theme.equals(Parameters.BW)){
             pastGamesButton.setBackgroundResource(R.drawable.button_background_bw);
+            personalStatsButton.setBackgroundResource(R.drawable.button_background_bw);
+            visitProfileButton.setBackgroundResource(R.drawable.button_background_bw);
             title.setBackgroundColor(Parameters.BW_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background_bw);
         }else if(GameStatus.getInstance().theme.equals(Parameters.WB)){
             pastGamesButton.setBackgroundResource(R.drawable.button_background_wb);
+            personalStatsButton.setBackgroundResource(R.drawable.button_background_wb);
+            visitProfileButton.setBackgroundResource(R.drawable.button_background_wb);
             title.setBackgroundColor(Parameters.WB_MAIN_COLOR);
             background.setBackgroundResource(R.drawable.screen_background_wb);
         }

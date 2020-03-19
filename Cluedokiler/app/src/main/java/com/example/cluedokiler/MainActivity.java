@@ -24,10 +24,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.cluedokiler.db.DbManager;
+import com.example.cluedokiler.dialogs.CodeAlert;
+import com.example.cluedokiler.dialogs.ExitGameAlert;
+import com.example.cluedokiler.gameInstance.GameStatus;
+import com.example.cluedokiler.gameTypes.GameSelectorActivity;
+import com.example.cluedokiler.models.GameNames;
+import com.example.cluedokiler.parameters.Parameters;
+import com.example.cluedokiler.profile.ProfileActivity;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import static com.example.cluedokiler.Parameters.MyPREFERENCES;
+import static com.example.cluedokiler.parameters.Parameters.MyPREFERENCES;
 
 public class MainActivity extends AppCompatActivity {
     Button playButton;
@@ -89,9 +98,9 @@ public class MainActivity extends AppCompatActivity {
                     if(!gameStatus.tableSet) {
                         if(gameStatus.gameNames == null) {
                             GameNames gameNames = new GameNames();
-                            gameNames.setSuspects(getResources().getStringArray(R.array.suspects));
-                            gameNames.setWeapons(getResources().getStringArray(R.array.weapons));
-                            gameNames.setPlaces(getResources().getStringArray(R.array.places));
+                            gameNames.setSuspects(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.suspects))));
+                            gameNames.setWeapons(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.weapons))));
+                            gameNames.setPlaces(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.places))));
                             GameStatus.getInstance().gameNames = gameNames;
                         }
                         GameStatus.getInstance().gameTime = java.util.Calendar.getInstance().getTime().toString();
@@ -279,7 +288,6 @@ public class MainActivity extends AppCompatActivity {
                 String playerChoice;
                 playerChoice = parent.getItemAtPosition(position).toString();
 
-
                 if((!GameStatus.getInstance().tentativePlayers.contains(playerChoice) || GameStatus.getInstance().tentativePlayers.indexOf(playerChoice) == 3) || playerChoice.equals("--Vuoto--")) {
                     GameStatus.getInstance().tentativePlayers.set(3,playerChoice);
                 }
@@ -338,7 +346,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) { }
         });
-
     }
 
     public void setStatisticsButton(){
@@ -370,7 +377,7 @@ public class MainActivity extends AppCompatActivity {
 
         if(GameStatus.getInstance().multiPlayerCode == 0) {
             long time = java.util.Calendar.getInstance().getTime().getTime();
-            getCodeText.setText(String.valueOf(time));
+            getCodeText.setText("Codice: " + String.valueOf(time));
             GameStatus.getInstance().multiPlayerCode = time;
         }
 
@@ -386,7 +393,7 @@ public class MainActivity extends AppCompatActivity {
                     toast.setGravity(Gravity.BOTTOM, 0, 20);
                     toast.show();
                     GameStatus.getInstance().multiPlayerCode = Long.parseLong(setCodeText.getText().toString());
-                    getCodeText.setText(String.valueOf(GameStatus.getInstance().multiPlayerCode));
+                    getCodeText.setText("Codice: " + String.valueOf(GameStatus.getInstance().multiPlayerCode));
                 }
             }
         });
@@ -413,6 +420,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent profile = new Intent(getApplicationContext(), ProfileActivity.class);
+                profile.putExtra("name",GameStatus.getInstance().playerName);
                 startActivity(profile);
             }
         });

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layoutPersonalStatsActivity"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".profile.pastGames.PastGamesActivity"
+    android:orientation="vertical"
+    android:background="@drawable/screen_background">
+
+    <include
+        layout="@layout/toolbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/titlePersonalStatsActivity"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="#512da8"
+        android:elevation="10dp">
+
+
+        <TextView
+            android:id="@+id/personalStatsTextViewTitle"
+            style="@style/Widget.MaterialComponents.MaterialCalendar.DayTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Statistiche personali"
+            android:textColor="#ffffff"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.462"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+        </TextView>
+
+        <ImageView
+            android:id="@+id/personalStatsBackArrowImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back_arrow" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/personalStatsRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="4dp"
+        android:scrollbars="vertical"
+        />
+
+
+</LinearLayout>

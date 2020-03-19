@@ -1,4 +1,4 @@
-package com.example.cluedokiler;
+package com.example.cluedokiler.dialogs;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,6 +11,10 @@ import android.widget.Spinner;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
+
+import com.example.cluedokiler.gameInstance.GameStatus;
+import com.example.cluedokiler.R;
+import com.example.cluedokiler.db.DbManager;
 
 public class DeclareWinnerDialog extends DialogFragment implements AdapterView.OnItemSelectedListener {
     AlertDialog.Builder builder;

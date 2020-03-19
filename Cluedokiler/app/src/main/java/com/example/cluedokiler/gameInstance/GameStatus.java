@@ -1,4 +1,8 @@
-package com.example.cluedokiler;
+package com.example.cluedokiler.gameInstance;
+
+import com.example.cluedokiler.models.GameNames;
+import com.example.cluedokiler.models.GameTable;
+import com.example.cluedokiler.parameters.Parameters;
 
 import java.util.ArrayList;
 

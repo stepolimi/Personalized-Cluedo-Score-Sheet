@@ -1,4 +1,4 @@
-package com.example.cluedokiler;
+package com.example.cluedokiler.profile.pastGames;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,14 +8,16 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cluedokiler.R;
+
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Locale;
 
-import static com.example.cluedokiler.Parameters.HARRY_CLUEDO;
-import static com.example.cluedokiler.Parameters.OUR_CLUEDO;
-import static com.example.cluedokiler.Parameters.STANDARD_CLUEDO;
+import static com.example.cluedokiler.parameters.Parameters.HARRY_CLUEDO;
+import static com.example.cluedokiler.parameters.Parameters.OUR_CLUEDO;
+import static com.example.cluedokiler.parameters.Parameters.STANDARD_CLUEDO;
 
 public class PastGamesAdapter extends RecyclerView.Adapter<PastGamesAdapter.MyViewHolder> {
 
@@ -72,18 +74,17 @@ public class PastGamesAdapter extends RecyclerView.Adapter<PastGamesAdapter.MyVi
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         PastGame pastGame  = pastGames.get(position);
+        Date gameDate = new Date(Long.parseLong(pastGame.getDate()));
+        String date = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, Locale.ITALY).format(gameDate);
+        String mode;
 
-
-        holder.date.setText("Data: " + DateFormat.getDateTimeInstance(DateFormat.MEDIUM, DateFormat.MEDIUM, Locale.ITALY).format( new Date(Long.parseLong(pastGame.getDate()))));
+        holder.date.setText("Data: " + date );
         holder.winner.setText( "Vincitore: " + pastGame.getWinner());
         String players  = "Giocatori: ";
         if(pastGame.getPlayers()!=null)
             for(String name: pastGame.getPlayers())
                 players = players + ", " + name;
         holder.players.setText(players);
-        String mode;
-
-//todo: impostare correttamente i nomi delle personalizzate ( idea: salvare gamenames nel db, problema: Array non serializzabili
 
         if(pastGame.getGameMode().equals(HARRY_CLUEDO))
             mode = "Harry Potter";
@@ -95,7 +96,6 @@ public class PastGamesAdapter extends RecyclerView.Adapter<PastGamesAdapter.MyVi
             mode = "Personalizzata";
 
         holder.gameMode.setText("Modalità: " + mode);
-
     }
 
     @Override

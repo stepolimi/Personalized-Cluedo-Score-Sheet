@@ -1,4 +1,4 @@
-package com.example.cluedokiler;
+package com.example.cluedokiler.gameTypes;
 
 import android.content.Context;
 import android.content.Intent;
@@ -18,10 +18,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import static com.example.cluedokiler.Parameters.HARRY_CLUEDO;
-import static com.example.cluedokiler.Parameters.MyPREFERENCES;
-import static com.example.cluedokiler.Parameters.OUR_CLUEDO;
-import static com.example.cluedokiler.Parameters.STANDARD_CLUEDO;
+import com.example.cluedokiler.gameInstance.GameStatus;
+import com.example.cluedokiler.LoginActivity;
+import com.example.cluedokiler.MainActivity;
+import com.example.cluedokiler.R;
+import com.example.cluedokiler.dialogs.ExitGameAlert;
+import com.example.cluedokiler.models.GameNames;
+import com.example.cluedokiler.parameters.Parameters;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+import static com.example.cluedokiler.parameters.Parameters.HARRY_CLUEDO;
+import static com.example.cluedokiler.parameters.Parameters.MyPREFERENCES;
+import static com.example.cluedokiler.parameters.Parameters.OUR_CLUEDO;
+import static com.example.cluedokiler.parameters.Parameters.STANDARD_CLUEDO;
 
 public class GameSelectorActivity extends AppCompatActivity {
 
@@ -58,9 +69,9 @@ public class GameSelectorActivity extends AppCompatActivity {
         ourCluedoImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameNames.setSuspects(getResources().getStringArray(R.array.suspects));
-                gameNames.setWeapons(getResources().getStringArray(R.array.weapons));
-                gameNames.setPlaces(getResources().getStringArray(R.array.places));
+                gameNames.setSuspects(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.suspects))));
+                gameNames.setWeapons(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.weapons))));
+                gameNames.setPlaces(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.places))));
                 gameNames.setGameMode(OUR_CLUEDO);
                 GameStatus.getInstance().gameNames = gameNames;
                 Intent mainIntent = new Intent(getApplicationContext(), MainActivity.class);
@@ -72,9 +83,9 @@ public class GameSelectorActivity extends AppCompatActivity {
         harryPotterCluedoImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameNames.setSuspects(getResources().getStringArray(R.array.suspectsHarry));
-                gameNames.setWeapons(getResources().getStringArray(R.array.weaponsHarry));
-                gameNames.setPlaces(getResources().getStringArray(R.array.placesHarry));
+                gameNames.setSuspects(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.suspectsHarry))));
+                gameNames.setWeapons(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.weaponsHarry))));
+                gameNames.setPlaces(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.placesHarry))));
                 gameNames.setGameMode(HARRY_CLUEDO);
                 GameStatus.getInstance().gameNames = gameNames;
                 gameNames.setModified(true);
@@ -87,9 +98,9 @@ public class GameSelectorActivity extends AppCompatActivity {
         cluedoImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameNames.setSuspects(getResources().getStringArray(R.array.suspectsStandard));
-                gameNames.setWeapons(getResources().getStringArray(R.array.weaponsStandard));
-                gameNames.setPlaces(getResources().getStringArray(R.array.placesStandard));
+                gameNames.setSuspects(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.suspectsStandard))));
+                gameNames.setWeapons(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.weaponsStandard))));
+                gameNames.setPlaces(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.placesStandard))));
                 gameNames.setGameMode(STANDARD_CLUEDO);
                 GameStatus.getInstance().gameNames = gameNames;
                 gameNames.setModified(true);
@@ -149,7 +160,7 @@ public class GameSelectorActivity extends AppCompatActivity {
         }else{
             GameStatus.getInstance().playerName = preferences.getString("name", "");
         }
-        GameStatus.getInstance().theme = preferences.getString("color",Parameters.PURPLE);
+        GameStatus.getInstance().theme = preferences.getString("color", Parameters.PURPLE);
 
     }
 

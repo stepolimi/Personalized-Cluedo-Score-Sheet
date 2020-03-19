@@ -1,4 +1,4 @@
-package com.example.cluedokiler;
+package com.example.cluedokiler.dialogs;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -14,6 +14,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.DialogFragment;
+
+import com.example.cluedokiler.R;
 
 public class ImageDialog extends DialogFragment {
 

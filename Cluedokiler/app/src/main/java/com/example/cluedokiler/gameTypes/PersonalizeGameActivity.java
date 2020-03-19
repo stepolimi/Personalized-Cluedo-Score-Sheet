@@ -1,4 +1,4 @@
-package com.example.cluedokiler;
+package com.example.cluedokiler.gameTypes;
 
 import android.content.Context;
 import android.content.Intent;
@@ -20,8 +20,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
-import static com.example.cluedokiler.Parameters.CUSTOM_CLUEDO;
-import static com.example.cluedokiler.Parameters.MyPREFERENCES;
+import com.example.cluedokiler.gameInstance.GameStatus;
+import com.example.cluedokiler.MainActivity;
+import com.example.cluedokiler.R;
+import com.example.cluedokiler.models.GameNames;
+import com.example.cluedokiler.parameters.Parameters;
+
+import static com.example.cluedokiler.parameters.Parameters.CUSTOM_CLUEDO;
+import static com.example.cluedokiler.parameters.Parameters.MyPREFERENCES;
 
 public class PersonalizeGameActivity extends AppCompatActivity {
     SharedPreferences preferences;
@@ -80,21 +86,21 @@ public class PersonalizeGameActivity extends AppCompatActivity {
                         Toast.makeText(PersonalizeGameActivity.super.getApplicationContext(), "Devi riempire tutti i campi!", Toast.LENGTH_SHORT).show();
                         return;
                     }else
-                        gameNames.addSuspect(suspects[i].getText().toString(),i);
+                        gameNames.addSuspect(suspects[i].getText().toString());
                 }
                 for(int i=0; i<6; i++) {
                     if (weapons[i].getText().toString().equals("")) {
                         Toast.makeText(PersonalizeGameActivity.super.getApplicationContext(), "Devi riempire tutti i campi!", Toast.LENGTH_SHORT).show();
                         return;
                     }else
-                        gameNames.addWeapon(weapons[i].getText().toString(),i);
+                        gameNames.addWeapon(weapons[i].getText().toString());
                 }
                 for(int i=0; i<9; i++) {
                     if (places[i].getText().toString().equals("")) {
                         Toast.makeText(PersonalizeGameActivity.super.getApplicationContext(), "Devi riempire tutti i campi!", Toast.LENGTH_SHORT).show();
                         return;
                     }else
-                        gameNames.addPlace(places[i].getText().toString(),i);
+                        gameNames.addPlace(places[i].getText().toString());
                 }
                 gameNames.setModified(true);
                 gameNames.setGameMode(CUSTOM_CLUEDO);
