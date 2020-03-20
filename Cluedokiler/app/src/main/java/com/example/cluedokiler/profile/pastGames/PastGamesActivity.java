@@ -61,7 +61,7 @@ public class PastGamesActivity extends AppCompatActivity {
         setColors();
 
         db = FirebaseDatabase.getInstance().getReference().child(name);
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 pastGames = new ArrayList<>();
@@ -78,7 +78,10 @@ public class PastGamesActivity extends AppCompatActivity {
                         dates.add(data.getKey());
                         players.add((ArrayList<String>)data.child("Players").getValue());
                         gameTables.add(data.child("GameTable").getValue(GameTable.class));
-                        winners.add(data.child("Winner").getValue(String.class));
+                        if(!data.child("Winner").getValue(String.class).equals(""))
+                            winners.add(data.child("Winner").getValue(String.class));
+                        else
+                            winners.add("N.A.");
                         gameMode.add(data.child("GameMode").getValue(String.class));
                         gameNames.add(data.child("GameNames").getValue(GameNames.class));
                     }

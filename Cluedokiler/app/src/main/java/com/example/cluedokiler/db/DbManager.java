@@ -10,6 +10,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class DbManager {
 
     private static DbManager single_instance = null;
@@ -26,6 +28,9 @@ public class DbManager {
     }
 
     public void saveGameRecord(){
+        ArrayList<String> players = GameStatus.getInstance().playersNames;
+        final String name = GameStatus.getInstance().playerName;
+        final long code = GameStatus.getInstance().multiPlayerCode;
         db=FirebaseDatabase.getInstance().getReference().child("GameRecord").child(GameStatus.getInstance().gameTime);
         db.child("Game Table").setValue(GameStatus.getInstance().gameTableHash);
         db.child("GameMode").setValue(GameStatus.getInstance().gameNames.getGameMode());
@@ -44,6 +49,35 @@ public class DbManager {
             db2.child("Validated").setValue("true");
         else
             db2.child("Validated").setValue("false");
+
+        for (String player: players){
+            if(GameStatus.getInstance().confirmationCode.equals("passwordsicurissima")) {
+                DatabaseReference dbb = FirebaseDatabase.getInstance().getReference().child(player).child(String.valueOf(code));
+                dbb.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if(dataSnapshot.exists())
+                            dataSnapshot.getRef().child("Validated").setValue("true");
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) { }
+                });
+            }else {
+                DatabaseReference dbn = FirebaseDatabase.getInstance().getReference().child(player).child(String.valueOf(code)).child("Validated");
+                dbn.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.getValue()!=null && dataSnapshot.getValue().equals("true"))
+                            FirebaseDatabase.getInstance().getReference().child(name).child(String.valueOf(code)).child("Validated").setValue("true");
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
+            }
+        }
     }
 
     public void savePlayersRecord(){
@@ -53,7 +87,7 @@ public class DbManager {
 
         db= FirebaseDatabase.getInstance().getReference().child("MultiPlayerGame").child(String.valueOf(GameStatus.getInstance().multiPlayerCode)).child("Players");
 
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 try {
@@ -76,6 +110,7 @@ public class DbManager {
 
         db= FirebaseDatabase.getInstance().getReference().child("MultiPlayerGame").child(String.valueOf(GameStatus.getInstance().multiPlayerCode)).child("Validated");
         db.setValue("true");
+
     }
 
     public void saveUnValidatedGame(final String winner){
@@ -83,7 +118,7 @@ public class DbManager {
         db.child(GameStatus.getInstance().gameTime).setValue(GameStatus.getInstance().winner);
 
         final DatabaseReference db= FirebaseDatabase.getInstance().getReference().child("MultiPlayerGame").child(String.valueOf(GameStatus.getInstance().multiPlayerCode)).child("Winner");
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 try {
@@ -96,7 +131,7 @@ public class DbManager {
         });
 
         final DatabaseReference db2= FirebaseDatabase.getInstance().getReference().child("MultiPlayerGame").child(String.valueOf(GameStatus.getInstance().multiPlayerCode)).child("Validated");
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 try {
@@ -111,7 +146,7 @@ public class DbManager {
 
     public int getNumGames(){
         db = FirebaseDatabase.getInstance().getReference().child("PlayersRecord");
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 numGames=0;

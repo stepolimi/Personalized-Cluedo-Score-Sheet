@@ -170,7 +170,7 @@ public class StatisticsActivity extends AppCompatActivity {
         playerTextView[3].setText("Numero di partite giocate: ");
         playerTextView[4].setText("");
         db = FirebaseDatabase.getInstance().getReference().child("PlayersRecord");
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int numGames=0;
@@ -196,7 +196,7 @@ public class StatisticsActivity extends AppCompatActivity {
         playerTextView[5].setText("Totale spunte inserite: ");
         playerTextView[6].setText("");
         db = FirebaseDatabase.getInstance().getReference().child(gameStatus.playerName);
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int numTicks=0;
@@ -220,7 +220,7 @@ public class StatisticsActivity extends AppCompatActivity {
         playerTextView[7].setText("Totale croci inserite: ");
         playerTextView[8].setText("");
         db = FirebaseDatabase.getInstance().getReference().child(gameStatus.playerName);
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int numCrosses=0;
@@ -244,7 +244,7 @@ public class StatisticsActivity extends AppCompatActivity {
         playerTextView[9].setText("Totale spazi rimasti incerti: ");
         playerTextView[10].setText("");
         db = FirebaseDatabase.getInstance().getReference().child(gameStatus.playerName);
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int numEmpty=0;
@@ -268,7 +268,7 @@ public class StatisticsActivity extends AppCompatActivity {
         playerTextView[11].setText("Totale vittorie non ufficiali: ");
         playerTextView[12].setText("");
         db = FirebaseDatabase.getInstance().getReference().child("UnValidatedGame");
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int numVictories=0;
@@ -293,7 +293,7 @@ public class StatisticsActivity extends AppCompatActivity {
         playerTextView[13].setText("Totale vittorie ufficiali: ");
         playerTextView[14].setText("");
         db = FirebaseDatabase.getInstance().getReference().child("ValidatedGame");
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 int numVictories=0;
@@ -322,7 +322,7 @@ public class StatisticsActivity extends AppCompatActivity {
         playerTextView[17].setText("Partite con il compagno più fidato: ");
         playerTextView[18].setText("");
         db = FirebaseDatabase.getInstance().getReference().child("PlayersRecord");
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 HashMap<String,Integer> players = new HashMap<>();
@@ -368,7 +368,7 @@ public class StatisticsActivity extends AppCompatActivity {
         playerTextView[19].setText("Miglior giocatore: ");
         playerTextView[20].setText("");
         db = FirebaseDatabase.getInstance().getReference().child("ValidatedGame");
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 HashMap<String,Integer> players = new HashMap<>();

@@ -158,28 +158,6 @@ public class ShowPastGameActivity extends AppCompatActivity {
     }
 
     private void setResources(){
-        /*
-        if(game.getGameMode().equals(HARRY_CLUEDO)) {
-            suspects = (getResources().getStringArray(R.array.suspectsHarry));
-            weapons = (getResources().getStringArray(R.array.weaponsHarry));
-            places = (getResources().getStringArray(R.array.placesHarry));
-
-        }else if(game.getGameMode().equals(STANDARD_CLUEDO) ) {
-            suspects = (getResources().getStringArray(R.array.suspectsStandard));
-            weapons = (getResources().getStringArray(R.array.weaponsStandard));
-            places = (getResources().getStringArray(R.array.placesStandard));
-
-        }else if(game.getGameMode().equals(OUR_CLUEDO)) {
-            suspects = (getResources().getStringArray(R.array.suspects));
-            weapons = (getResources().getStringArray(R.array.weapons));
-            places = (getResources().getStringArray(R.array.places));
-
-        }else {
-            suspects = (getResources().getStringArray(R.array.suspectsStandard));
-            weapons = (getResources().getStringArray(R.array.weaponsStandard));
-            places = (getResources().getStringArray(R.array.placesStandard));
-        }
-*/
         suspects = gameNames.getSuspects();
         weapons = gameNames.getWeapons();
         places = gameNames.getPlaces();

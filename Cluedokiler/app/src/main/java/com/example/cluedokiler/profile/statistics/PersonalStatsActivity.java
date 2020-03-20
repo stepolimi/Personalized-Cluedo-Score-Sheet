@@ -55,7 +55,7 @@ public class PersonalStatsActivity extends AppCompatActivity {
         setColors();
 
         db = FirebaseDatabase.getInstance().getReference().child(name);
-        db.addValueEventListener(new ValueEventListener() {
+        db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 personalStats = new ArrayList<>();
@@ -66,6 +66,7 @@ public class PersonalStatsActivity extends AppCompatActivity {
                 int gameCount = 0;
                 int validatedWinsCount = 0;
                 int unvalidatedWinsCount = 0;
+                int leftGamesCount = 0;
 
                 HashMap<String,Integer> players = new HashMap<>();
                 int max = 0;
@@ -82,32 +83,36 @@ public class PersonalStatsActivity extends AppCompatActivity {
                             validatedWinsCount++;
                         else
                             unvalidatedWinsCount ++;
+                    } else if(data.child("Winner").getValue(String.class).equals("")) {
+                        leftGamesCount ++;
                     }
                     //
-                    for (String name : (ArrayList<String>)data.child("Players").getValue()) {
-                        if (players.containsKey(name))
-                            players.put(name, players.get(name) + 1);
+                    for (String playerName : (ArrayList<String>)data.child("Players").getValue()) {
+                        if (players.containsKey(playerName))
+                            players.put(playerName, players.get(playerName) + 1);
                         else
-                            players.put(name, 1);
+                            players.put(playerName, 1);
                     }
 
                 }
-                for(String name: players.keySet())
-                    if(players.get(name) > max && !name.equals(name)){
-                        max = players.get(name);
-                        player = name;
+                for(String playerName: players.keySet())
+                    if(players.get(playerName) > max && !playerName.equals(name)){
+                        max = players.get(playerName);
+                        player = playerName;
                     }
+
                 personalStats.add(new PersonalStats("Partite giocate: ",String.valueOf(gameCount)));
                 personalStats.add(new PersonalStats("Totale spunte inserite: ",String.valueOf(tickCount)));
                 personalStats.add(new PersonalStats("Totale croci inserite: ",String.valueOf(crossCount)));
                 personalStats.add(new PersonalStats("Totale spazi rimasti incerti: ",String.valueOf(emptyCount)));
                 personalStats.add(new PersonalStats("Numero vittorie ufficiali: ",String.valueOf(validatedWinsCount)));
                 personalStats.add(new PersonalStats("Numero vittorie non ufficiali: ",String.valueOf(unvalidatedWinsCount)));
+                personalStats.add(new PersonalStats("Numero partite abbandonate: ",String.valueOf(leftGamesCount)));
                 personalStats.add(new PersonalStats("Compagno fidato:",player));
                 personalStats.add(new PersonalStats("Partite con il compagno fidato: ",String.valueOf(max)));
 
                 personalStatsRecyclerView = findViewById(R.id.personalStatsRecyclerView);
-                //personalStatsRecyclerView.setHasFixedSize(true);    //true if items doesent change
+                //personalStatsRecyclerView.setHasFixedSize(true);    //true if items doesn't change
                 layoutManager = new LinearLayoutManager(PersonalStatsActivity.super.getApplicationContext());
                 personalStatsRecyclerView.setLayoutManager(layoutManager);
                 adapter = new PersonalStatsAdapter(personalStats);

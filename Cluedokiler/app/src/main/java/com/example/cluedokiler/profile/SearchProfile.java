@@ -10,10 +10,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Spinner;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.cluedokiler.PlayersAdapter;
@@ -30,6 +32,7 @@ public class SearchProfile extends AppCompatActivity {
 
     private SharedPreferences preferences;
     private Button searchProfileButton;
+    private ImageView backArrow;
     private String name;
     private String profileName;
 
@@ -37,6 +40,11 @@ public class SearchProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_profile);
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setElevation(Float.valueOf(100));
+
         searchProfileButton = findViewById(R.id.searchProfileButton);
         name= getIntent().getStringExtra("name");
 
@@ -66,6 +74,13 @@ public class SearchProfile extends AppCompatActivity {
                 Intent profile = new Intent(getApplicationContext(), ProfileActivity.class);
                 profile.putExtra("name",profileName);
                 startActivity(profile);
+                finish();
+            }
+        });
+        backArrow = findViewById(R.id.searchProfileBackArrowImageView);
+        backArrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 finish();
             }
         });
