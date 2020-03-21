@@ -24,7 +24,7 @@
         <activity android:name=".gameTypes.PersonalizeGameActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".dialogs.CodeAlert" />
-        <activity android:name=".StatisticsActivity" />
+        <activity android:name=".Statistics.GlobalStatisticsActivity" />
         <activity android:name=".GameActivity" />
         <activity android:name=".MainActivity" />
     </application>

@@ -1,4 +1,4 @@
-package com.example.cluedokiler.profile.statistics;
+package com.example.cluedokiler.Statistics;
 
 public class PersonalStats {
 

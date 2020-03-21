@@ -1,4 +1,4 @@
-package com.example.cluedokiler.profile.statistics;
+package com.example.cluedokiler.Statistics;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -17,12 +17,9 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cluedokiler.Statistics.PersonalStats;
-import com.example.cluedokiler.Statistics.PersonalStatsAdapter;
-import com.example.cluedokiler.gameInstance.GameStatus;
-import com.example.cluedokiler.models.GameTable;
-import com.example.cluedokiler.parameters.Parameters;
 import com.example.cluedokiler.R;
+import com.example.cluedokiler.gameInstance.GameStatus;
+import com.example.cluedokiler.parameters.Parameters;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,12 +27,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import static com.example.cluedokiler.parameters.Parameters.MyPREFERENCES;
 
-public class PersonalStatsActivity extends AppCompatActivity {
-
+public class GlobalStatisticsActivity extends AppCompatActivity {
 
     private DatabaseReference db;
     private ArrayList<PersonalStats> personalStats;
@@ -56,66 +53,51 @@ public class PersonalStatsActivity extends AppCompatActivity {
 
         setColors();
 
-        db = FirebaseDatabase.getInstance().getReference().child(name);
+        db = FirebaseDatabase.getInstance().getReference().child("ValidatedGame");
         db.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                ArrayList<String> playerNames = new ArrayList<>(Arrays.asList(getResources().getStringArray(R.array.players)));
+                playerNames.remove("--Vuoto--");
+                playerNames.remove("Guest1");
+                playerNames.remove("Guest2");
+                playerNames.remove("Guest3");
+                playerNames.remove("Guest4");
+                playerNames.remove("Guest5");
+                playerNames.remove("Guest6");
                 personalStats = new ArrayList<>();
 
-                int tickCount = 0;
-                int crossCount = 0;
-                int emptyCount = 0;
-                int gameCount = 0;
-                int validatedWinsCount = 0;
-                int unvalidatedWinsCount = 0;
-                int leftGamesCount = 0;
-
                 HashMap<String,Integer> players = new HashMap<>();
+
+                for(String name: playerNames){
+                    players.put(name,0);
+                }
+
                 int max = 0;
                 String player="";
-
-                for(DataSnapshot data: dataSnapshot.getChildren()){
-                    gameCount ++;
-                    tickCount += data.child("GameTable").getValue(GameTable.class).getNumTick();
-                    crossCount += data.child("GameTable").getValue(GameTable.class).getNumCross();
-                    emptyCount += data.child("GameTable").getValue(GameTable.class).getNumIncerts();
-                    //
-                    if(data.child("Winner").getValue(String.class).equals(name)) {
-                        if(data.child("Validated").getValue(String.class).equals("true"))
-                            validatedWinsCount++;
-                        else
-                            unvalidatedWinsCount ++;
-                    } else if(data.child("Winner").getValue(String.class).equals("")) {
-                        leftGamesCount ++;
-                    }
-                    //
-                    for (String playerName : (ArrayList<String>)data.child("Players").getValue()) {
-                        if (players.containsKey(playerName))
-                            players.put(playerName, players.get(playerName) + 1);
-                        else
-                            players.put(playerName, 1);
-                    }
-
+                for (DataSnapshot data: dataSnapshot.getChildren()){
+                    if(players.containsKey(data.getValue(String.class)))
+                        players.put(data.getValue(String.class), players.get(data.getValue(String.class))+1);
+                    else
+                        players.put(data.getValue(String.class),1);
                 }
-                for(String playerName: players.keySet())
-                    if(players.get(playerName) > max && !playerName.equals(name)){
-                        max = players.get(playerName);
-                        player = playerName;
+                for(String name: players.keySet())
+                    if(players.get(name) > max){
+                        max = players.get(name);
+                        player = name;
                     }
 
-                personalStats.add(new PersonalStats("Partite giocate: ",String.valueOf(gameCount)));
-                personalStats.add(new PersonalStats("Totale spunte inserite: ",String.valueOf(tickCount)));
-                personalStats.add(new PersonalStats("Totale croci inserite: ",String.valueOf(crossCount)));
-                personalStats.add(new PersonalStats("Totale spazi rimasti incerti: ",String.valueOf(emptyCount)));
-                personalStats.add(new PersonalStats("Numero vittorie ufficiali: ",String.valueOf(validatedWinsCount)));
-                personalStats.add(new PersonalStats("Numero vittorie non ufficiali: ",String.valueOf(unvalidatedWinsCount)));
-                personalStats.add(new PersonalStats("Numero partite abbandonate: ",String.valueOf(leftGamesCount)));
-                personalStats.add(new PersonalStats("Compagno fidato:",player));
-                personalStats.add(new PersonalStats("Partite con il compagno fidato: ",String.valueOf(max)));
+                personalStats.add(new PersonalStats("Giocatore migliore: ",player));
+                personalStats.add(new PersonalStats("Partite vinte : ",String.valueOf(max)));
+                personalStats.add(new PersonalStats("",""));
+                personalStats.add(new PersonalStats("Partite vinte da ciascun giocatore:",""));
+
+                for(String name: players.keySet())
+                    personalStats.add(new PersonalStats("  " + name,String.valueOf(players.get(name)) + "  "));
 
                 personalStatsRecyclerView = findViewById(R.id.personalStatsRecyclerView);
                 //personalStatsRecyclerView.setHasFixedSize(true);    //true if items doesn't change
-                layoutManager = new LinearLayoutManager(PersonalStatsActivity.super.getApplicationContext());
+                layoutManager = new LinearLayoutManager(GlobalStatisticsActivity.super.getApplicationContext());
                 personalStatsRecyclerView.setLayoutManager(layoutManager);
                 adapter = new PersonalStatsAdapter(personalStats);
                 personalStatsRecyclerView.setAdapter(adapter);
@@ -197,5 +179,4 @@ public class PersonalStatsActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
-
 }

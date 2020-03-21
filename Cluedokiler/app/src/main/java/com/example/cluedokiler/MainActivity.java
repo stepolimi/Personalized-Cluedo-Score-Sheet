@@ -24,6 +24,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import com.example.cluedokiler.Statistics.GlobalStatisticsActivity;
 import com.example.cluedokiler.db.DbManager;
 import com.example.cluedokiler.dialogs.CodeAlert;
 import com.example.cluedokiler.dialogs.ExitGameAlert;
@@ -430,7 +431,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 GameStatus gameStatus = GameStatus.getInstance();
                 if(!gameStatus.playerName.equals("--Vuoto--")) {
-                    Intent startGameIntent = new Intent(getApplicationContext(), StatisticsActivity.class);
+                    Intent startGameIntent = new Intent(getApplicationContext(), GlobalStatisticsActivity.class);
+                    startGameIntent.putExtra("name", GameStatus.getInstance().playerName);
                     startActivity(startGameIntent);
                 }else{
                     Toast toast = Toast.makeText(getApplicationContext(), "Inserisci il tuo nome prima", Toast.LENGTH_LONG);
