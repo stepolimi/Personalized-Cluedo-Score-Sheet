@@ -94,6 +94,8 @@ public class GameActivity extends AppCompatActivity {
 
         setImages();
 
+        DbManager.getInstance().saveGameRecord();
+
         nameViews();
 
         setHideSwitcher();

@@ -32,6 +32,11 @@ import com.example.cluedokiler.gameTypes.GameSelectorActivity;
 import com.example.cluedokiler.models.GameNames;
 import com.example.cluedokiler.parameters.Parameters;
 import com.example.cluedokiler.profile.ProfileActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -44,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
     Button statisticsButton;
     Button multiPlayerCodeButton;
     SharedPreferences preferences;
+    GameStatus gameStatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,8 +84,9 @@ public class MainActivity extends AppCompatActivity {
         playButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                GameStatus gameStatus = GameStatus.getInstance();
-                GameStatus.getInstance().tentativePlayers.set(0,GameStatus.getInstance().playerName);
+                gameStatus = GameStatus.getInstance();
+                gameStatus.tentativePlayers.set(0,GameStatus.getInstance().playerName);
+
                 if(!gameStatus.playersSet) {
 
                     for (int i = 0; i < 6; i++)
@@ -91,27 +98,16 @@ public class MainActivity extends AppCompatActivity {
                     else
                         gameStatus.playersSet = true;
                 }
-                if(gameStatus.playersNames.size() > 2 && !gameStatus.playerName.equals("--Vuoto--")){
-                    Intent startGameIntent = new Intent(getApplicationContext(), GameActivity.class);
-                    startActivity(startGameIntent);
 
-                    if(!gameStatus.tableSet) {
-                        if(gameStatus.gameNames == null) {
-                            GameNames gameNames = new GameNames();
-                            gameNames.setSuspects(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.suspects))));
-                            gameNames.setWeapons(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.weapons))));
-                            gameNames.setPlaces(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.places))));
-                            GameStatus.getInstance().gameNames = gameNames;
-                        }
-                        GameStatus.getInstance().gameTime = java.util.Calendar.getInstance().getTime().toString();
-                        gameStatus.gameTableHash.setPlayer(gameStatus.playerName);
-                        DbManager.getInstance().saveMultiPlayerCode();
-                        DbManager.getInstance().savePlayersRecord();
-                    }
+                if(gameStatus.playersNames.size() > 2 && !gameStatus.playerName.equals("--Vuoto--")){
+                    GameStatus.getInstance().gameTime = java.util.Calendar.getInstance().getTime().toString();
+                    initializeGame();
+
                 }else {
                     if(gameStatus.tableSet){
                         Intent startGameIntent = new Intent(getApplicationContext(), GameActivity.class);
                         startActivity(startGameIntent);
+
                     } else if(gameStatus.playersNames.size() <=2) {
                         Toast toast = Toast.makeText(getApplicationContext(), "Devono esserci almeno 3 giocatori!", Toast.LENGTH_LONG);
                         toast.setGravity(Gravity.BOTTOM, 0, 20);
@@ -146,6 +142,84 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         getOnBackPressedDispatcher().addCallback(this, callback);
+    }
+
+    private void checkStartGame() {
+        DatabaseReference db = FirebaseDatabase.getInstance().getReference();
+        final ArrayList<String> players = GameStatus.getInstance().playersNames;
+        final long code = GameStatus.getInstance().multiPlayerCode;
+
+        DatabaseReference dbb = FirebaseDatabase.getInstance().getReference();
+        dbb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (String player : players) {
+                    DataSnapshot snap = dataSnapshot.child(player).child(String.valueOf(code));
+                    if (snap.exists()) {
+                        if (!(((ArrayList<String>) snap.child("Players").getValue()).size() == players.size())) {
+                            startGameError();
+                            return;
+                        }
+                        for (String name : (ArrayList<String>) snap.child("Players").getValue()) {
+                            if (!players.contains(name)) {
+                                startGameError();
+                                return;
+                            }
+                        }
+                    }
+                }
+                startGame();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
+
+    }
+
+    private void initializeGame(){
+        DatabaseReference connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
+        connectedRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                boolean connected = snapshot.getValue(Boolean.class);
+                if (connected) {
+                    checkStartGame();
+                } else {
+                    Toast.makeText(MainActivity.super.getBaseContext(), "Errore di connessione, la partita verrà avviata in locale", Toast.LENGTH_SHORT).show();
+                    startGame();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+    }
+
+    private void startGameError(){
+        gameStatus.playersNames.clear();
+        gameStatus.playersSet = false;
+        Toast.makeText(this,"Errore nel codice della partita",Toast.LENGTH_SHORT).show();
+    }
+
+    private void startGame(){
+        if(!gameStatus.tableSet) {
+            if(gameStatus.gameNames == null) {
+                GameNames gameNames = new GameNames();
+                gameNames.setSuspects(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.suspects))));
+                gameNames.setWeapons(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.weapons))));
+                gameNames.setPlaces(new ArrayList<String>(Arrays.asList(getResources().getStringArray(R.array.places))));
+                GameStatus.getInstance().gameNames = gameNames;
+            }
+            gameStatus.gameTableHash.setPlayer(gameStatus.playerName);
+            DbManager.getInstance().saveMultiPlayerCode();
+            DbManager.getInstance().savePlayersRecord();
+        }
+
+        Intent startGameIntent = new Intent(getApplicationContext(), GameActivity.class);
+        startActivity(startGameIntent);
     }
 
     private void setColors(){
