@@ -6,7 +6,9 @@ Right now the app is available only for android phones, the apk can be found in 
 
 Following up some screens of the application.
 
+<h1>
 **Select players**
+ </h1>
 <p align="center">
   <img src="res/select-players.jpg" width="400" title="Select players">
 </p>
