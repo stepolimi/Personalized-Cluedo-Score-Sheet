@@ -6,10 +6,18 @@ Right now the app is available only for android phones, the apk can be found in 
 
 Following up some screens of the application.
 
-![Start a game](res/select-players.PNG?raw=true "Select the players")
+**Select players**
 
-![Score sheet](res/score-sheet.PNG?raw=true "Score sheet")
+![Start a game](https://drive.google.com/file/d/16wOklOncpVxtnqvUF0wAjEZ6qoFn3cj8/view?usp=sharing)
 
-![Past games](res/past-games.PNG?raw=true "Past games history")
+**Score sheet**
 
-![Statistics](res/statistics.PNG?raw=true "Statistics")
+![Score sheet](https://drive.google.com/file/d/16rCQJBXdmdUtYhrjqS2dgx0nULpuL-AP/view?usp=sharing)
+
+**Past games history**
+
+![Past games](https://drive.google.com/file/d/16rVnPB7b-7zZdgtCZT9nV6d3v5zQqe8p/view?usp=sharing)
+
+**Statistics**
+
+![Statistics](https://drive.google.com/file/d/16tjgAeLtrGayDHYaGCrI1gmZfj-hW_dw/view?usp=sharing)
