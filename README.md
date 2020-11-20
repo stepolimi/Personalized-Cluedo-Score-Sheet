@@ -8,16 +8,16 @@ Following up some screens of the application.
 
 **Select players**
 
-![Start a game](https://drive.google.com/file/d/16wOklOncpVxtnqvUF0wAjEZ6qoFn3cj8/view?usp=sharing)
+![Start a game](res/select-players.jpg)
 
 **Score sheet**
 
-![Score sheet](https://drive.google.com/file/d/16rCQJBXdmdUtYhrjqS2dgx0nULpuL-AP/view?usp=sharing)
+![Score sheet](res/cluedo-game.jpg)
 
 **Past games history**
 
-![Past games](https://drive.google.com/file/d/16rVnPB7b-7zZdgtCZT9nV6d3v5zQqe8p/view?usp=sharing)
+![Past games](res/past-games.jpg)
 
 **Statistics**
 
-![Statistics](https://drive.google.com/file/d/16tjgAeLtrGayDHYaGCrI1gmZfj-hW_dw/view?usp=sharing)
+![Statistics](res/statistics.jpg)
