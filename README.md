@@ -8,10 +8,8 @@ Following up some screens of the application.
 
 **Select players**
 <p align="center">
-  <p>
-  <img src="res/select-players.jpg" height="500" title="Select players">
-    </p>
-  <img src="res/cluedo-game.jpg" height="500" alt="accessibility text">
+  <img src="res/select-players.jpg" height="800" title="Select players">
+  <img src="res/cluedo-game.jpg" height="800" alt="accessibility text">
 </p>
 
 
@@ -22,8 +20,8 @@ Following up some screens of the application.
 **Past games history**
 
 <p align="center">
-  <img src="res/past-games.jpg" height="500" title="Select players">
-  <img src="res/statistics.jpg" height="500" alt="accessibility text">
+  <img src="res/past-games.jpg" height="800" title="Select players">
+  <img src="res/statistics.jpg" height="800" alt="accessibility text">
 </p>
 
 
