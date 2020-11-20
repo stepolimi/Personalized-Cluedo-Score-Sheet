@@ -1,4 +1,4 @@
-# Personalized-Cluedo-Score-Card
+# Personalized-Cluedo-Score-Sheet
 
 This is a personal project to implement an improved Cluedo Scoresheet with many different features like global statistics, app personalization and past games history to play standard Cluedo, Harry Potter Cluedo or even a personalized version.
 
