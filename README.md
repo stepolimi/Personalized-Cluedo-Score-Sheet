@@ -7,7 +7,10 @@ Right now the app is available only for android phones, the apk can be found in 
 Following up some screens of the application.
 
 **Select players**
-
+<p align="center">
+  <img src="res/select-players.jpg" width="350" title="Select players">
+  <img src="res/cluedo-game.jpg" width="350" alt="accessibility text">
+</p>
 ![Start a game](res/select-players.jpg)
 
 **Score sheet**
