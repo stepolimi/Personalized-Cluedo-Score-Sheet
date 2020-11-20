@@ -89,7 +89,8 @@ public class PastGamesActivity extends AppCompatActivity {
                 }
 
                 for(int j=0; j<players.size(); j++){
-                    pastGames.add(new PastGame(dates.get(j), players.get(j),winners.get(j),gameMode.get(j), gameTables.get(j)));
+                    i = players.size() - j - 1;
+                    pastGames.add(new PastGame(dates.get(i), players.get(i),winners.get(i),gameMode.get(i), gameTables.get(i)));
                 }
 
                 pastGamesRecyclerView = findViewById(R.id.pastGamesRecyclerView);
