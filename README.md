@@ -8,7 +8,9 @@ Following up some screens of the application.
 
 **Select players**
 <p align="center">
+  <p>
   <img src="res/select-players.jpg" height="500" title="Select players">
+    </p>
   <img src="res/cluedo-game.jpg" height="500" alt="accessibility text">
 </p>
 
