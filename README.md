@@ -9,22 +9,20 @@ Following up some screens of the application.
 **Select players**
 <p align="center">
   <img src="res/select-players.jpg" height="800" title="Select players">
+</p>
+
+**Score sheet**
+<p align="center">
   <img src="res/cluedo-game.jpg" height="800" alt="accessibility text">
 </p>
 
-
-**Score sheet**
-
-
-
 **Past games history**
-
 <p align="center">
   <img src="res/past-games.jpg" height="800" title="Select players">
-  <img src="res/statistics.jpg" height="800" alt="accessibility text">
 </p>
 
-
 **Statistics**
-
+<p align="center">
+  <img src="res/statistics.jpg" height="800" alt="accessibility text">
+</p>
 
