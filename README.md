@@ -8,19 +8,23 @@ Following up some screens of the application.
 
 **Select players**
 <p align="center">
-  <img src="res/select-players.jpg" width="350" title="Select players">
-  <img src="res/cluedo-game.jpg" width="350" alt="accessibility text">
+  <img src="res/select-players.jpg" height="500" title="Select players">
+  <img src="res/cluedo-game.jpg" height="500" alt="accessibility text">
 </p>
-![Start a game](res/select-players.jpg)
+
 
 **Score sheet**
 
-![Score sheet](res/cluedo-game.jpg)
+
 
 **Past games history**
 
-![Past games](res/past-games.jpg)
+<p align="center">
+  <img src="res/past-games.jpg" height="500" title="Select players">
+  <img src="res/statistics.jpg" height="500" alt="accessibility text">
+</p>
+
 
 **Statistics**
 
-![Statistics](res/statistics.jpg)
+
