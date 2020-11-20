@@ -13,17 +13,23 @@ Select players
   <img src="res/select-players.jpg" width="400" title="Select players">
 </p>
 
-**Score sheet**
+<h2 align="center">
+Score sheet
+</h2>
 <p align="center">
   <img src="res/cluedo-game.jpg" width="400" alt="accessibility text">
 </p>
 
-**Past games history**
+<h2 align="center">
+Past games history
+</h2>
 <p align="center">
   <img src="res/past-games.jpg" width="400" title="Select players">
 </p>
 
-**Statistics**
+<h2 align="center">
+Statistics
+</h2>
 <p align="center">
   <img src="res/statistics.jpg" width="400" alt="accessibility text">
 </p>
